@@ -93,10 +93,19 @@ export default function RootLayout({
         {children}
         {/* LeadConnector Chat Widget */}
         <Script
-          src="https://beta.leadconnectorhq.com/loader.js"
-          data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="690fd6dc33e992e8c912b705"
-          strategy="lazyOnload"
+          id="leadconnector-widget"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var script = document.createElement('script');
+                script.src = 'https://beta.leadconnectorhq.com/loader.js';
+                script.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+                script.setAttribute('data-widget-id', '690fd6dc33e992e8c912b705');
+                document.body.appendChild(script);
+              })();
+            `,
+          }}
         />
         {/* JSON-LD Structured Data */}
         <script
