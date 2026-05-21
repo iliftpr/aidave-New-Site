@@ -32,8 +32,8 @@ export function PortfolioSection() {
           <p className="text-gray-600 mb-6">
             Ready to see what we can do for your business?
           </p>
-          <Button href={COMPANY_INFO.links.calendly} size="lg">
-            Schedule Your Strategy Call
+          <Button href={COMPANY_INFO.links.calcom.strategy} size="lg">
+            Book Strategy Session
           </Button>
         </ScrollReveal>
       </div>

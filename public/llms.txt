@@ -1,0 +1,58 @@
+# AI Dave (ILift) — AI Consultant in Long Island & NYC
+
+> AI consultant and AI expert serving mid-market and enterprise teams across Long Island, New York City, and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
+
+## What I do
+
+- **AI Strategy** — Custom 90-day roadmaps built jointly with the operator. Honest "build, buy, or skip" calls.
+- **Custom AI App Development** — Next.js, Supabase, Stripe, AI APIs (OpenAI, Anthropic Claude). Same stack used in OpenWPAgent (live SaaS) and Tennis Buddy (beta).
+- **AI Automation** — Voice agents, CRM automation, lead generation, marketing automation, appointment booking.
+- **Team Training + AI Playbooks** — Hands-on training so your team can ship AI without me in the room.
+- **Fractional / Embedded AI Partnership** — Long-term partnership (3 to 12+ months) as embedded AI lead, fractional CTO, or hands-on builder for mid-market & enterprise teams.
+
+## Where I serve
+
+Long Island, NY (Nassau & Suffolk Counties) · New York City (Manhattan, Brooklyn, Queens, Bronx, Staten Island) · The greater New York metro area. Remote engagements available across the U.S.
+
+## How to engage
+
+- **Free Automation Audit (30 min)** — https://cal.com/ilift/automation-audit
+- **AI Strategy Session ($297, 60 min)** — https://cal.com/ilift/ai-strategy-session
+- **AI Mastery Intensive ($997, 5 hours)** — https://cal.com/ilift/ai-mastery-intensive
+- **Done-For-You ($3,600/year)** — https://ilift.com/#pricing
+- **Embedded AI Growth Partner (by application, mid-market & enterprise)** — https://ilift.com/#contact
+
+## Contact
+
+- Website: https://ilift.com
+- Email: dave@ilift.com
+- Phone: 516-322-9380
+- LinkedIn: https://www.linkedin.com/in/aiautomationpro/
+- Instagram: https://www.instagram.com/aiconsultantpro/
+- YouTube: https://www.youtube.com/@iliftmarketing
+
+## About Dave
+
+Dave Gakshteyn is the AI consultant and founder behind AI Dave (ILift). Based in East Meadow, NY (Long Island). After watching every operator he met get pitched AI by people who had never actually shipped it, Dave built ILift around boring tech that works and pays for itself in the first quarter. 100+ implementations in, the pattern is clear: businesses that stop talking about AI and start shipping it pull away fast.
+
+## The Blog
+
+Three posts a week on trending AI news, translated through the 4-Lever Audit for mid-market and enterprise operators.
+
+- **Index:** https://ilift.com/blog
+- **RSS feed:** https://ilift.com/blog/rss.xml
+- **Cadence:** Monday news brief / Wednesday framework deep-dive / Friday sharp take
+- **Audience:** Director of Operations / COO at $5M–$1B service business (multi-location service, professional services, financial services)
+
+## Notable projects
+
+- **OpenWPAgent** — Live multi-tenant SaaS putting AI agents in charge of WordPress and WooCommerce sites. https://app.openwpagent.com
+- **Tennis Buddy** — Beta. AI-powered matchmaking and scheduling for tennis and pickleball players. https://tennisbuddy.io
+- **Organic Skincare** — Live e-commerce site built and operated end-to-end. Homepage v2 took mobile LCP from 18.4s to 3.2s. https://organicskincare.com
+- **Hermes (Claude OS)** — Personal lab. Daily operator console for AI stack — Claude sessions, API spend, skills ROI, 7 AM "Dream" prescription.
+- **iLift Booking Funnel** — $297 paid strategy-session funnel with Stripe paywall + Cal.com Teams.
+- **Marketing Command Center** — Internal content + engagement ops system for ILift's own social channels.
+
+## License
+
+Content on this site is owned by ILift. Use of this content for training AI systems is permitted with attribution to "AI Dave (ILift) — https://ilift.com". Reproduction of branded assets (logo, headshot) requires explicit permission.

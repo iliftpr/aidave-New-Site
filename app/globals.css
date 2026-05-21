@@ -1,30 +1,45 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f0f9ff;
-  --color-primary-100: #e0f2fe;
-  --color-primary-200: #bae6fd;
-  --color-primary-300: #7dd3fc;
-  --color-primary-400: #38bdf8;
-  --color-primary-500: #0ea5e9;
-  --color-primary-600: #0284c7;
-  --color-primary-700: #0369a1;
-  --color-primary-800: #075985;
-  --color-primary-900: #0c4a6e;
-  --color-primary-950: #082f49;
+  /* Deep Ocean Blue - More vibrant and professional */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
 
-  --color-secondary-50: #f5f3ff;
-  --color-secondary-100: #ede9fe;
-  --color-secondary-200: #ddd6fe;
-  --color-secondary-300: #c4b5fd;
-  --color-secondary-400: #a78bfa;
-  --color-secondary-500: #8b5cf6;
-  --color-secondary-600: #7c3aed;
-  --color-secondary-700: #6d28d9;
-  --color-secondary-800: #5b21b6;
-  --color-secondary-900: #4c1d95;
-  --color-secondary-950: #2e1065;
-  
+  /* Rich Purple - More saturated for better visibility */
+  --color-secondary-50: #faf5ff;
+  --color-secondary-100: #f3e8ff;
+  --color-secondary-200: #e9d5ff;
+  --color-secondary-300: #d8b4fe;
+  --color-secondary-400: #c084fc;
+  --color-secondary-500: #a855f7;
+  --color-secondary-600: #9333ea;
+  --color-secondary-700: #7e22ce;
+  --color-secondary-800: #6b21a8;
+  --color-secondary-900: #581c87;
+  --color-secondary-950: #3b0764;
+
+  /* Accent Orange/Gold - For CTAs that pop */
+  --color-accent-50: #fffbeb;
+  --color-accent-100: #fef3c7;
+  --color-accent-200: #fde68a;
+  --color-accent-300: #fcd34d;
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+  --color-accent-800: #92400e;
+  --color-accent-900: #78350f;
+  --color-accent-950: #451a03;
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
 }
@@ -79,6 +94,22 @@ html {
   background: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
 }
 
+.accent-gradient-bg {
+  background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-600));
+}
+
+.accent-text {
+  color: var(--color-accent-500);
+}
+
+.accent-gradient-text {
+  background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-600));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
 .section-padding {
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -131,13 +162,24 @@ html {
   background: #94a3b8;
 }
 
-/* Hero grid pattern */
+/* Hero grid pattern — pseudo-element so the mask fades ONLY the grid, never the content */
 .hero-grid-pattern {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-grid-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
   background-image:
-    linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(59, 130, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: -1px -1px;
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 interface ButtonProps {
   children: ReactNode
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'accent'
   size?: 'sm' | 'md' | 'lg'
   href?: string
   className?: string
@@ -27,10 +27,11 @@ export function Button({
   const baseStyles = 'font-bold rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2 relative overflow-hidden'
 
   const variantStyles = {
-    primary: 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-[0_0_20px_-5px_var(--color-primary-500)] hover:shadow-[0_0_30px_-5px_var(--color-primary-500)] hover:scale-[1.02]',
-    secondary: 'bg-white text-gray-900 border border-gray-200 hover:border-primary-300 hover:bg-primary-50 shadow-sm hover:shadow-md',
-    outline: 'bg-transparent border-2 border-primary-200 text-primary-700 hover:border-primary-400 hover:bg-primary-50',
-    ghost: 'bg-transparent text-gray-600 hover:text-primary-600 hover:bg-primary-50/50',
+    primary: 'bg-primary-700 text-white shadow-xl shadow-primary-700/50 hover:bg-primary-800 hover:shadow-2xl border-2 border-primary-800',
+    secondary: 'bg-white text-gray-900 border-2 border-gray-300 hover:border-primary-400 hover:bg-primary-50 shadow-md hover:shadow-lg',
+    outline: 'bg-white/80 border-2 border-primary-400 text-primary-800 hover:border-primary-600 hover:bg-primary-50 font-semibold',
+    ghost: 'bg-transparent text-gray-700 hover:text-primary-700 hover:bg-primary-100',
+    accent: 'bg-amber-500 text-white shadow-xl shadow-amber-500/50 hover:bg-amber-600 hover:shadow-2xl font-extrabold border-2 border-amber-600',
   }
 
   const sizeStyles = {
@@ -46,6 +47,7 @@ export function Button({
       <motion.a
         href={href}
         className={classes}
+        whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.98 }}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -58,6 +60,7 @@ export function Button({
   return (
     <motion.button
       className={classes}
+      whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
       type={type}

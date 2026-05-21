@@ -1,9 +1,10 @@
-import { Service, Review, PortfolioItem } from '@/types'
+import { Service, Review, PortfolioItem, Offer, ServiceType, EngagementType } from '@/types'
 
 export const COMPANY_INFO = {
-  name: 'ILift Website Design & Digital Marketing',
+  name: 'ILift by AI Dave - Smart AI Website Design',
   shortName: 'ILift',
-  phone: '855-905-3407',
+  tagline: 'Smart AI Website Design by AI Dave',
+  phone: '516-322-9380',
   email: 'dave@ilift.com',
   address: {
     street: '1738 Bard Lane',
@@ -16,6 +17,14 @@ export const COMPANY_INFO = {
     app: 'https://app.ilift.com',
     calendly: 'https://calendly.com/aiconsultantpro/digital-marketing-strategy-kickoff-clone',
     auditForm: 'https://api.leadconnectorhq.com/widget/form/6YjBqsVd2ttrRvAtvu83',
+    calcom: {
+      strategy: 'https://cal.com/ilift/ai-strategy-session',
+      mastery: 'https://cal.com/ilift/ai-mastery-intensive',
+      audit: 'https://cal.com/ilift/automation-audit',
+      engagement: 'https://cal.com/ilift/fractional-ai-intro',
+      discovery: 'https://cal.com/ilift/automation-audit',
+    },
+    scorecard: 'https://ilift.com/scorecard',
   },
   social: {
     facebook: '#',
@@ -269,9 +278,112 @@ export const PORTFOLIO: PortfolioItem[] = [
 ]
 
 export const NAV_LINKS = [
-  { label: 'Home', href: '#home' },
   { label: 'Services', href: '#services' },
+  { label: 'Built by Dave', href: '#built-by-dave' },
+  { label: 'Work with Dave', href: '#work-with-dave' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Reviews', href: '#reviews' },
+  { label: 'About', href: '#about-dave' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ]
+
+export const OFFERS: Offer[] = [
+  {
+    id: 'strategy',
+    name: 'AI Strategy Session',
+    price: '$297',
+    priceDetail: '1-hour intensive',
+    tagline: 'Walk away with a 90-day AI roadmap tailored to your business — even if you never work with us after.',
+    bullets: [
+      '60-min 1-on-1 with Dave (recorded)',
+      'Custom 90-day AI implementation plan',
+      'Honest assessment: build, buy, or skip',
+      'Refunded if we agree it\'s not a fit',
+    ],
+    ctaLabel: 'Book Strategy Session',
+    ctaKind: 'calcom',
+    ctaHref: 'https://cal.com/ilift/ai-strategy-session',
+  },
+  {
+    id: 'mastery',
+    name: 'AI Mastery Intensive',
+    price: '$997',
+    priceDetail: 'Full-day intensive · 9 AM – 2 PM',
+    tagline: 'One day with Dave — power through setup, signups, discovery, and building. You leave with your AI stack live and a working app you built yourself.',
+    bullets: [
+      'Single 5-hour day, 9 AM – 2 PM, one-on-one with Dave',
+      'AI subscription signup walkthrough — the right tools for your use case',
+      'Discovery + mini consulting: what you should build first and why',
+      'Hands-on app build during the session — you ship something real',
+    ],
+    ctaLabel: 'Book Mastery Day',
+    ctaKind: 'calcom',
+    ctaHref: 'https://cal.com/ilift/ai-mastery-intensive',
+    featured: true,
+  },
+  {
+    id: 'growth-partner',
+    name: 'Embedded AI Growth Partner',
+    price: '',
+    priceDetail: '',
+    noPrice: true,
+    tagline: 'Long-term, hands-on partnership for mid-market & enterprise teams. 3 to 12+ months.',
+    bullets: [
+      'AI strategy + custom app builds',
+      'Team training + AI playbooks',
+      'Part-time or full-time embed',
+      'Built for mid-market & enterprise',
+    ],
+    ctaLabel: 'Apply for a Conversation',
+    ctaKind: 'fractional',
+    secondaryCta: {
+      label: 'Or grab a 45-min intro on Cal.com →',
+      href: 'https://cal.com/ilift/fractional-ai-intro',
+    },
+  },
+]
+
+export const SERVICE_TYPES = ['general', 'strategy', 'mastery', 'dfy', 'fractional'] as const
+
+export const SERVICE_LABELS: Record<ServiceType, string> = {
+  general: 'General inquiry',
+  strategy: 'AI Strategy Session ($297)',
+  mastery: 'AI Mastery Intensive ($997)',
+  dfy: 'Done-For-You ($3,600/yr)',
+  fractional: 'Embedded AI Growth Partner (long-term)',
+}
+
+export const ENGAGEMENT_TYPE_LABELS: Record<EngagementType, string> = {
+  training: 'Training',
+  'app-build': 'App Build',
+  'ai-strategy': 'AI Strategy',
+  'fractional-embed': 'Fractional Embed',
+  multiple: 'Multiple',
+}
+
+export const ENGAGEMENT_TYPES: readonly EngagementType[] = [
+  'training',
+  'app-build',
+  'ai-strategy',
+  'fractional-embed',
+  'multiple',
+] as const
+
+export const TIMEFRAME_OPTIONS: ReadonlyArray<{ value: '3-6mo' | '6-12mo' | '12mo+' | 'ongoing'; label: string }> = [
+  { value: '3-6mo', label: '3–6 months' },
+  { value: '6-12mo', label: '6–12 months' },
+  { value: '12mo+', label: '12+ months' },
+  { value: 'ongoing', label: 'Ongoing' },
+] as const
+
+export const DAVE_BIO = {
+  intro: 'I\'m Dave Gakshteyn. I\'ve built and shipped AI automation for 100+ businesses across 8 verticals — medspas, plumbers, dentists, law firms, retail, fitness, real estate, landscaping. Same playbook, same outcomes: more leads, fewer missed calls, less owner time spent on busywork.',
+  paragraphs: [
+    'I started ILift because every operator I talked to was being sold "AI" by people who had never actually shipped it. Slick decks, no working systems. I wanted the opposite — boring tech that just works, ships fast, and pays for itself in the first quarter.',
+    'I don\'t pitch enterprise transformations. I build systems that book appointments while you sleep, qualify leads before you wake up, and remind customers to leave reviews before they forget. The work is unsexy. The results compound.',
+    '100+ implementations in, the pattern is clear: businesses that stop talking about AI and start shipping it pull away fast. If that sounds like a fit, the Strategy Session is the cheapest way to find out — worst case, you leave with a free 90-day plan.',
+  ],
+  signature: 'Dave Gakshteyn, Founder',
+}
