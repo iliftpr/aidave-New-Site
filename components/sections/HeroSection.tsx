@@ -104,8 +104,8 @@ export function HeroSection() {
                   src="/images/dave-headshot.jpeg"
                   alt="Dave Gakshteyn, Founder of ILift"
                   fill
+                  sizes="(min-width: 1024px) 380px, 0px"
                   className="object-cover"
-                  priority
                 />
               </div>
               <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white rounded-xl shadow-xl px-4 py-2 whitespace-nowrap">
