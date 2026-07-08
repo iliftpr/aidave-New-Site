@@ -1,0 +1,85 @@
+---
+title: "You've been sold AI by people who've never shipped it."
+slug: "sold-ai-by-people-who-never-shipped-it"
+publishedAt: "2026-05-29"
+description: "Every operator I talk to is being pitched AI by someone who's never coordinated a route, fixed a broken intake form, or watched a dispatch board melt at 4pm on a Friday. Six tells separate the planners from the shippers."
+category: "take"
+tags: ["vendor-evaluation", "ai-implementation", "dispatch-lever", "consultants", "opinion"]
+heroImage: "/blog/sold-ai-by-people-who-never-shipped-it/hero.png"
+heroImageAlt: "A conference table strewn with printed vendor proposals and half-empty coffee cups in the early evening — a closed laptop, a stack of business cards, a pitch deck open to a slide reading 'AI Transformation Roadmap,' the room emptied out, fluorescent overhead lights humming"
+keyTakeaways:
+  - "The AI consultants pitching multi-location ops teams have, on average, shipped fewer than two production AI workflows in a service business."
+  - "Six tells separate the planners from the shippers — ask before any vendor evaluation begins."
+  - "The single most reliable filter: ask them to draw your dispatch board on a whiteboard. Watch what happens."
+  - "Operators waste 3-6 months in vendor cycles for AI they will never ship. The fix is upstream — change who you take meetings with."
+fourLeverLever: 2
+draft: false
+---
+
+Every operator I talk to is being sold AI by someone who has never coordinated a route. Never fixed a broken intake form. Never sat in a dispatch room at 4pm on a Friday when a tech calls out sick and three confirmed jobs need rerouting.
+
+These people are not bad. They're just not who you need.
+
+## The pattern is everywhere
+
+A $14M HVAC group I work with logged 47 vendor meetings in Q1. Not 47 leads — 47 actual evaluation calls with AI tooling vendors. Proposal decks. Demo environments. Discovery questionnaires. Cost: about 80 hours of senior ops time across three months.
+
+They shipped zero new automations from those 47 conversations.
+
+This is not unusual. The mid-market AI consulting category has exploded. LinkedIn is saturated with "AI transformation" titles. Half of them have never been inside an operating business. The other half were in operations once, sometime, somewhere, before the cloud-and-API era.
+
+## The interview that made this obvious
+
+[Avoca's co-founders said something this week](https://homepros.news/avoca-co-founders-on-a-1-billion-valuation-tomorrows-csrs-and-ais-trust-dilemma/) — the AI-CSR company that just hit a $1B valuation — that confirms what every operator running implementations already knows. Their top reasons for customer churn weren't AI failures. They were operating-mismatch failures. Dispatch logic wrong at go-live. Capacity miscalculated. Ops team not ready.
+
+The Avoca founders aren't planners. They've shipped. They know exactly where the buildings break. Their churn data is the most honest sales artifact in the AI category right now.
+
+But most of the consultants pitching that same operator? They have never seen a dispatch board fail in real time. They've never had a CSR send them a screenshot at 11pm. They've never gotten the 6am call from a 3-truck location.
+
+They are selling the slide that comes before the work.
+
+## Six tells
+
+You can sort the planners from the shippers in one meeting if you know what to listen for.
+
+**1. Ask them to draw your dispatch board on a whiteboard.** A shipper will ask three clarifying questions, then draw something close enough to recognize. A planner will draw a generic Kanban with no fields specific to your vertical. Watch what they draw. It tells you everything.
+
+**2. Ask the last time they were on a Friday afternoon dispatch call.** Not a quarterly review. Not a steering committee. The actual call where a coordinator is sweating because two trucks are stuck on the LIE and three customers are waiting. If the answer is "I have team members who handle that" — they have not shipped recently.
+
+**3. Ask which tool would break first if you doubled your daily volume tomorrow.** A shipper has watched things break. They have an immediate answer that names a specific integration point. A planner says "we'd want to talk through the scaling story." That's the wrong story.
+
+**4. Ask for the last automation they pulled out of production.** Every operator running real AI has retired something that didn't work. Killed a workflow. Rolled back a model. If the answer is "we don't really do that" or there's no quick example — they haven't been in long enough to have learned.
+
+**5. Ask how they'd measure if your no-show rate dropped.** A shipper will name an actual SQL query against a CRM table or a webhook-driven metric. A planner will name a dashboard.
+
+**6. Ask if they'd take the first phase on a results-only fee.** Not all shippers will say yes, but the ones who instantly refuse the conversation tell you something about how confident they are in their own implementation work.
+
+## The math you should run
+
+Before your next vendor call, calculate this:
+
+Hours your senior ops team spent in vendor evaluations last quarter, divided by the number of automations you shipped to production. If that ratio is over 20:1 — twenty hours of evaluation per shipped automation — your funnel is broken. You're not buying AI. You're paying senior ops to interview consultants.
+
+Most multi-location operators we audit run 40:1 or worse. The fix is not better evaluations. The fix is fewer of them, with better tells.
+
+## What to do this week
+
+Three concrete steps:
+
+1. Cut your vendor pipeline by half. Tomorrow. Pick the four most promising and decline the rest in writing. Time is the constraint, not consideration sets.
+
+2. Apply the six tells to each of the four remaining. Hold them to all six in the first 30-minute call. Lose any that fail three or more.
+
+3. If all four fail, your evaluation network is broken. Find one operator who has shipped at your scale and ask them who they actually use. That referral is worth more than a year of LinkedIn DMs from consultants.
+
+## Where this lands
+
+Most operators are not behind on AI. They are behind on filtering out planners.
+
+The shippers exist. They are quieter. They show fewer demos. They tend to be expensive — but their hour-rate is irrelevant because they actually deliver. You can find one by asking three operators in your peer network who they trust.
+
+I write all of this from inside 100+ implementations. Some I shipped. Some I killed. The pattern is the same: the people who have done the work talk about the work. The people who haven't talk about the framework.
+
+Score your vendor pipeline this week. If you can't name a shipper inside it, you don't have a vendor pipeline. You have a meeting habit.
+
+Take the 4-Lever Audit to score where you actually need help — then go find someone who's shipped that lever specifically.

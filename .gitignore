@@ -39,3 +39,6 @@ next-env.d.ts
 
 # Windows nul-redirect artifact
 /nul
+
+# Claude Code project MCP config (contains API keys) - do not commit
+.mcp.json
