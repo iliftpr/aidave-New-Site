@@ -17,10 +17,10 @@ export function WebsiteOfferStrip() {
                   Need the website first?
                 </p>
                 <h3 className="text-2xl font-bold font-heading mb-1">
-                  The $10,000 website &mdash; for $1,200.
+                  The $10,000 website &mdash; for $1,200. Built in a day.
                 </h3>
                 <p className="text-gray-300">
-                  Fixed scope, fixed price, live in 14 days. The same agency line items,
+                  Fixed scope, fixed price, one-day build sprint. The same agency line items,
                   built by the guy who builds AI systems.
                 </p>
               </div>

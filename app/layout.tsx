@@ -231,7 +231,7 @@ const STRUCTURED_DATA = {
       '@id': 'https://ilift.com/#website-offer',
       name: 'Fixed-Scope Website Build',
       description:
-        'Agency-grade 5-page business website — custom design, conversion copy polish, SEO foundations, analytics — delivered in 14 days at a fixed price.',
+        'Agency-grade 5-page business website — custom design, conversion copy polish, SEO foundations, analytics — built in a one-day sprint at a fixed $1,200 price.',
       provider: { '@id': 'https://ilift.com/#business' },
       areaServed: { '@type': 'AdministrativeArea', name: 'Long Island, NY' },
       url: 'https://ilift.com/websites',
