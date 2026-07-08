@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import crypto from 'crypto'
+import { recordLead } from '@/lib/leads'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -193,6 +194,23 @@ export async function POST(request: NextRequest) {
       console.warn('[cal-webhook] RESEND_API_KEY not configured — skipped email')
     }
     tasks.push(sendTelegram(tgText))
+
+    // CRM-lite: a new/paid/requested booking is a pipeline lead (fail-soft)
+    if (
+      ['BOOKING_CREATED', 'BOOKING_PAID', 'BOOKING_REQUESTED'].includes(trigger) &&
+      attendee.email
+    ) {
+      tasks.push(
+        recordLead({
+          name: attendee.name || undefined,
+          email: attendee.email,
+          source: 'cal_booking',
+          service: eventName,
+          message: bookingId ? `Cal.com booking ${bookingId} (${trigger})` : trigger,
+          status: 'call_booked',
+        })
+      )
+    }
 
     const results = await Promise.allSettled(tasks)
     const failures = results.filter((r) => r.status === 'rejected')
