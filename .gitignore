@@ -25,9 +25,20 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# scorecard submissions (local capture before CRM/Beehiiv wiring)
+/data/
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+
+# Windows nul-redirect artifact
+/nul
+
+# Claude Code project MCP config (contains API keys) - do not commit
+.mcp.json

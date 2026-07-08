@@ -69,8 +69,8 @@ npm start
 │   ├── sections/
 │   │   ├── HeroSection.tsx
 │   │   ├── ServicesSection.tsx
+│   │   ├── BuiltByDave.tsx
 │   │   ├── PortfolioSection.tsx
-│   │   ├── AIVoiceDemo.tsx
 │   │   ├── ReviewsSection.tsx
 │   │   ├── AuditFormSection.tsx
 │   │   └── ContactSection.tsx
@@ -78,6 +78,7 @@ npm start
 │   │   ├── Button.tsx
 │   │   ├── ServiceCard.tsx
 │   │   ├── PortfolioCard.tsx
+│   │   ├── ProjectCard.tsx
 │   │   └── ReviewCard.tsx
 │   └── animations/
 │       └── ScrollReveal.tsx
@@ -172,7 +173,7 @@ The site uses Framer Motion for:
 ## Contact
 
 **ILift Website Design & Digital Marketing**
-- Phone: 855-905-3407
+- Phone: 516-322-9380
 - Email: dave@ilift.com
 - Address: 1738 Bard Lane, East Meadow, NY 11554
 - App: [app.ilift.com](https://app.ilift.com)

@@ -1,0 +1,137 @@
+---
+title: "If you're shipping one AI workflow this quarter, ship intake."
+slug: "ship-intake-first-ai-workflow-this-quarter"
+publishedAt: "2026-05-27"
+description: "Intake outranks dispatch, comms, and reporting on revenue-per-dollar in the first 90 days. If you're shipping one AI workflow this quarter, ship intake. Here's how."
+category: "framework"
+tags: ["intake-lever", "voice-ai", "vapi", "retell", "twilio", "framework"]
+heroImage: "/blog/ship-intake-first-ai-workflow-this-quarter/hero.png"
+heroImageAlt: "Empty reception desk of a service business at late morning — a desk phone with a glowing red missed-call notification, a half-eaten sandwich on a paper plate, a forgotten coffee cup, scattered intake forms on a clipboard, and an empty office chair pushed back"
+diagramImage: "/blog/ship-intake-first-ai-workflow-this-quarter/diagram.png"
+keyTakeaways:
+  - "Intake is the only lever where missed work converts directly to lost revenue — and where AI moves the needle fastest."
+  - "Most operators conflate AI receptionists, intake forms, lead scoring, and call routing — they're four different workflows."
+  - "Three intake workflows pay for themselves in 60-90 days: voice-first inbound, SMS-to-CRM, and lead scoring with routing."
+  - "Ship intake first. Everything downstream — dispatch, comms, reporting — depends on the quality of what comes through the door."
+  - "The #1 mistake: shipping all four channels at once. Pick the highest-volume channel and finish it before starting the second."
+fourLeverLever: 1
+draft: false
+---
+
+Picture a 5-location HVAC company at $14M in revenue. The receptionist's lunch break runs 47 minutes — about the same as the average lifespan of a missed lead before the prospect calls the next name on the search results. Last month they spent $2,300 on Google Ads. Of the 84 calls those ads drove, the receptionist answered 61. Of the 23 she missed, 4 became jobs. Nineteen went to a competitor. At their average ticket, that's $340K in lost work — at a single location, in a single month.
+
+It's the median we audit.
+
+## What Intake & Routing actually is
+
+Intake is the layer between *a lead reaches out* and *a lead becomes a tracked record with a next action*. Four channels carry the volume for most service businesses: inbound phone, web form, SMS, and Google Business Profile message requests. A fifth in some verticals: walk-in. The lever ends the moment the lead has a clean record in the CRM with a next action scheduled — a callback, an appointment, or a routed handoff.
+
+Two KPIs are load-bearing. **Response time** is the gap from first contact to first human or AI response. **Capture rate** is the percent of inbound leads that get a complete record with a next action within 24 hours. Best-in-class for mid-market service: under 5 minutes on response, over 95% capture. The operators we audit average roughly 6 hours on response and 72% capture. That gap is the AI opportunity.
+
+This lever is usually owned by the front desk, a lead coordinator, or — in the worst case — the COO personally returning missed-call voicemails at 7 PM. If your COO is the de-facto intake fallback, you have a Lever 1 problem.
+
+<ExcalidrawDiagram
+  src="/blog/ship-intake-first-ai-workflow-this-quarter/diagram.png"
+  alt="Hand-drawn flow diagram showing three input channels — phone, web form, SMS — feeding into a central AI intake layer that classifies and routes to four destinations: dispatch board, human queue, decline with auto-reply, and nurture sequence"
+  caption="The shape of a working intake layer. Channels in. Classifier in the middle. Four routing destinations out. The stack changes by vertical — the structure doesn't."
+/>
+
+## What "bad" looks like
+
+Most $5M–$25M service operators run intake on something like this. Web form on the site (basic HubSpot embed or a WordPress form) emails office@. The receptionist sees it next time she checks the inbox. She enters it in the CRM (Jobber, ServiceTitan, Acuity). She maybe sends an SMS back during business hours.
+
+Average lag from form submission to first contact: 4 to 8 hours during business hours, overnight for anything after 5 PM.
+
+The phone side is worse. Desk phone rings four times. If she doesn't pick up, voicemail. Voicemail transcribes to Gmail — sometimes. She returns it when she has time. The lead doesn't wait.
+
+The symptoms are easy to spot. Lead-to-quote times that vary wildly depending on what day the lead came in. Customer reviews mentioning *"I tried calling three times before someone picked up."* A GMB inbox with a "replies within 2 days" badge. The owner randomly checking the form inbox at 8 PM and finding six unread leads from that morning.
+
+## What "OK" looks like
+
+The first AI step most operators take is one of two things. They add a chatbot widget to the website. Or they buy a basic AI receptionist subscription ($199–$400/month) and forward after-hours calls to it.
+
+This moves the needle a little. Web chatbots capture 5–15% more leads than a static form. After-hours AI receptionists save the leads that arrive between 5 PM and 9 AM.
+
+But the underlying problem doesn't move. The CRM still has 30 required fields. The dispatcher still gets messy intake records. The web form is separate from the phone system is separate from the SMS thread is separate from the GMB inbox. Each channel has its own AI, each AI hands off to a different human, and nobody can answer "what was our recovery rate last week" without exporting four spreadsheets.
+
+This is the "we're using AI" trap. AI is being used. The lever hasn't actually moved.
+
+## What "great" looks like
+
+We've shipped this shape across HVAC, dental, law firm intake, and financial advisory. The stack swaps by vertical — Vapi versus Retell versus Synthflow on voice; Make versus n8n versus Zapier on orchestration; Tally versus Typeform versus custom on forms — but the structure doesn't. Four properties show up every time.
+
+**One channel-agnostic capture path.** Phone, web, SMS, GMB — all roads feed the same intake record, with the same seven fields, validated the same way. Source is tagged, but the downstream flow doesn't branch on it.
+
+**Sub-5-minute first response.** AI handles the first response for roughly 80% of leads — a confirmation SMS or a routing question — and a human takes over for the 20% that need empathy, complex routing, or escalation. The handoff is logged.
+
+**Clean handoff to dispatch.** When a lead becomes a job, the dispatch board gets it with all seven fields populated, source tagged, and the AI's pre-classification (urgency, fit, expected revenue). No coordinator hand-typing the same address she already heard on the call.
+
+**One dashboard.** The owner sees response time, capture rate, and conversion-to-quote in one place, updated daily. No exporting to spreadsheets to find out the team missed 12 leads last week.
+
+Buildable in 4–8 weeks with $400–$1,500/month in tooling.
+
+<FourLeverBlock lever={1}>
+
+How to know Lever 1 is your first sprint:
+
+- More than 10% of your last 100 leads in the CRM have fewer than five fields populated.
+- Average response time on inbound calls over the last 25 calls is more than 30 minutes.
+- Pull last week's lead-count report from your CRM in under 60 seconds. If you can't, you don't have a capture layer.
+- Your highest-value lead in the last month sat 4+ hours before getting a return contact.
+
+If two or more of those are true, this is your lever. Score the other three in the 5-minute audit at [/scorecard](/scorecard).
+
+</FourLeverBlock>
+
+<NewsletterInline variant="compact" />
+
+## 3 workflows that pay for themselves in 60–90 days
+
+### Workflow 1: Voice-first inbound (Vapi or Retell)
+
+Pick this if more than 40% of your leads come by phone and your receptionist is missing or screening calls after hours.
+
+**Stack:** Vapi or Retell, connected to your CRM (Jobber, ServiceTitan, Acuity) via Make or Zapier. Calls forward to the AI agent after four rings during business hours and immediately after hours.
+**Cost:** $400–$1,500/month depending on call volume.
+**Time-to-ship:** 2 weeks for one office, one appointment type. Don't try to ship all locations or all appointment types in v1.
+**Owned by:** Operations lead, with engineering support for the first 30 days.
+
+What it does on a call: answers in one ring, asks 5 qualifying questions in conversation (not a survey), books an appointment in the CRM if it's a fit, escalates to a human queue if the conversation goes off-script.
+
+The gotcha we hit on a 4-location HVAC build earlier this year: the AI booked appointments without asking the customer's preferred 2-hour arrival window. Customers got confirmations for slots that didn't actually fit their day. Single prompt change fixed it — but only after two weeks of bad confirmations the coordinator had to manually clean up. Shadow the first 100 calls personally. Every implementation has a version of this.
+
+### Workflow 2: SMS-to-CRM intake form
+
+Pick this if more than 30% of your leads come from web forms or SMS, and your current form has more than 10 fields. (Most do — the CRM keeps adding required fields nobody asked for.)
+
+**Stack:** Tally ($20/month) or Typeform ($35/month) for the form. Make or n8n to push the record into the CRM. Twilio for the immediate SMS confirmation. Slack alert to the dispatcher channel.
+**Cost:** $40–$80/month for the form + orchestration stack.
+**Time-to-ship:** 1 week — fastest of the three workflows, because there's no voice model to tune.
+**Owned by:** Operations lead.
+
+What it does: captures seven clean fields, confirms instantly via SMS, alerts a human in Slack within 60 seconds, never loses a lead to "I'll get to it tomorrow."
+
+The gotcha from a multi-location dental build: the form was great. The follow-up SMS template wasn't. Patients got *"Thanks for your inquiry, we'll be in touch within one business day"* on a Friday at 4:55 PM. They went to a competitor over the weekend. Rewrite SMS templates to acknowledge weekend timing and offer a specific Monday slot, not a vague window.
+
+### Workflow 3: Lead-scoring + smart routing
+
+Pick this if you have more leads than reps can call back same-day, and your top 20% of leads close at meaningfully higher rates than the bottom 80%.
+
+**Stack:** Claude API (or GPT-4 — either works) hits each new intake record with a 4-criterion scoring prompt: urgency, fit, expected revenue, recall risk. Score above 80 = SMS the lead within 5 minutes AND alert a senior rep. Score 50–80 = standard nurture cadence. Below 50 = automated decline with a referral resource.
+**Cost:** Claude API runs about $0.01 per scoring call. At 200 leads/day, that's roughly $60/month in API spend. Make scenario plus your CRM is the rest.
+**Time-to-ship:** 2–3 weeks. The hard part isn't the API — it's calibrating the scoring rubric against your actual close data. Don't ship until you've back-tested it against 60 days of historical leads.
+**Owned by:** Sales ops or revenue ops, not engineering.
+
+The gotcha from a financial advisory build: the initial rubric weighted stated urgency too heavily. The model flagged every "I need to switch advisors by end of quarter" lead as high-priority. Most of those were prospects who'd been switching by end of quarter for three quarters running. Add a realistic-timeline check based on conversation history, not stated urgency, and the false-positive rate dropped from 38% to 9%.
+
+## Where this usually goes wrong
+
+The #1 trap: operators try to ship all four channels at once. Voice, web form, SMS, and GMB all in v1. They never finish. Eight weeks in, three of the four are 80% done. None work end-to-end. The COO is back to personally returning missed-call voicemails on a Sunday.
+
+The fix is discipline that doesn't feel like progress. Pick the highest-volume channel. Count your last 100 inbound leads by source. Ship that one channel end-to-end. Do not start the second channel until the first has been live in production for 30 days with a measured recovery rate.
+
+Most operators run the count once, realize 70% comes through a single channel (usually phone OR web form, depending on vertical), and ship that one channel cleanly. The other three channels join the roadmap, not the v1 build.
+
+Skip this discipline and you don't get an intake layer. You get four half-built intake projects and a tired team.
+
+Lever 1 isn't really an AI problem. It's a capture problem. Every lead that reaches your business is paying interest until you respond. Fix the capture path first. Add AI second.

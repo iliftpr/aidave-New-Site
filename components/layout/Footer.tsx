@@ -1,6 +1,6 @@
 'use client'
 
-import { Facebook, Linkedin, Twitter, Instagram, Phone, Mail, MapPin } from 'lucide-react'
+import { Facebook, Linkedin, Twitter, Instagram, Phone, Mail, MapPin, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { COMPANY_INFO, NAV_LINKS } from '@/lib/constants'
 import { Button } from '@/components/ui/Button'
@@ -14,46 +14,30 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
           <div>
-            <div className="relative w-32 h-12 mb-4">
-              <Image
-                src="/logo-v3.png"
-                alt={COMPANY_INFO.name}
-                fill
-                className="object-contain object-left"
-              />
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary-500/40">
+                <Image
+                  src="/images/dave-headshot.jpeg"
+                  alt={COMPANY_INFO.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <span className="font-heading font-bold text-xl text-white">
+                {COMPANY_INFO.name}
+              </span>
             </div>
+            <p className="text-primary-400 font-medium text-sm mb-2">
+              {COMPANY_INFO.tagline}
+            </p>
             <p className="text-gray-400 mb-6">
-              Transform your business with AI-powered websites, voice agents, and marketing automation.
+              AI automation for businesses that actually want to ship. 100+ implementations across 8 verticals.
             </p>
             <div className="flex space-x-4">
-              <a
-                href={COMPANY_INFO.social.facebook}
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href={COMPANY_INFO.social.linkedin}
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href={COMPANY_INFO.social.twitter}
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href={COMPANY_INFO.social.instagram}
-                className="text-gray-400 hover:text-primary-500 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} />
-              </a>
+              <a href={COMPANY_INFO.social.facebook} className="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Facebook"><Facebook size={20} /></a>
+              <a href={COMPANY_INFO.social.linkedin} className="text-gray-400 hover:text-primary-500 transition-colors" aria-label="LinkedIn"><Linkedin size={20} /></a>
+              <a href={COMPANY_INFO.social.twitter} className="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Twitter"><Twitter size={20} /></a>
+              <a href={COMPANY_INFO.social.instagram} className="text-gray-400 hover:text-primary-500 transition-colors" aria-label="Instagram"><Instagram size={20} /></a>
             </div>
           </div>
 
@@ -73,26 +57,32 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Services */}
+          {/* Work with Dave */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Services</h4>
+            <h4 className="text-lg font-semibold mb-4">Work with Dave</h4>
             <nav className="flex flex-col space-y-2">
-              <a href="#services" className="text-gray-400 hover:text-primary-500 transition-colors">
-                AI Website Design
+              <a href={COMPANY_INFO.links.calcom.strategy} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-500 transition-colors">
+                Strategy Session ($297)
               </a>
-              <a href="#services" className="text-gray-400 hover:text-primary-500 transition-colors">
-                Voice Agent Automation
+              <a href={COMPANY_INFO.links.calcom.mastery} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-500 transition-colors">
+                AI Mastery Intensive ($997)
               </a>
-              <a href="#services" className="text-gray-400 hover:text-primary-500 transition-colors">
-                Appointment Booking
+              <a href="/websites" className="text-gray-400 hover:text-primary-500 transition-colors">
+                Website Build ($1,200 flat)
               </a>
-              <a href="#services" className="text-gray-400 hover:text-primary-500 transition-colors">
-                Marketing Automation
+              <a href="/#pricing" className="text-gray-400 hover:text-primary-500 transition-colors">
+                Done-For-You ($3,600/yr)
               </a>
-              <a href="#services" className="text-gray-400 hover:text-primary-500 transition-colors">
-                Lead Generation & CRM
+              <a href={COMPANY_INFO.links.calcom.audit} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-500 transition-colors">
+                Free Automation Audit
               </a>
             </nav>
+            <p className="text-gray-500 text-sm mt-4">
+              Curious about long-form coaching?{' '}
+              <a href={COMPANY_INFO.links.calcom.mastery} target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-300 underline">
+                Ask about the AI Mastery Intensive.
+              </a>
+            </p>
           </div>
 
           {/* Contact Info */}
@@ -115,12 +105,18 @@ export function Footer() {
               </a>
               <div className="flex items-start space-x-3 text-gray-400">
                 <MapPin size={18} className="mt-1 flex-shrink-0" />
-                <span>{COMPANY_INFO.address.full}</span>
+                <div>
+                  <p>{COMPANY_INFO.address.full}</p>
+                  <p className="text-gray-500 text-sm mt-1">
+                    Serving Long Island, NYC & the NY metro · Remote across the U.S.
+                  </p>
+                </div>
               </div>
             </div>
             <div className="mt-6">
-              <Button href={COMPANY_INFO.links.calendly} size="sm">
-                Schedule a Call
+              <Button href={COMPANY_INFO.links.calcom.audit} size="sm">
+                Book a discovery call
+                <ArrowRight size={16} />
               </Button>
             </div>
           </div>

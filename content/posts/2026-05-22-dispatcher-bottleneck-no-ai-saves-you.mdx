@@ -1,0 +1,77 @@
+---
+title: "If your dispatcher is the bottleneck, no AI in the world will save you."
+slug: "dispatcher-bottleneck-no-ai-saves-you"
+publishedAt: "2026-05-21"
+description: "Every operator buying AI dispatch is being sold the same fantasy — that AI fixes broken dispatch. It doesn't. It runs broken dispatch faster, and the coordinator pays the bill."
+category: "take"
+tags: ["dispatch-lever", "ai-implementation", "operations", "opinion"]
+heroImage: "/blog/dispatcher-bottleneck-no-ai-saves-you/hero.png"
+heroImageAlt: "Empty dispatch room of a multi-location service business — an abandoned office chair pushed back from a cluttered desk, a wall-mounted route map with tangled color-coded lines, late-afternoon amber light through window blinds, an off-hook desk phone in the foreground"
+keyTakeaways:
+  - "AI doesn't fix broken dispatch. It runs broken dispatch faster — until the coordinator quits."
+  - "The dispatcher is the throat every multi-location service business breathes through. Replace her badly and the business breaks."
+  - "Four failure modes kill most AI-dispatch pilots: replacing the dispatcher, the intake-to-route gap, no human override, multi-location data fragmentation."
+  - "Fix the dispatcher first. Then add AI on top. Reverse the order and you lose your coordinator."
+fourLeverLever: 2
+draft: false
+---
+
+Every operator I talk to is being sold AI dispatch by people who have never coordinated a route. The decks are beautiful. The systems don't work — because the dispatcher was already drowning, and the AI just made the chaos faster.
+
+This isn't anti-AI. AI can be the best thing that ever happened to your dispatch board. But not yet. Not until you fix the bottleneck the AI is supposed to replace.
+
+## Why this kills pilots
+
+Picture a $12M HVAC outfit. Six locations. 80 trucks. The AI dispatch tool launched in February. By April the coordinator was answering 200 customer texts a day, explaining why the route the AI assigned didn't match what the office had told the customer. By May she was gone. The replacement quit in three weeks.
+
+This isn't a fluke. It's the pattern. Across the 100+ AI implementations we've shipped — HVAC, dental, medspa, law firm intake, multi-site contractors — four failure modes kill most "AI dispatch" pilots in the first 90 days.
+
+**1. AI is the dispatcher, not the dispatcher's tool.** The first pitch slide says "AI dispatcher." The implementation team hears that and assumes the AI replaces the coordinator. Field crews don't trust an algorithm they can't argue with. Customers escalate to whoever picks up the phone. The coordinator becomes the customer-service punching bag for AI mistakes she had no part in making. She quits.
+
+**2. The intake-to-route gap.** The AI optimizes routes from clean structured data. Your intake is 70% phone calls and texts with half the information missing. "It's leaking somewhere near the back." "Can you come Thursday afternoon, or is Friday morning better?" Garbage in, optimized-garbage out. The route looks good on the dashboard and falls apart at the door. That's Lever 1 — intake structuring — and it runs *before* the dispatch sprint, not alongside it.
+
+**3. No human override protocol.** Pilots launch without a clear rule for when the coordinator can overrule the AI. Field reality wins every time — the mechanic just got a call from her kid's school, traffic shifted, a customer wants to push two hours. So the coordinator quietly ignores the AI plan. Then leadership wonders why the metrics didn't move.
+
+**4. Multi-location data fragmentation.** A six-location HVAC company has six dispatch histories, six tech-preference sheets, six sets of customer notes that don't talk to each other. The AI routing collapses on the cross-location job handoff before the coordinator even gets involved. This is a different problem from messy intake — single-location pilots run cleaner than multi-location ones for exactly this reason. If you're above three locations, this is the failure mode you hit second.
+
+## Where this gets it wrong
+
+The strongest version of the opposite claim: *you can't fix dispatch by adding more humans. The whole point of AI is to replace the bottleneck.*
+
+Half right. You can't fix dispatch by piling on humans. You also can't fix it by replacing the human with an algorithm that doesn't have her judgment, her memory of which mechanic is good with which customer, or her ear for when something on a call doesn't add up.
+
+The harder version of the objection — the one that actually keeps me up at night: *what if documenting the dispatcher's brain reveals the process is irreparably broken?* Sometimes it does. Sometimes the two-day audit shows the coordinator has been compensating for a fundamentally bad job-routing assumption for three years, and the answer isn't AI or process — it's a redesign of how the office sells jobs in the first place. We've sent that recommendation more than once. The COO doesn't always love it. It's still the right answer.
+
+The pattern that works isn't human-or-AI. It's a working dispatcher with AI handling the boring 70% — the call-out windows, the geographic clustering, the parts inventory check, the customer text confirmations. Her judgment owns the 30% that breaks every day.
+
+If you're in the rare case where dispatch genuinely is a routing puzzle with structured inputs and no field complexity — a dental DSO routing referrals between locations, a law firm sorting intake by practice area — AI dispatch can run end-to-end. We've shipped that. But that's not what HVAC looks like. It's not what multi-site contractors look like. It's not what most of the $5M–$1B service-business market looks like.
+
+<FourLeverBlock lever={2}>
+
+Lever 2 is Dispatch & Coordination — the seat where every job ticket meets reality. The symptoms you can observe in five minutes of watching:
+
+- Your coordinator is the only person who knows where every job is right now. Bus factor of one.
+- More than 10% of jobs require day-of re-routing.
+- The morning huddle still happens, even with the new tool — because nobody trusts the dashboard without a conversation first.
+
+If two of those are true, this lever is your first sprint. Don't buy AI yet. Document what your coordinator does in her head, then automate the boring parts of it.
+
+</FourLeverBlock>
+
+## The order that actually works
+
+Four steps. In order. None of them are exciting.
+
+**1. Watch the coordinator work for two days.** One of our team sits next to her with a notebook. Write down what she looks at first when a call comes in, what she looks at second, when she overrides the system, and which calls she handles differently from the rest. That's the document. No flowchart software needed.
+
+**2. Build the boring form.** A $40/month form on your CRM that captures the seven fields she actually needs, not the 30 fields the legacy CRM has. Two weeks to build. Field crews stop calling the office for missing info. Average call-back time drops by 40%.
+
+**3. Add the routing layer.** Make or n8n plus the Google Maps Distance Matrix API. Not a $40K "AI dispatch platform." One coordinator reviews and approves every plan for the first 30 days. After 30 days, she approves only the exceptions.
+
+**4. Then — only then — add AI on top.** Claude or GPT-4 picks from her vetted decision tree, not from raw chaos. The AI is suggesting from a workflow she already trusts. Adoption hits 90% by month two because nothing changed in her process — the AI just got faster at the steps she already taught it.
+
+The order matters. Reverse it and you get an HVAC company in May with no coordinator and a $40K platform that nobody uses.
+
+<NewsletterInline variant="compact" />
+
+It's not an AI problem. It's a dispatch problem. And no software bill has ever fixed one.

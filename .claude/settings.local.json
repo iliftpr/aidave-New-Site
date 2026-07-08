@@ -9,7 +9,13 @@
       "Bash(npm init:*)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(vercel --prod:*)",
+      "Bash(claude-code plugins:*)",
+      "Bash(claude plugins:*)",
+      "Skill(frontend-design:frontend-design)",
+      "Skill(frontend-design:frontend-design:*)",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

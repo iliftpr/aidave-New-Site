@@ -1,0 +1,77 @@
+---
+title: "Ship the confirmation SMS. Then talk about AI."
+slug: "ship-the-confirmation-sms-first"
+publishedAt: "2026-05-22"
+description: "Confirmation SMS drops no-show rate from 18% to 6% on an $80/month stack. It's the cheapest, highest-ROI AI workflow most operators haven't shipped. Here's why."
+category: "take"
+tags: ["customer-comms-lever", "twilio", "no-show", "operations", "opinion"]
+heroImage: "/blog/ship-the-confirmation-sms-first/hero.png"
+heroImageAlt: "Top-down view of an open paper appointment book on a reception desk — handwritten time slots in a column, the 10:30 AM slot crossed out with a single red marker line, a smartphone showing an unsent message beside it, a pen lying across the page in late-morning light"
+keyTakeaways:
+  - "Confirmation SMS drops no-show rate from 14-22% to 6-10%. For mid-market service, that's $300K-$500K of recovered revenue annually."
+  - "Infrastructure cost: under $80/month on a Twilio + Make + CRM webhook stack. Time-to-ship: 4 days. ROI: 2-3 weeks."
+  - "It's not running because it's embarrassing, invisible in the P&L, and beneath the AI conversation."
+  - "Ship confirmations first. Reviews second. Win-back third. Always in that order."
+fourLeverLever: 3
+draft: false
+---
+
+A confirmation SMS sent 24 hours before the appointment drops no-show rate from 18% to 6%. It costs $80 a month. Most operators haven't shipped it.
+
+Every operator I talk to wants to know their AI strategy. The answer is sitting in their CRM, dark, costing them $300K a year while they shop $40K dispatch platforms.
+
+This isn't a frontier AI workflow. It's the cheapest, oldest, most-documented automation in the building — and it's the one most often left off.
+
+## Why this is the math nobody runs
+
+No-show rate at a typical mid-market service business runs 14% to 22%. Industry baseline across dental, medspa, HVAC, professional services. Every no-show costs the booked slot's revenue plus the next-best customer who couldn't book that slot. At a 5-location HVAC operator doing $14M in revenue, that's $300K to $500K of leakage a year. Per year. Forever.
+
+A confirmation SMS sent 24 hours before the appointment drops no-show rate to 6%–10%. The infrastructure: Twilio (~$15/month base plus ~$0.0075 per message in the US), a Make scenario to wire it to the CRM, and one webhook from your CRM's appointment-created event. Cost: under $80/month for most operators under 5,000 messages/month. Time-to-ship: 4 working days. ROI: documented in 2 to 3 weeks of running.
+
+This is the cheapest five figures of recovered revenue anyone in your business has ever found. And most operators haven't shipped it.
+
+## Why it isn't everywhere already
+
+Three reasons. None of them are about technology.
+
+**It's embarrassing.** Operators who have been in business 15 years don't want to admit they've been losing $300K a year to a problem that $80 a month would have fixed. So they don't talk about it. The CFO doesn't bring it up in QBR. The COO doesn't audit for it. The board doesn't ask. The leak stays invisible because acknowledging it makes the last 15 years of P&Ls look bad.
+
+**It's invisible in the P&L.** No-shows don't generate complaints. The customer just doesn't show. Revenue just doesn't post. Nobody calls. The line in the P&L labeled "no-show losses" doesn't exist — it shows up as "lower than expected revenue this quarter" and gets attributed to seasonality, weather, the economy, marketing under-performance. Anything but the real cause.
+
+**It's beneath the AI conversation.** When the CEO asks the team "what's our AI strategy?" the answer "we're going to send confirmation texts" sounds like 2018 IT, not 2026 AI. So the team buys a $40K AI dispatch platform instead — because it sounds like AI strategy. We watched this exact play unfold at a 6-location dental group last year: the CEO greenlit $52K on an AI patient-experience platform bundling scheduling, intake, and reporting. Six months in, the platform was half-deployed. The no-show rate hadn't moved. The CFO asked where the AI ROI went. The answer: the confirmation SMS toggle was still off.
+
+## Where this gets it wrong
+
+The version of the counter-argument that's hardest to answer: some operators already have confirmation SMS running. The toggle is on. Customers got their SMS. They still didn't show. The no-show rate is still 14%. Adding more SMS won't fix customer indifference.
+
+That's true. It's also a different problem. Two failure modes for confirmation SMS look identical from the P&L. The first is *no SMS sent.* The fix is turning the toggle on. The second is *SMS sent, ignored.* The fix isn't volume — it's the template.
+
+A confirmation that says "Your appointment is Friday at 10:30 AM. Reply YES to confirm or call to reschedule" converts at roughly 88%. A confirmation that says "Thank you for choosing us! We look forward to seeing you" converts at roughly 60%. Same channel. Same vendor. The first one asks for action. The second asks for nothing.
+
+If you already have confirmations running and your no-show rate hasn't moved, audit the template, not the toggle. Three changes: ask for an explicit YES reply, include the reschedule link directly in the message, send at the 24-hour AND 2-hour marks. Across the operators we've audited running confirmations that weren't working, those three changes pulled the no-show rate from 14% down to 7%.
+
+For everyone else — the toggle is dark in most of the accounts we walk into, call it 40%–60% based on 100+ implementations across dental, medspa, HVAC, and law-firm intake. The reasons get specific:
+
+- The CRM SMS feature charges per message at $0.05 to $0.15 — five to ten times what Twilio direct costs. At a multi-location operation, that adds up fast.
+- The CRM's templates are corporate. They don't sound like the practice. Customers ignore them or, worse, mark them as spam.
+- Compliance was "unclear" three years ago when the practice signed up, and nobody re-evaluated when the regulations stabilized.
+- The CRM lumps confirmation, reminders, review requests, and win-back into one master SMS toggle. The first time a customer complained about being over-texted, the practice manager turned the whole thing off. Confirmations went dark with everything else. Nobody turned them back on.
+
+The real argument isn't "should you ship confirmation SMS?" It's "which version do you ship — the cheap custom Twilio + Make build, or the bundled CRM toggle?" We default to Twilio + Make for any operator over 200 appointments per week. The math gets unambiguous past that volume.
+
+<FourLeverBlock lever={3}>
+
+Lever 3 is Customer Comms — the layer between "booked" and "showed up" and between "served" and "left a review." The symptoms you can audit in five minutes:
+
+- Your CRM shows a no-show rate above 10% across the last 90 days.
+- Your last 25 appointments did NOT all receive an SMS within 24 hours of the appointment time.
+- Your Google review count is the same number today as it was 90 days ago.
+- The last win-back campaign anyone ran was the phrase "we should run a win-back campaign sometime."
+
+If two of those are true at your operation, this is your lever. The build order is fixed: confirmations first, reviews second, win-back third. Always in that order. Skip the order and you'll get angry customer-comms complaints before you get the revenue lift.
+
+</FourLeverBlock>
+
+<NewsletterInline variant="compact" />
+
+Confirmation SMS isn't the AI strategy your CEO wants to talk about. It's the AI strategy your P&L wants you to ship. Ship that first. Then talk about AI.
