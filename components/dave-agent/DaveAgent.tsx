@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { ChatBubble } from './ChatBubble'
 import { ChatWindow } from './ChatWindow'
 import { DISCOVERY_URL, type AgentMode } from './types'
+import { AGENT_OPEN_EVENT, consumePendingAgentOpen } from '@/lib/agent-open'
 
 const VISITED_KEY = 'dave-agent-visited'
 const HIDDEN_KEY = 'dave-agent-hidden-forever'
@@ -43,9 +44,12 @@ export default function DaveAgent() {
 
   // "Talk to the AI on this page" CTAs open the widget via this event
   // (mirrors the ilift:contactPrefill convention). An explicit click also
-  // revives a widget the visitor previously hid forever.
+  // revives a widget the visitor previously hid forever. A click that fired
+  // before this lazy chunk mounted is buffered in lib/agent-open and
+  // consumed here so the CTA never silently no-ops.
   useEffect(() => {
     const openFromEvent = () => {
+      consumePendingAgentOpen()
       setShowNudge(false)
       setHiddenForever(false)
       setOpen(true)
@@ -57,8 +61,9 @@ export default function DaveAgent() {
         // ignore storage errors
       }
     }
-    window.addEventListener('ilift:openDaveAgent', openFromEvent)
-    return () => window.removeEventListener('ilift:openDaveAgent', openFromEvent)
+    window.addEventListener(AGENT_OPEN_EVENT, openFromEvent)
+    if (consumePendingAgentOpen()) openFromEvent()
+    return () => window.removeEventListener(AGENT_OPEN_EVENT, openFromEvent)
   }, [])
 
   if (!mounted || hiddenForever) return null

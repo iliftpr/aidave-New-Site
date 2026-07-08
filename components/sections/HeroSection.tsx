@@ -1,14 +1,22 @@
 'use client'
 
+import { useEffect } from 'react'
 import { Calendar, MessageCircle, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { COMPANY_INFO } from '@/lib/constants'
+import { requestAgentOpen } from '@/lib/agent-open'
 import Image from 'next/image'
 
 export function HeroSection() {
+  // Warm the lazy widget chunk so the "Talk to the AI" CTA responds instantly
+  // even on slow connections (a pre-mount click is also buffered in lib/agent-open).
+  useEffect(() => {
+    import('@/components/dave-agent/DaveAgent')
+  }, [])
+
   const openAgent = () => {
-    window.dispatchEvent(new CustomEvent('ilift:openDaveAgent'))
+    requestAgentOpen()
   }
 
   return (
