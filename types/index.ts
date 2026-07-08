@@ -58,4 +58,11 @@ export interface ProjectItem {
   imageDesktop: string
   videoSrc?: string
   liveUrl?: string
+  // Long-form case study for /work. Every claim must be verifiably true.
+  caseStudy?: {
+    kicker: string
+    challenge: string
+    build: string
+    outcome: string
+  }
 }
