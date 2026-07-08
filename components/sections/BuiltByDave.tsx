@@ -1,7 +1,9 @@
 'use client'
 
+import { ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/animations/ScrollReveal'
 import { ProjectCard } from '@/components/ui/ProjectCard'
+import { Button } from '@/components/ui/Button'
 import { BUILT_BY_DAVE } from '@/lib/projects'
 
 export function BuiltByDave() {
@@ -32,6 +34,13 @@ export function BuiltByDave() {
             <ProjectCard key={item.id} item={item} index={index} />
           ))}
         </div>
+
+        <ScrollReveal className="text-center mt-12">
+          <Button href="/work" variant="secondary" size="lg">
+            Read the full case studies
+            <ArrowRight size={20} />
+          </Button>
+        </ScrollReveal>
       </div>
     </section>
   )

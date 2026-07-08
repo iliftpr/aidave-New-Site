@@ -48,6 +48,8 @@ Three posts a week on trending AI news, translated through the 4-Lever Audit for
 
 ## Notable projects
 
+Full case studies (proof, not pitch decks): https://ilift.com/work
+
 - **OpenWPAgent** — Live multi-tenant SaaS putting AI agents in charge of WordPress and WooCommerce sites. https://app.openwpagent.com
 - **Tennis Buddy** — Beta. AI-powered matchmaking and scheduling for tennis and pickleball players. https://tennisbuddy.io
 - **Organic Skincare** — Live e-commerce site built and operated end-to-end. Homepage v2 took mobile LCP from 18.4s to 3.2s. https://organicskincare.com
