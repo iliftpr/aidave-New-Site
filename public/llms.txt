@@ -1,6 +1,6 @@
-# AI Dave (ILift) — AI Consultant in Long Island & NYC
+# AI Dave (ILift) — Custom AI Systems for Long Island Law & Accounting Firms
 
-> AI consultant and AI expert serving mid-market and enterprise teams across Long Island, New York City, and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
+> AI consultant building custom AI apps and agents for Long Island law firms, accounting firms, and professional-services businesses — intake, documents, follow-up — plus mid-market and enterprise teams across New York City and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
 
 ## What I do
 
@@ -17,8 +17,10 @@ Long Island, NY (Nassau & Suffolk Counties) · New York City (Manhattan, Brookly
 ## How to engage
 
 - **Free Automation Audit (30 min)** — https://cal.com/ilift/automation-audit
+- **Fixed-Scope Website Build ($1,200 flat, built in a one-day sprint)** — the ~$10,000 agency scope (5 custom pages, conversion copy polish, SEO, forms, booking, analytics) at a fixed price for Long Island businesses. https://ilift.com/websites
 - **AI Strategy Session ($297, 60 min)** — https://cal.com/ilift/ai-strategy-session
 - **AI Mastery Intensive ($997, 5 hours)** — https://cal.com/ilift/ai-mastery-intensive
+- **AI Receptionist / Never Miss a Call (from $1,500 + monthly)** — https://ilift.com/ai-receptionist (live demo: https://ilift.com/demo)
 - **Done-For-You ($3,600/year)** — https://ilift.com/#pricing
 - **Embedded AI Growth Partner (by application, mid-market & enterprise)** — https://ilift.com/#contact
 

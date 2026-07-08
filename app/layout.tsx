@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
+import { Analytics } from '@vercel/analytics/next'
 import { COMPANY_INFO } from '@/lib/constants'
 import DaveAgentLazy from '@/components/dave-agent/DaveAgentLazy'
 import { MobileStickyCTA } from '@/components/MobileStickyCTA'
+import { MetaPixel } from '@/components/analytics/MetaPixel'
+import { LinkedInInsight } from '@/components/analytics/LinkedInInsight'
+import { BookingClickTracker } from '@/components/analytics/BookingClickTracker'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -318,6 +322,11 @@ export default function RootLayout({
         <MobileStickyCTA />
         {/* Dave's AI Agent — floating bottom-right widget (Claude + ElevenLabs voice) */}
         <DaveAgentLazy />
+        {/* Tracking — pixels no-op until their NEXT_PUBLIC_* ids are set in env */}
+        <Analytics />
+        <MetaPixel />
+        <LinkedInInsight />
+        <BookingClickTracker />
         {/* JSON-LD — @graph with ProfessionalService/LocalBusiness + Person + WebSite */}
         <script
           type="application/ld+json"

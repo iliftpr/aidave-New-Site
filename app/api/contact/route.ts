@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
       engagementTypes,
       timeframe,
       website,
+      source,
     } = body as {
       name?: string
       email?: string
@@ -61,6 +62,7 @@ export async function POST(request: NextRequest) {
       engagementTypes?: EngagementType[]
       timeframe?: EngagementTimeframe
       website?: string
+      source?: string
     }
 
     // Honeypot — bots fill the "website" field, humans don't.
@@ -136,7 +138,10 @@ export async function POST(request: NextRequest) {
         </div>
       `
     } else {
-      subject = `[ILift] ${serviceLabel}: ${stripHeader(name)}`
+      subject =
+        source === 'dave-agent'
+          ? `[ILift Chat Lead] ${stripHeader(email)}`
+          : `[ILift] ${serviceLabel}: ${stripHeader(name)}`
       html = `
         <h2>New Contact Form Submission</h2>
         <p><strong>Interest:</strong> ${escape(serviceLabel)}</p>
@@ -165,6 +170,27 @@ export async function POST(request: NextRequest) {
         { error: 'Failed to send message' },
         { status: 500 }
       )
+    }
+
+    // Confirmation to the lead — best-effort; a failure here must not fail the lead
+    try {
+      await resend.emails.send({
+        from: 'Dave at ILift <hello@ilift.com>',
+        to: [email],
+        subject: 'Got your message — ILift (AI Dave)',
+        html: `
+          <div style="font-family:-apple-system,BlinkMacSystemFont,sans-serif;max-width:560px;margin:0 auto;color:#0f172a;line-height:1.6">
+            <p>Hi${name && name !== 'AI chat visitor' ? ` ${escape(name)}` : ''},</p>
+            <p>Thanks for reaching out — your message landed in Dave's inbox and he replies personally, usually within one business day.</p>
+            <p>If you'd rather skip the back-and-forth, grab a free 30-minute discovery call directly:</p>
+            <p><a href="https://cal.com/ilift/automation-audit" style="color:#0284c7;font-weight:600">Book a discovery call &rarr;</a></p>
+            <p style="margin-top:24px">— Dave Gakshteyn<br/>ILift · East Meadow, NY<br/><a href="https://ilift.com" style="color:#0284c7">ilift.com</a></p>
+          </div>
+        `,
+        replyTo: 'dave@ilift.com',
+      })
+    } catch (confirmError) {
+      console.error('[contact] Lead confirmation email failed (non-fatal):', confirmError)
     }
 
     return NextResponse.json({

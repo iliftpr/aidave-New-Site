@@ -13,6 +13,7 @@ import {
   TIMEFRAME_OPTIONS,
 } from '@/lib/constants'
 import type { ServiceType, EngagementType, EngagementTimeframe } from '@/types'
+import { trackLead } from '@/lib/tracking'
 
 export function ContactSection() {
   const [formData, setFormData] = useState<{
@@ -120,6 +121,7 @@ export function ContactSection() {
         throw new Error(data.error || 'Failed to submit form')
       }
 
+      trackLead('contact_form')
       setIsSubmitted(true)
       setFormData({
         name: '',

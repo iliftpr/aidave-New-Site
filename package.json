@@ -17,6 +17,7 @@
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@vercel/analytics": "^2.0.1",
     "autoprefixer": "^10.4.22",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.25",
