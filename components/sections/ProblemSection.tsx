@@ -7,17 +7,17 @@ const PAINS = [
   {
     icon: PhoneMissed,
     title: 'Manual intake',
-    body: 'Every new client means phone tag, a PDF form, and staff re-typing the same details into three systems. The prospects who reach voicemail call the next firm on the list.',
+    body: 'Every new customer means phone tag, a form, and staff re-typing the same details into three systems. The callers who reach voicemail call the next business on the list.',
   },
   {
     icon: FileStack,
-    title: 'Repetitive document work',
-    body: 'Engagement letters, discovery requests, tax organizers, follow-up memos — billable people spending hours drafting documents a system should produce in seconds.',
+    title: 'Repetitive paperwork',
+    body: 'Quotes, invoices, intake forms, follow-up emails — your best people spending hours assembling the same documents a system should produce in seconds.',
   },
   {
     icon: HourglassIcon,
     title: 'No time to evaluate AI',
-    body: 'You know AI matters. But nobody at the firm has the hours to vet tools, test vendors, and separate real systems from slideware — so nothing ever ships.',
+    body: 'You know AI matters. But nobody on the team has the hours to vet tools, test vendors, and separate real systems from slideware — so nothing ever ships.',
   },
 ]
 
@@ -27,11 +27,11 @@ export function ProblemSection() {
       <div className="container-custom">
         <ScrollReveal animation="fadeInUp" className="text-center max-w-3xl mx-auto mb-14">
           <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">
-            Your best people are doing work a{' '}
+            You and your people are doing work a{' '}
             <span className="gradient-text">machine should be doing</span>
           </h2>
           <p className="text-lg text-gray-600">
-            The pattern inside almost every Long Island law and accounting firm we talk to:
+            The pattern inside almost every Long Island business we talk to:
           </p>
         </ScrollReveal>
 

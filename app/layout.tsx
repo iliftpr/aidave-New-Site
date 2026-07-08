@@ -8,6 +8,7 @@ import { MobileStickyCTA } from '@/components/MobileStickyCTA'
 import { MetaPixel } from '@/components/analytics/MetaPixel'
 import { LinkedInInsight } from '@/components/analytics/LinkedInInsight'
 import { BookingClickTracker } from '@/components/analytics/BookingClickTracker'
+import { ExitIntentScorecard } from '@/components/ExitIntentScorecard'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,12 +24,12 @@ const poppins = Poppins({
 })
 
 const SITE_DESCRIPTION =
-  'Custom AI apps and agents that run the busywork inside Long Island law and accounting firms — intake, documents, follow-up. Also serving multi-location service businesses via the 4-Lever Audit (Intake, Dispatch, Customer Comms, Cross-Location Reporting). 100+ implementations. Long Island, NYC, NY metro + remote.'
+  'Custom AI apps and agents that run the busywork inside Long Island businesses — intake, follow-up, paperwork. Law firms, accountants, contractors, med spas, dentists, restaurants, local shops, and multi-location teams (via the 4-Lever Audit). 100+ implementations. Long Island, NYC, NY metro + remote.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ilift.com'),
   title: {
-    default: 'Custom AI Systems for Long Island Law & Accounting Firms | AI Dave (ILift)',
+    default: 'Custom AI Systems for Long Island Business Owners | AI Dave (ILift)',
     template: '%s | AI Dave (ILift)',
   },
   description: SITE_DESCRIPTION,
@@ -95,20 +96,20 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://ilift.com',
     siteName: 'AI Dave (ILift) — AI Consultant in Long Island & NYC',
-    title: 'Custom AI Systems for Long Island Law & Accounting Firms | AI Dave',
+    title: 'Custom AI Systems for Long Island Business Owners | AI Dave',
     description: SITE_DESCRIPTION,
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Custom AI systems for Long Island law & accounting firms — ilift.com',
+        alt: 'Custom AI systems for Long Island business owners — ilift.com',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Custom AI Systems for Long Island Law & Accounting Firms | AI Dave',
+    title: 'Custom AI Systems for Long Island Business Owners | AI Dave',
     description:
       'AI consultant serving Long Island, NYC, and the New York metro. Strategy, builds, training, fractional embed. 100+ implementations.',
     images: ['/twitter-image.jpg'],
@@ -320,6 +321,8 @@ export default function RootLayout({
         {children}
         {/* Thumb-reachable booking bar on mobile — positioned clear of the chat bubble */}
         <MobileStickyCTA />
+        {/* Desktop exit-intent: offer the scorecard once per session */}
+        <ExitIntentScorecard />
         {/* Dave's AI Agent — floating bottom-right widget (Claude + ElevenLabs voice) */}
         <DaveAgentLazy />
         {/* Tracking — pixels no-op until their NEXT_PUBLIC_* ids are set in env */}

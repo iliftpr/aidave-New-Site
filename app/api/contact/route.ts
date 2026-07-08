@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { recordLead } from '@/lib/leads'
 import {
   SERVICE_LABELS,
   ENGAGEMENT_TYPE_LABELS,
@@ -171,6 +172,17 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       )
     }
+
+    // CRM-lite: persist the lead (Supabase mailbox + Resend audience) — fail-soft
+    await recordLead({
+      name,
+      email,
+      phone,
+      company,
+      source: source === 'dave-agent' ? 'dave_agent' : 'contact_form',
+      service: serviceLabel,
+      message,
+    })
 
     // Confirmation to the lead — best-effort; a failure here must not fail the lead
     try {

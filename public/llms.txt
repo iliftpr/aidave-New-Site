@@ -1,6 +1,6 @@
-# AI Dave (ILift) — Custom AI Systems for Long Island Law & Accounting Firms
+# AI Dave (ILift) — Custom AI Systems for Long Island Business Owners
 
-> AI consultant building custom AI apps and agents for Long Island law firms, accounting firms, and professional-services businesses — intake, documents, follow-up — plus mid-market and enterprise teams across New York City and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
+> AI consultant building custom AI apps and agents for Long Island business owners — law firms, accountants, contractors, med spas, dentists, restaurants, local shops, and service businesses — intake, follow-up, paperwork — plus mid-market and enterprise teams across New York City and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
 
 ## What I do
 
@@ -9,6 +9,11 @@
 - **AI Automation** — Voice agents, CRM automation, lead generation, marketing automation, appointment booking.
 - **Team Training + AI Playbooks** — Hands-on training so your team can ship AI without me in the room.
 - **Fractional / Embedded AI Partnership** — Long-term partnership (3 to 12+ months) as embedded AI lead, fractional CTO, or hands-on builder for mid-market & enterprise teams.
+
+## Vertical pages
+
+- **Law firms** — intake, document automation, client updates: https://ilift.com/law
+- **Accounting & tax firms** — document chasing, onboarding, season call overflow: https://ilift.com/accounting
 
 ## Where I serve
 
@@ -47,6 +52,8 @@ Three posts a week on trending AI news, translated through the 4-Lever Audit for
 - **Audience:** Director of Operations / COO at $5M–$1B service business (multi-location service, professional services, financial services)
 
 ## Notable projects
+
+Full case studies (proof, not pitch decks): https://ilift.com/work
 
 - **OpenWPAgent** — Live multi-tenant SaaS putting AI agents in charge of WordPress and WooCommerce sites. https://app.openwpagent.com
 - **Tennis Buddy** — Beta. AI-powered matchmaking and scheduling for tennis and pickleball players. https://tennisbuddy.io

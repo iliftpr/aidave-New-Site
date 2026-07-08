@@ -3,6 +3,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 import { Resend } from 'resend'
+import { recordLead } from '@/lib/leads'
 import { LEVERS, type ScoreMap, leverTotals, lowestLever } from '@/lib/scorecard-content'
 
 interface ScorecardSubmission {
@@ -171,6 +172,18 @@ export async function submitScorecard(input: ScorecardSubmission): Promise<Submi
   } catch (e) {
     console.error('[scorecard] persistence failed', e)
   }
+
+  // CRM-lite: scorecard opt-in is a pipeline lead (fail-soft)
+  await recordLead({
+    name: input.name,
+    email: input.email,
+    company: input.company,
+    source: 'scorecard',
+    service: '4-Lever Automation Scorecard',
+    message: lowest
+      ? `Lowest lever: ${lowest.name} (L1 ${totals[1]} / L2 ${totals[2]} / L3 ${totals[3]} / L4 ${totals[4]})`
+      : undefined,
+  })
 
   // Beehiiv subscribe — primary delivery once configured. Returns false gracefully when
   // BEEHIIV_API_KEY is unset or PENDING, so Resend fallback below still runs.

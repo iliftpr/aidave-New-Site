@@ -3,7 +3,7 @@ import { Service, Offer, ServiceType, EngagementType } from '@/types'
 export const COMPANY_INFO = {
   name: 'ILift by AI Dave - Smart AI Website Design',
   shortName: 'ILift',
-  tagline: 'Custom AI systems for Long Island law & accounting firms',
+  tagline: 'Custom AI systems for Long Island business owners',
   phone: '516-322-9380',
   email: 'dave@ilift.com',
   address: {

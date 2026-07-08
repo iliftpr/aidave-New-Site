@@ -20,7 +20,7 @@ export function OutcomesSection() {
           </h2>
           <p className="text-lg text-gray-300">
             No slick decks, no invented testimonials. These outcomes are real and anonymized
-            &mdash; client names stay confidential, the way your firm would want yours handled.
+            &mdash; client names stay confidential, the way your business would want yours handled.
           </p>
         </ScrollReveal>
 

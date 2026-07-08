@@ -53,18 +53,18 @@ export function HeroSection() {
           >
             <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/15 mb-6">
               <span className="text-amber-400 font-semibold text-sm">
-                Long Island · Law &amp; Accounting
+                Long Island · Built for Business Owners
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6 leading-tight text-white">
               Custom AI systems for Long Island{' '}
-              <span className="text-amber-400">law and accounting firms</span>.
+              <span className="text-amber-400">business owners</span>.
             </h1>
 
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              I build custom AI apps and agents that run the busywork inside your firm —
-              intake, documents, follow-up — so your team bills hours instead of pushing paper.
+              I build custom AI apps and agents that run the busywork inside your business —
+              intake, follow-up, paperwork — so you and your team can do the work that pays.
             </p>
 
             <motion.div
