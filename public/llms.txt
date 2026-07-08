@@ -1,6 +1,6 @@
-# AI Dave (ILift) — Custom AI Systems for Long Island Law & Accounting Firms
+# AI Dave (ILift) — Custom AI Systems for Long Island Business Owners
 
-> AI consultant building custom AI apps and agents for Long Island law firms, accounting firms, and professional-services businesses — intake, documents, follow-up — plus mid-market and enterprise teams across New York City and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
+> AI consultant building custom AI apps and agents for Long Island business owners — law firms, accountants, contractors, med spas, dentists, restaurants, local shops, and service businesses — intake, follow-up, paperwork — plus mid-market and enterprise teams across New York City and the New York metro area. Founded and operated by Dave Gakshteyn. 100+ shipped AI automation implementations across 8 verticals.
 
 ## What I do
 
