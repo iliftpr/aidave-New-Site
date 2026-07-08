@@ -64,5 +64,8 @@ export interface ProjectItem {
     challenge: string
     build: string
     outcome: string
+    // Optional deep-dive: a dedicated case-study page (e.g. /8-billion-clone)
+    deepDiveUrl?: string
+    deepDiveLabel?: string
   }
 }

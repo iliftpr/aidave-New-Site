@@ -77,7 +77,9 @@ export const BUILT_BY_DAVE: ProjectItem[] = [
       build:
         'Rebuilt and operated end-to-end on WordPress and WooCommerce with WP Rocket and Cloudflare, curating a catalog across five professional brands (Eminence, Dr. Grandel, Phyris, Sothys, ilike).',
       outcome:
-        'Homepage v2 took mobile LCP from 18.4s to 3.2s with cumulative layout shift held at zero. Live and selling at organicskincare.com.',
+        'Homepage v2 took mobile LCP from 18.4s to 3.2s with cumulative layout shift held at zero. Live and selling at organicskincare.com. Then I rebuilt an $8B company’s entire acquisition funnel on it — with AI, in four days.',
+      deepDiveUrl: '/8-billion-clone',
+      deepDiveLabel: 'See how I did it — the $8B funnel teardown',
     },
   },
   {
