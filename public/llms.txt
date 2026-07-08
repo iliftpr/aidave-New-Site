@@ -10,6 +10,11 @@
 - **Team Training + AI Playbooks** — Hands-on training so your team can ship AI without me in the room.
 - **Fractional / Embedded AI Partnership** — Long-term partnership (3 to 12+ months) as embedded AI lead, fractional CTO, or hands-on builder for mid-market & enterprise teams.
 
+## Vertical pages
+
+- **Law firms** — intake, document automation, client updates: https://ilift.com/law
+- **Accounting & tax firms** — document chasing, onboarding, season call overflow: https://ilift.com/accounting
+
 ## Where I serve
 
 Long Island, NY (Nassau & Suffolk Counties) · New York City (Manhattan, Brooklyn, Queens, Bronx, Staten Island) · The greater New York metro area. Remote engagements available across the U.S.
