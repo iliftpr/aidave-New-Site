@@ -48,18 +48,18 @@ the call.
 I rebuilt ilift.com — and the site itself is the demo.
 
 There's an AI assistant living on the page. Talk to it. Ask it what I build,
-how engagements work, what an AI receptionist would look like inside your firm.
-It answers, qualifies, and books — 24/7. That's not a chatbot widget I bought;
-it's the same kind of system I install inside Long Island law and accounting
-firms to run intake, documents, and follow-up.
+how engagements work, what an AI receptionist would look like inside your
+business. It answers, qualifies, and books — 24/7. That's not a chatbot widget
+I bought; it's the same kind of system I install inside Long Island businesses
+to run intake, follow-up, and paperwork.
 
 The rebuild also shipped: a looping cinematic hero generated with the same AI
 pipeline I use for client work, a live "Never Miss a Call" receptionist demo
 you can role-play against, and a $1,200 fixed-scope website offer for local
 businesses (yes, really — first comment).
 
-If your firm is doing work a machine should be doing — go talk to the AI on
-the site, or book a discovery call.
+If your business is doing work a machine should be doing — go talk to the AI
+on the site, or book a discovery call.
 
 **First comment:**
 
