@@ -164,17 +164,28 @@ function CaseStudy({
               ))}
             </div>
 
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-6 font-semibold text-primary-700 hover:text-primary-800"
-              >
-                See it live
-                <ExternalLink size={16} />
-              </a>
-            )}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-6">
+              {cs.deepDiveUrl && (
+                <a
+                  href={cs.deepDiveUrl}
+                  className="inline-flex items-center gap-2 font-semibold text-amber-600 hover:text-amber-700"
+                >
+                  {cs.deepDiveLabel ?? 'See how I did it'}
+                  <ArrowRight size={16} />
+                </a>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold text-primary-700 hover:text-primary-800"
+                >
+                  See it live
+                  <ExternalLink size={16} />
+                </a>
+              )}
+            </div>
           </ScrollReveal>
         </div>
       </div>

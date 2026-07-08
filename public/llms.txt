@@ -55,9 +55,11 @@ Three posts a week on trending AI news, translated through the 4-Lever Audit for
 
 Full case studies (proof, not pitch decks): https://ilift.com/work
 
+**Featured — "The $8 Billion Clone":** How I reverse-engineered the marketing funnel of an ~$8B company (Hims & Hers) with Firecrawl and rebuilt it on my own store (organicskincare.com) with Fable in four days — content hubs, a personalized quiz, shoppable routines, email flows, and AI-search discoverability. Includes the exact copy-paste prompts to replicate it for any business. https://ilift.com/8-billion-clone
+
 - **OpenWPAgent** — Live multi-tenant SaaS putting AI agents in charge of WordPress and WooCommerce sites. https://app.openwpagent.com
 - **Tennis Buddy** — Beta. AI-powered matchmaking and scheduling for tennis and pickleball players. https://tennisbuddy.io
-- **Organic Skincare** — Live e-commerce site built and operated end-to-end. Homepage v2 took mobile LCP from 18.4s to 3.2s. https://organicskincare.com
+- **Organic Skincare** — Live e-commerce site built and operated end-to-end. Homepage v2 took mobile LCP from 18.4s to 3.2s — then I rebuilt an ~$8B company's acquisition funnel on it with AI in four days (teardown: https://ilift.com/8-billion-clone). https://organicskincare.com
 - **Hermes (Claude OS)** — Personal lab. Daily operator console for AI stack — Claude sessions, API spend, skills ROI, 7 AM "Dream" prescription.
 - **iLift Booking Funnel** — $297 paid strategy-session funnel with Stripe paywall + Cal.com Teams.
 - **Marketing Command Center** — Internal content + engagement ops system for ILift's own social channels.

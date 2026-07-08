@@ -44,6 +44,12 @@ const nextConfig = {
     optimizeCss: true,
     mdxRs: false,
   },
+  async rewrites() {
+    return [
+      // Standalone static case-study page (self-contained HTML in /public), clean URL
+      { source: '/8-billion-clone', destination: '/8-billion-clone.html' },
+    ]
+  },
 }
 
 module.exports = nextConfig
