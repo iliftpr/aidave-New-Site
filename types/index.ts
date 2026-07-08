@@ -6,27 +6,6 @@ export interface Service {
   features: string[]
 }
 
-export interface Review {
-  id: string
-  name: string
-  business: string
-  industry: string
-  rating: number
-  text: string
-  avatar?: string
-}
-
-export interface PortfolioItem {
-  id: string
-  title: string
-  industry: string
-  description: string
-  features: string[]
-  imageDesktop: string
-  imageMobile: string
-  url?: string
-}
-
 export interface Offer {
   id: string
   name: string

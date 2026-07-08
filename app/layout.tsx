@@ -3,6 +3,7 @@ import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import { COMPANY_INFO } from '@/lib/constants'
 import DaveAgentLazy from '@/components/dave-agent/DaveAgentLazy'
+import { MobileStickyCTA } from '@/components/MobileStickyCTA'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,12 +19,12 @@ const poppins = Poppins({
 })
 
 const SITE_DESCRIPTION =
-  'Multi-location AI automation consultant. The 4-Lever Audit (Intake, Dispatch, Customer Comms, Cross-Location Reporting) finds where multi-location service businesses ($5–25M revenue, 50–150 staff) leak margin first. 100+ implementations across dental, HVAC, medspa, contractor, and field-service verticals. Long Island, NYC, NY metro + remote.'
+  'Custom AI apps and agents that run the busywork inside Long Island law and accounting firms — intake, documents, follow-up. Also serving multi-location service businesses via the 4-Lever Audit (Intake, Dispatch, Customer Comms, Cross-Location Reporting). 100+ implementations. Long Island, NYC, NY metro + remote.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://ilift.com'),
   title: {
-    default: 'AI Consultant in Long Island & NYC | AI Dave — Strategy, Builds & Training',
+    default: 'Custom AI Systems for Long Island Law & Accounting Firms | AI Dave (ILift)',
     template: '%s | AI Dave (ILift)',
   },
   description: SITE_DESCRIPTION,
@@ -90,20 +91,20 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://ilift.com',
     siteName: 'AI Dave (ILift) — AI Consultant in Long Island & NYC',
-    title: 'AI Consultant in Long Island & NYC | AI Dave',
+    title: 'Custom AI Systems for Long Island Law & Accounting Firms | AI Dave',
     description: SITE_DESCRIPTION,
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'AI Dave — AI Consultant for Long Island, NYC and the New York metro',
+        alt: 'Custom AI systems for Long Island law & accounting firms — ilift.com',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI Consultant in Long Island & NYC | AI Dave',
+    title: 'Custom AI Systems for Long Island Law & Accounting Firms | AI Dave',
     description:
       'AI consultant serving Long Island, NYC, and the New York metro. Strategy, builds, training, fractional embed. 100+ implementations.',
     images: ['/twitter-image.jpg'],
@@ -224,10 +225,21 @@ const STRUCTURED_DATA = {
         'https://www.instagram.com/aiconsultantpro/',
       ],
       priceRange: '$$$',
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '5.0',
-        reviewCount: '8',
+    },
+    {
+      '@type': 'Service',
+      '@id': 'https://ilift.com/#website-offer',
+      name: 'Fixed-Scope Website Build',
+      description:
+        'Agency-grade 5-page business website — custom design, conversion copy polish, SEO foundations, analytics — delivered in 14 days at a fixed price.',
+      provider: { '@id': 'https://ilift.com/#business' },
+      areaServed: { '@type': 'AdministrativeArea', name: 'Long Island, NY' },
+      url: 'https://ilift.com/websites',
+      offers: {
+        '@type': 'Offer',
+        price: '1200',
+        priceCurrency: 'USD',
+        url: 'https://ilift.com/websites',
       },
     },
     {
@@ -298,10 +310,13 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className="font-sans antialiased">
         {children}
-        {/* Dave's AI Agent — floating bottom-right widget (Claude Opus 4.7 + ElevenLabs voice) */}
+        {/* Thumb-reachable booking bar on mobile — positioned clear of the chat bubble */}
+        <MobileStickyCTA />
+        {/* Dave's AI Agent — floating bottom-right widget (Claude + ElevenLabs voice) */}
         <DaveAgentLazy />
         {/* JSON-LD — @graph with ProfessionalService/LocalBusiness + Person + WebSite */}
         <script

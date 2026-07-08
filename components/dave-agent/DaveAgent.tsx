@@ -41,6 +41,26 @@ export default function DaveAgent() {
     }
   }, [mounted, visited, hiddenForever])
 
+  // "Talk to the AI on this page" CTAs open the widget via this event
+  // (mirrors the ilift:contactPrefill convention). An explicit click also
+  // revives a widget the visitor previously hid forever.
+  useEffect(() => {
+    const openFromEvent = () => {
+      setShowNudge(false)
+      setHiddenForever(false)
+      setOpen(true)
+      setVisited(true)
+      try {
+        localStorage.removeItem(HIDDEN_KEY)
+        sessionStorage.setItem(VISITED_KEY, '1')
+      } catch {
+        // ignore storage errors
+      }
+    }
+    window.addEventListener('ilift:openDaveAgent', openFromEvent)
+    return () => window.removeEventListener('ilift:openDaveAgent', openFromEvent)
+  }, [])
+
   if (!mounted || hiddenForever) return null
 
   const handleOpen = () => {

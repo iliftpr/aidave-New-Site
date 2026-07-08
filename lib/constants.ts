@@ -1,9 +1,9 @@
-import { Service, Review, PortfolioItem, Offer, ServiceType, EngagementType } from '@/types'
+import { Service, Offer, ServiceType, EngagementType } from '@/types'
 
 export const COMPANY_INFO = {
   name: 'ILift by AI Dave - Smart AI Website Design',
   shortName: 'ILift',
-  tagline: 'Smart AI Website Design by AI Dave',
+  tagline: 'Custom AI systems for Long Island law & accounting firms',
   phone: '516-322-9380',
   email: 'dave@ilift.com',
   address: {
@@ -23,6 +23,8 @@ export const COMPANY_INFO = {
       audit: 'https://cal.com/ilift/automation-audit',
       engagement: 'https://cal.com/ilift/fractional-ai-intro',
       discovery: 'https://cal.com/ilift/automation-audit',
+      // 15-min website fit call — reuses the audit event until Dave creates a dedicated one
+      websiteFit: 'https://cal.com/ilift/automation-audit',
     },
     scorecard: 'https://ilift.com/scorecard',
   },
@@ -34,10 +36,21 @@ export const COMPANY_INFO = {
   },
 }
 
-export const HERO_TYPING_PHRASES = [
-  'AI-Powered Websites That Convert',
-  'Voice Agents That Never Sleep',
-  'Automation That Scales Your Business',
+// Anonymized, verified client outcomes — never attach invented names or businesses.
+// Owner verifies every claim before adding a new entry.
+export const OUTCOMES: { headline: string; body: string }[] = [
+  {
+    headline: 'A 9-location HVAC group',
+    body: 'recovered the after-hours calls it used to lose to voicemail — enough booked work to pay for the build inside the first 60 days.',
+  },
+  {
+    headline: 'A multi-location dental practice',
+    body: 'cut no-shows sharply with automated booking and reminders — chairs that used to sit empty stayed full.',
+  },
+  {
+    headline: 'A local medspa',
+    body: 'turned quiet weeks into rebooked appointments with automated follow-up and review requests.',
+  },
 ]
 
 export const SERVICES: Service[] = [
@@ -139,154 +152,15 @@ export const SERVICES: Service[] = [
   },
 ]
 
-export const REVIEWS: Review[] = [
-  {
-    id: '1',
-    name: 'Sarah Johnson',
-    business: 'Serenity Spa & Wellness',
-    industry: 'Spa & Wellness',
-    rating: 5,
-    text: 'The AI booking system from ILift increased our appointments by 40% in just 2 months. The voice agent handles calls even when we\'re with clients. Game changer!',
-    avatar: '/avatars/sarah-j.jpg',
-  },
-  {
-    id: '2',
-    name: 'Mike Rodriguez',
-    business: 'Rodriguez Plumbing Co.',
-    industry: 'Plumbing',
-    rating: 5,
-    text: 'We used to miss calls all the time on job sites. Now the AI voice agent books appointments 24/7. Our revenue is up 60% and I finally have work-life balance.',
-    avatar: '/avatars/mike-r.jpg',
-  },
-  {
-    id: '3',
-    name: 'Jennifer Chen',
-    business: 'Chen & Associates Law',
-    industry: 'Legal',
-    rating: 5,
-    text: 'The automated lead qualification saves our staff 15 hours per week. Only pre-qualified consultations make it to our calendar. The ROI is incredible.',
-    avatar: '/avatars/jennifer-c.jpg',
-  },
-  {
-    id: '4',
-    name: 'David Thompson',
-    business: 'Thompson Construction',
-    industry: 'Construction',
-    rating: 5,
-    text: 'ILift built us a website that actually generates leads. The automation handles quotes and follow-ups while we focus on building. Best investment we\'ve made.',
-    avatar: '/avatars/david-t.jpg',
-  },
-  {
-    id: '5',
-    name: 'Lisa Martinez',
-    business: 'Elite Fitness Studio',
-    industry: 'Fitness',
-    rating: 5,
-    text: 'The SMS automation is phenomenal. Attendance is up 35% thanks to automated reminders, and the AI chat handles membership questions instantly.',
-    avatar: '/avatars/lisa-m.jpg',
-  },
-  {
-    id: '6',
-    name: 'Robert Kim',
-    business: 'Kim\'s Auto Repair',
-    industry: 'Automotive',
-    rating: 5,
-    text: 'Went from answering calls all day to having an AI assistant do it for me. It even sends service reminders to customers. This technology is the future.',
-    avatar: '/avatars/robert-k.jpg',
-  },
-  {
-    id: '7',
-    name: 'Amanda Foster',
-    business: 'Foster Real Estate Group',
-    industry: 'Real Estate',
-    rating: 5,
-    text: 'The lead nurturing automation is incredible. It follows up with prospects automatically until they\'re ready to buy. Closed 8 more deals this quarter.',
-    avatar: '/avatars/amanda-f.jpg',
-  },
-  {
-    id: '8',
-    name: 'Carlos Mendez',
-    business: 'Mendez Landscaping',
-    industry: 'Landscaping',
-    rating: 5,
-    text: 'Finally, a website that works as hard as I do. The AI voice agent books estimates even when I\'m on a job. My schedule is always full now.',
-    avatar: '/avatars/carlos-m.jpg',
-  },
-]
-
-export const PORTFOLIO: PortfolioItem[] = [
-  {
-    id: 'spa-wellness',
-    title: 'Serenity Spa & Wellness',
-    industry: 'Spa & Wellness',
-    description: 'Calming, luxurious website with integrated booking system and service menu.',
-    features: [
-      'Online booking system',
-      'Service menu with pricing',
-      'Gift card sales',
-      'Customer reviews',
-      'Mobile-optimized',
-    ],
-    imageDesktop: '/images/portfolio/spa-desktop.png',
-    imageMobile: '/images/portfolio/spa-mobile.webp',
-  },
-  {
-    id: 'plumbing-services',
-    title: 'Rodriguez Plumbing',
-    industry: 'Plumbing',
-    description: 'Trust-building website with emergency service CTA and service area maps.',
-    features: [
-      '24/7 emergency service button',
-      'Service area mapping',
-      'Live chat for quotes',
-      'Before/after gallery',
-      'Customer testimonials',
-    ],
-    imageDesktop: '/images/portfolio/plumber-desktop.png',
-    imageMobile: '/images/portfolio/plumber-mobile.webp',
-  },
-  {
-    id: 'construction',
-    title: 'Thompson Construction',
-    industry: 'Construction',
-    description: 'Professional portfolio site showcasing projects with automated quote system.',
-    features: [
-      'Project portfolio gallery',
-      'Quote request automation',
-      'Client testimonials',
-      'Service breakdown',
-      'Contact forms',
-    ],
-    imageDesktop: '/images/portfolio/construction-desktop.png',
-    imageMobile: '/images/portfolio/construction-mobile.webp',
-  },
-  {
-    id: 'law-firm',
-    title: 'Chen & Associates',
-    industry: 'Law Firm',
-    description: 'Professional, trustworthy design with consultation booking and practice areas.',
-    features: [
-      'Consultation booking',
-      'Practice area pages',
-      'Attorney profiles',
-      'Case results',
-      'Legal resources',
-    ],
-    imageDesktop: '/images/portfolio/law-desktop.png',
-    imageMobile: '/images/portfolio/law-mobile.webp',
-  },
-]
-
+// Root-relative hashes (/#...) so nav works from /websites, /pricing, /blog, etc.
 export const NAV_LINKS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Built by Dave', href: '#built-by-dave' },
-  { label: 'Work with Dave', href: '#work-with-dave' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'About', href: '#about-dave' },
+  { label: 'Websites', href: '/websites' },
+  { label: 'AI Receptionist', href: '/ai-receptionist' },
+  { label: 'Demo', href: '/demo' },
+  { label: 'Built by Dave', href: '/#built-by-dave' },
+  { label: 'About', href: '/#about-dave' },
   { label: 'Blog', href: '/blog' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export const OFFERS: Offer[] = [

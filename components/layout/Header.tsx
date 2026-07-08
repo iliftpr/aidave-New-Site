@@ -28,7 +28,7 @@ export function Header() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-20">
           {/* Logo (Dave's headshot — no title, image is the brand mark) */}
-          <a href="#home" className="flex items-center group flex-shrink-0" aria-label={COMPANY_INFO.name}>
+          <a href="/#home" className="flex items-center group flex-shrink-0" aria-label={COMPANY_INFO.name}>
             <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary-500/40 group-hover:ring-primary-500/70 transition-all">
               <Image
                 src="/images/dave-headshot.jpeg"
@@ -55,15 +55,15 @@ export function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center ml-4">
-            <Button href={COMPANY_INFO.links.calcom.strategy} variant="accent" size="sm">
-              Book Strategy Session
+            <Button href={COMPANY_INFO.links.calcom.audit} variant="accent" size="sm">
+              Book a discovery call
             </Button>
           </div>
 
           {/* Mobile / tablet menu button (visible <lg) — together with the CTA pill on the right */}
           <div className="flex lg:hidden items-center space-x-2">
             <Button
-              href={COMPANY_INFO.links.calcom.strategy}
+              href={COMPANY_INFO.links.calcom.audit}
               variant="accent"
               size="sm"
               className="hidden sm:inline-flex"
@@ -106,8 +106,8 @@ export function Header() {
                 <Button href={`tel:${COMPANY_INFO.phone}`} variant="primary" size="md">
                   Call Now
                 </Button>
-                <Button href={COMPANY_INFO.links.calcom.strategy} variant="accent" size="md">
-                  Book Strategy Session
+                <Button href={COMPANY_INFO.links.calcom.audit} variant="accent" size="md">
+                  Book a discovery call
                 </Button>
               </div>
             </nav>

@@ -67,7 +67,10 @@ export function Footer() {
               <a href={COMPANY_INFO.links.calcom.mastery} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-500 transition-colors">
                 AI Mastery Intensive ($997)
               </a>
-              <a href="#pricing" className="text-gray-400 hover:text-primary-500 transition-colors">
+              <a href="/websites" className="text-gray-400 hover:text-primary-500 transition-colors">
+                Website Build ($1,200 flat)
+              </a>
+              <a href="/#pricing" className="text-gray-400 hover:text-primary-500 transition-colors">
                 Done-For-You ($3,600/yr)
               </a>
               <a href={COMPANY_INFO.links.calcom.audit} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-500 transition-colors">
@@ -111,8 +114,8 @@ export function Footer() {
               </div>
             </div>
             <div className="mt-6">
-              <Button href={COMPANY_INFO.links.calcom.strategy} size="sm">
-                Schedule a Call
+              <Button href={COMPANY_INFO.links.calcom.audit} size="sm">
+                Book a discovery call
                 <ArrowRight size={16} />
               </Button>
             </div>
