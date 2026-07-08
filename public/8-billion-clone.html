@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $8 Billion Clone — I rebuilt an $8B company’s funnel with AI | iLift</title>
+<meta name="description" content="How I reverse-engineered the marketing funnel of an $8-billion company (Hims & Hers) with Firecrawl and rebuilt it on my own store with Fable — content hubs, a quiz, routines, email flows, and AI-search — live in four days. Includes the exact prompts to do it for your business.">
+<link rel="canonical" href="https://ilift.com/8-billion-clone">
+<meta name="author" content="Dave Gakshteyn">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="iLift">
+<meta property="og:title" content="The $8 Billion Clone — an acquisition machine, rebuilt with AI">
+<meta property="og:description" content="I used Firecrawl to read an $8B company's funnel and Fable to rebuild it on my own store in 4 days. Here's everything I built — plus the prompts to do it yourself.">
+<meta property="og:url" content="https://ilift.com/8-billion-clone">
+<meta property="og:image" content="https://ilift.com/8-billion-clone-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The $8 Billion Clone — rebuilt with Fable + Firecrawl">
+<meta name="twitter:description" content="An $8B acquisition machine, rebuilt on my own store in 4 days. Plus the exact prompts to do it for your business.">
+<meta name="twitter:image" content="https://ilift.com/8-billion-clone-og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..600&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b110d; --bg2:#0e1712; --panel:#131e17; --panel2:#18241d;
+  --line:rgba(233,228,212,.10); --line2:rgba(233,228,212,.16);
+  --cream:#f3eee2; --muted:#9fb0a2; --dim:#6f7f72;
+  --sage:#8ac097; --sage-deep:#2f6f4f; --gold:#e2b467; --gold-dim:#c39a4e;
+  --fire:#ff5f2e; --fire2:#ff9159; --hims:#7095a8; --hims2:#9fc0cf;
+  --serif:"Fraunces",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif; --mono:"IBM Plex Mono",monospace;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--cream); font-family:var(--sans);
+  font-weight:400; line-height:1.6; overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  letter-spacing:.005em;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");
+}
+::selection{background:var(--sage);color:#08110b}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* ---------- progress + chrome ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;
+  background:linear-gradient(90deg,var(--fire),var(--gold),var(--sage));box-shadow:0 0 14px rgba(226,180,103,.5)}
+.brandmark{position:fixed;top:22px;left:26px;z-index:90;font-family:var(--mono);font-size:11px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--muted);mix-blend-mode:difference}
+.brandmark b{color:var(--cream);font-weight:600}
+.actlabel{position:fixed;top:22px;right:26px;z-index:90;font-family:var(--mono);font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);transition:opacity .4s}
+
+/* ---------- layout ---------- */
+section{position:relative;z-index:1;padding:clamp(80px,11vh,150px) 26px}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);
+  display:inline-flex;align-items:center;gap:12px;margin-bottom:26px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold);opacity:.7}
+h2.hd{font-family:var(--serif);font-weight:340;font-size:clamp(2rem,5.4vw,4.1rem);line-height:1.03;
+  letter-spacing:-.02em;font-optical-sizing:auto}
+h2.hd em{font-style:italic;color:var(--gold)}
+.lede{font-size:clamp(1.05rem,1.7vw,1.35rem);color:var(--muted);max-width:56ch;margin-top:24px;font-weight:350}
+.lede strong{color:var(--cream);font-weight:600}
+
+/* ---------- reveal ---------- */
+.rev{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.16,.7,.3,1),transform 1s cubic-bezier(.16,.7,.3,1)}
+.rev.in{opacity:1;transform:none}
+.rev.d1{transition-delay:.09s}.rev.d2{transition-delay:.18s}.rev.d3{transition-delay:.27s}
+.rev.d4{transition-delay:.36s}.rev.d5{transition-delay:.45s}.rev.d6{transition-delay:.54s}
+
+/* ========== HERO ========== */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px;padding-bottom:70px;overflow:hidden}
+.hero-glow{position:absolute;inset:-30% -10% -10% -10%;z-index:0;pointer-events:none}
+.hero-glow span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 22s ease-in-out infinite}
+.hero-glow .g1{width:44vw;height:44vw;left:-6vw;top:2vh;background:radial-gradient(circle,rgba(47,111,79,.85),transparent 68%)}
+.hero-glow .g2{width:40vw;height:40vw;right:-4vw;top:-8vh;background:radial-gradient(circle,rgba(255,95,46,.55),transparent 66%);animation-delay:-7s}
+.hero-glow .g3{width:38vw;height:38vw;right:12vw;bottom:-14vh;background:radial-gradient(circle,rgba(226,180,103,.6),transparent 66%);animation-delay:-13s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(4%,-5%) scale(1.09)}66%{transform:translate(-4%,4%) scale(.95)}}
+.hero .wrap{position:relative;z-index:2}
+.hero-tag{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);
+  display:flex;align-items:center;gap:14px;margin-bottom:34px}
+.hero-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--fire);box-shadow:0 0 0 0 rgba(255,95,46,.7);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,95,46,.6)}70%{box-shadow:0 0 0 12px rgba(255,95,46,0)}100%{box-shadow:0 0 0 0 rgba(255,95,46,0)}}
+.hero h1{font-family:var(--serif);font-weight:330;font-size:clamp(2.6rem,7vw,6.2rem);line-height:.99;letter-spacing:-.028em;
+  max-width:17ch;font-optical-sizing:auto}
+.hero h1 .fig{font-weight:560;font-style:italic;color:transparent;background:linear-gradient(120deg,var(--gold),var(--fire2) 55%,var(--sage));
+  -webkit-background-clip:text;background-clip:text;white-space:nowrap}
+.hero-sub{font-size:clamp(1.1rem,1.9vw,1.5rem);color:var(--muted);max-width:60ch;margin-top:32px;font-weight:340;line-height:1.55}
+.hero-sub b{color:var(--cream);font-weight:600}
+.hero-sub .fw{color:var(--fire2);font-weight:600}.hero-sub .fb{color:var(--sage);font-weight:600}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--muted);
+  border:1px solid var(--line2);border-radius:100px;padding:9px 16px;background:rgba(255,255,255,.015)}
+.chip b{color:var(--cream);font-weight:600}
+.scrollcue{position:absolute;bottom:26px;right:30px;z-index:3;font-family:var(--mono);
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scrollcue .bar{width:1px;height:42px;background:linear-gradient(var(--gold),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ========== INSIGHT — the machine ========== */
+.gears{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.gear{border:1px solid var(--line);border-radius:16px;padding:26px 22px 28px;background:linear-gradient(180deg,var(--panel),rgba(19,30,23,.4));position:relative;overflow:hidden}
+.gear::after{content:"";position:absolute;left:0;top:0;height:2px;width:100%;background:linear-gradient(90deg,var(--sage),transparent);opacity:.6}
+.gear .num{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.1em}
+.gear h4{font-family:var(--serif);font-weight:450;font-size:1.5rem;margin:14px 0 8px;line-height:1.1}
+.gear p{font-size:.95rem;color:var(--muted);line-height:1.5}
+.gear .arrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--dim);font-size:20px;z-index:3}
+.pull{font-family:var(--serif);font-weight:340;font-size:clamp(1.5rem,3.2vw,2.4rem);line-height:1.25;
+  max-width:24ch;margin:66px 0 0;letter-spacing:-.01em}
+.pull b{color:var(--sage);font-style:italic;font-weight:400}
+
+/* ========== METHOD — firecrawl scan ========== */
+.method{background:linear-gradient(180deg,transparent,rgba(255,95,46,.03),transparent)}
+.scan{margin-top:52px;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--bg2);position:relative}
+.scan-head{display:flex;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.scan-head .d{width:11px;height:11px;border-radius:50%}
+.scan-head .d1{background:#ff5f56}.scan-head .d2{background:#ffbd2e}.scan-head .d3{background:#27c93f}
+.scan-head .url{margin-left:14px;color:var(--fire2)}
+.scan-body{position:relative;padding:0}
+.scan-steps{display:grid;grid-template-columns:repeat(3,1fr)}
+.scan-step{padding:34px 26px 40px;border-right:1px solid var(--line);position:relative}
+.scan-step:last-child{border-right:none}
+.scan-step .k{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.scan-step h4{font-family:var(--serif);font-weight:460;font-size:1.7rem;margin:14px 0 12px}
+.scan-step p{color:var(--muted);font-size:.96rem;line-height:1.55}
+.scan-step .tool{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:11px;padding:5px 11px;border-radius:6px;letter-spacing:.05em}
+.tool.fc{color:var(--fire2);border:1px solid rgba(255,95,46,.4);background:rgba(255,95,46,.07)}
+.tool.fb{color:var(--sage);border:1px solid rgba(138,192,151,.3);background:rgba(138,192,151,.06)}
+.beam{position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--fire),transparent);
+  box-shadow:0 0 22px 4px rgba(255,95,46,.55);animation:sweep 6s linear infinite;z-index:4;opacity:.9}
+@keyframes sweep{0%{left:0%}100%{left:100%}}
+
+/* ========== MIRROR — mapping ========== */
+.map{display:flex;flex-direction:column;gap:12px;margin-top:52px}
+.maprow{display:grid;grid-template-columns:1fr 58px 1fr;align-items:stretch;gap:0}
+.mapcell{padding:20px 22px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.mapcell.h{background:linear-gradient(180deg,rgba(112,149,168,.09),transparent);border-radius:14px 0 0 14px;border-right:none}
+.mapcell.o{background:linear-gradient(180deg,rgba(138,192,151,.08),transparent);border-radius:0 14px 14px 0;border-left:none}
+.mapcell .lab{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:7px}
+.mapcell.h .lab{color:var(--hims2)}.mapcell.o .lab{color:var(--sage)}
+.mapcell .v{font-size:1.02rem;color:var(--cream);font-weight:500;line-height:1.35}
+.mapcell.h .v{color:#c5d4dc}
+.mapmid{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:22px;
+  background:rgba(226,180,103,.05);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.maphead{display:grid;grid-template-columns:1fr 58px 1fr;margin-bottom:4px}
+.maphead div{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:0 22px}
+.maphead .a{color:var(--hims2)}.maphead .b{text-align:right;color:var(--sage)}
+
+/* ========== BUILD — phases timeline ========== */
+.phases{background:linear-gradient(180deg,transparent,rgba(47,111,79,.045),transparent)}
+.tl{position:relative;margin-top:58px;padding-left:0}
+.tl-line{position:absolute;left:26px;top:6px;bottom:6px;width:2px;background:var(--line2)}
+.tl-fill{position:absolute;left:26px;top:6px;width:2px;height:0;background:linear-gradient(var(--sage),var(--gold),var(--fire));box-shadow:0 0 12px rgba(226,180,103,.4);transition:height .1s linear}
+.pnode{position:relative;padding:0 0 42px 74px}
+.pnode:last-child{padding-bottom:0}
+.pnode .marker{position:absolute;left:15px;top:2px;width:24px;height:24px;border-radius:50%;background:var(--bg);
+  border:2px solid var(--sage);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;color:var(--sage);z-index:2;transition:all .5s}
+.pnode.in .marker{background:var(--sage);color:#08110b;box-shadow:0 0 0 6px rgba(138,192,151,.12)}
+.pnode .pk{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.pnode h3{font-family:var(--serif);font-weight:440;font-size:clamp(1.5rem,2.7vw,2.1rem);margin:8px 0 12px;line-height:1.1}
+.pnode .pbody{color:var(--muted);font-size:1rem;line-height:1.6;max-width:64ch}
+.pnode .pbody b{color:var(--cream);font-weight:600}
+.pnode .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ptag{font-family:var(--mono);font-size:11px;color:var(--sage);border:1px solid rgba(138,192,151,.28);
+  background:rgba(138,192,151,.05);border-radius:6px;padding:5px 10px}
+.ptag.g{color:var(--gold);border-color:rgba(226,180,103,.3);background:rgba(226,180,103,.05)}
+
+/* ========== RECEIPTS — urls ========== */
+.receipts{background:var(--bg2)}
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:48px}
+.rcol{border:1px solid var(--line);border-radius:16px;padding:24px 24px 12px;background:linear-gradient(180deg,var(--panel),transparent)}
+.rcol h4{font-family:var(--serif);font-weight:460;font-size:1.25rem;margin-bottom:4px;display:flex;align-items:center;gap:10px}
+.rcol h4 .ic{color:var(--gold)}
+.rcol .csub{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.05em;margin-bottom:14px}
+.url{display:flex;align-items:baseline;gap:10px;padding:9px 0;border-top:1px dashed var(--line);font-family:var(--mono);font-size:.86rem}
+.url:first-of-type{border-top:none}
+.url .path{color:var(--cream);word-break:break-all}
+.url .id{margin-left:auto;color:var(--dim);font-size:.72rem;white-space:nowrap;flex-shrink:0}
+.url .flag{color:var(--gold);font-size:.7rem}
+.url.link{cursor:pointer;transition:background .2s,padding .2s;border-radius:6px;margin:0 -8px;padding-left:8px;padding-right:8px}
+.url.link:hover{background:rgba(138,192,151,.08)}
+.url.link:hover .path{color:var(--sage);text-decoration:underline;text-underline-offset:3px}
+.url.link .path::after{content:" ↗";color:var(--gold);opacity:0;transition:opacity .2s}
+.url.link:hover .path::after{opacity:1}
+.rnote{font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:34px;text-align:center;letter-spacing:.05em}
+
+/* ========== ENGINE ROOM ========== */
+.eroom{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:52px}
+.ecard{border:1px solid var(--line);border-radius:18px;padding:28px 26px;background:linear-gradient(180deg,var(--panel),rgba(19,30,23,.3))}
+.ecard.full{grid-column:1/-1}
+.ecard .et{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fstep{border:1px solid var(--line2);border-radius:10px;padding:11px 14px;font-size:.85rem;background:rgba(255,255,255,.02);flex:1;min-width:120px}
+.fstep .fn{font-family:var(--mono);font-size:10px;color:var(--sage);letter-spacing:.05em}
+.fstep .fl{color:var(--cream);margin-top:4px;font-weight:500;font-size:.9rem}
+.fstep .fd{color:var(--muted);font-size:.78rem}
+.flow .fa{color:var(--gold);font-size:16px}
+.flowlist{display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.fl-item{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.fl-item:first-child{border-top:none}
+.fl-item .fid{font-family:var(--mono);font-size:10px;color:var(--gold);border:1px solid rgba(226,180,103,.3);border-radius:5px;padding:4px 7px;flex-shrink:0;margin-top:2px}
+.fl-item .fx b{color:var(--cream);font-weight:600}
+.fl-item .fx span{color:var(--muted);font-size:.9rem;display:block}
+.aeo{display:flex;align-items:flex-end;gap:14px;margin-top:8px;height:170px}
+.aeo .col{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+.aeo .bar{width:100%;border-radius:8px 8px 0 0;background:linear-gradient(180deg,var(--sage),rgba(138,192,151,.25));position:relative;transition:height 1.2s cubic-bezier(.2,.8,.2,1);min-height:2px}
+.aeo .bar.hl{background:linear-gradient(180deg,var(--gold),rgba(226,180,103,.25))}
+.aeo .bv{font-family:var(--mono);font-size:12px;color:var(--cream);position:absolute;top:-22px;left:50%;transform:translateX(-50%)}
+.aeo .bl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.03em;text-align:center}
+.ecap{color:var(--muted);font-size:.92rem;margin-top:18px;line-height:1.5}
+.ecap b{color:var(--cream)}
+
+/* ========== STATS ========== */
+.stats{background:linear-gradient(180deg,transparent,rgba(226,180,103,.04),transparent)}
+.sgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:52px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--line)}
+.stat{background:var(--bg2);padding:30px 20px;text-align:center}
+.stat .n{font-family:var(--serif);font-weight:420;font-size:clamp(2rem,4vw,3.1rem);line-height:1;letter-spacing:-.02em;
+  color:transparent;background:linear-gradient(120deg,var(--cream),var(--gold));-webkit-background-clip:text;background-clip:text}
+.stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:12px;line-height:1.4}
+
+/* ========== CLOSE ========== */
+.close{min-height:88vh;display:flex;align-items:center;text-align:center;overflow:hidden;position:relative}
+.close .hero-glow span{opacity:.4}
+.close .wrap{position:relative;z-index:2;margin:0 auto}
+.close h2{font-family:var(--serif);font-weight:330;font-size:clamp(2.2rem,5.6vw,4.6rem);line-height:1.06;letter-spacing:-.02em;max-width:18ch;margin:0 auto}
+.close h2 em{font-style:italic;color:var(--gold)}
+.close .csub{font-size:clamp(1.05rem,1.7vw,1.35rem);color:var(--muted);margin:30px auto 0;max-width:52ch}
+.close .csub .fw{color:var(--fire2);font-weight:600}.close .csub .fb{color:var(--sage);font-weight:600}
+.close .credit{margin-top:52px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+  display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
+.close .credit b{color:var(--cream)}
+.close .credit a{color:var(--sage)}
+.foot{padding:34px 26px;text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);border-top:1px solid var(--line);position:relative;z-index:1}
+
+/* ========== PLAYBOOK — steal this ========== */
+.playbook{background:linear-gradient(180deg,var(--bg2),#0a0f0c)}
+.steal-intro{max-width:60ch}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:46px}
+.pcard{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel),rgba(19,30,23,.35));padding:22px 22px 22px;display:flex;flex-direction:column}
+.pcard-h{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.pnum{font-family:var(--mono);font-size:12px;color:#08110b;background:var(--gold);width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:600;margin-top:2px}
+.pcard-h .meta{flex:1}
+.ptool{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--sage)}
+.ptool.fc{color:var(--fire2)}
+.pttl{font-family:var(--serif);font-size:1.4rem;font-weight:450;margin-top:3px;line-height:1.08}
+.copybtn{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);background:rgba(255,255,255,.03);
+  border:1px solid var(--line2);border-radius:7px;padding:7px 13px;cursor:pointer;transition:all .2s;flex-shrink:0}
+.copybtn:hover{color:var(--cream);border-color:var(--sage)}
+.copybtn.done{color:#08110b;background:var(--sage);border-color:var(--sage)}
+.ptext{font-family:var(--mono);font-size:.82rem;line-height:1.72;color:#b7c6ba;white-space:pre-wrap;word-break:break-word;
+  background:rgba(0,0,0,.24);border:1px solid var(--line);border-radius:10px;padding:16px;margin-top:auto}
+.ptext .ph{color:var(--gold);font-weight:500}
+.pmeta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.pbox{border:1px solid var(--line);border-radius:16px;padding:22px 24px;background:rgba(255,255,255,.012)}
+.pbox h5{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.pbox ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.pbox li{display:flex;gap:11px;color:var(--muted);font-size:.94rem;line-height:1.45}
+.pbox li::before{content:"◆";color:var(--sage);font-size:.62rem;margin-top:5px;flex-shrink:0}
+.pbox li b{color:var(--cream);font-weight:600}
+.pclose{font-family:var(--serif);font-weight:340;font-size:clamp(1.2rem,2.4vw,1.7rem);line-height:1.4;max-width:40ch;margin:44px auto 0;text-align:center;color:var(--cream)}
+.pclose .sig{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:20px}
+.pclose .sig b{color:var(--sage)}
+
+/* ========== CTA buttons + banner + contact ========== */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.cta-btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:1rem;
+  padding:14px 24px;border-radius:100px;letter-spacing:.01em;transition:all .25s;cursor:pointer;border:1px solid transparent}
+.cta-btn .ar{transition:transform .25s}
+.cta-btn:hover .ar{transform:translateX(4px)}
+.cta-btn.primary{background:linear-gradient(120deg,var(--gold),var(--gold-dim));color:#0a0f0c;box-shadow:0 8px 30px rgba(226,180,103,.22)}
+.cta-btn.primary:hover{box-shadow:0 12px 44px rgba(226,180,103,.4);transform:translateY(-2px)}
+.cta-btn.ghost{background:rgba(255,255,255,.02);border-color:var(--line2);color:var(--cream)}
+.cta-btn.ghost:hover{border-color:var(--sage);background:rgba(138,192,151,.06);transform:translateY(-2px)}
+.herolink{margin-top:28px;font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.01em}
+.herolink a{color:var(--sage);text-decoration:underline;text-underline-offset:3px;transition:color .2s}
+.herolink a:hover{color:var(--gold)}
+.ctabanner{max-width:var(--maxw);margin:0 auto;border:1px solid var(--line2);border-radius:22px;
+  background:linear-gradient(120deg,rgba(47,111,79,.16),rgba(226,180,103,.07));padding:46px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:34px;flex-wrap:wrap;position:relative;overflow:hidden}
+.ctabanner::before{content:"";position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(226,180,103,.18),transparent 70%);pointer-events:none}
+.ctabanner .bt{position:relative;z-index:1}
+.ctabanner h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.8vw,2.15rem);line-height:1.08;max-width:20ch}
+.ctabanner h3 em{font-style:italic;color:var(--gold)}
+.ctabanner p{color:var(--muted);margin-top:12px;font-size:1rem;max-width:46ch}
+.ctabanner .cta-row{margin-top:0;flex-shrink:0;position:relative;z-index:1}
+.contact{background:linear-gradient(180deg,#0a0f0c,var(--bg2));text-align:center;overflow:hidden}
+.contact .eyebrow{justify-content:center}.contact .eyebrow::before{display:none}
+.contact h2{font-family:var(--serif);font-weight:330;font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;letter-spacing:-.02em;max-width:20ch;margin:0 auto}
+.contact h2 em{font-style:italic;color:var(--gold)}
+.contact .csub{color:var(--muted);font-size:clamp(1.05rem,1.7vw,1.28rem);max-width:56ch;margin:24px auto 0;line-height:1.55}
+.contact .csub b{color:var(--cream)}
+.methods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:46px auto 0;max-width:980px}
+.method{border:1px solid var(--line);border-radius:16px;padding:28px 18px;background:linear-gradient(180deg,var(--panel),rgba(19,30,23,.3));
+  display:flex;flex-direction:column;align-items:center;gap:7px;transition:all .25s}
+.method:hover{border-color:var(--sage);transform:translateY(-3px);background:linear-gradient(180deg,var(--panel2),rgba(19,30,23,.42))}
+.method .mi{font-size:26px;margin-bottom:5px}
+.method .ml{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.method .mv{color:var(--cream);font-weight:600;font-size:1.02rem;word-break:break-word}
+.method .md{color:var(--dim);font-size:.82rem}
+.contact .who{margin-top:40px;font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted)}
+.contact .who b{color:var(--cream)}.contact .who a{color:var(--sage)}
+.foot a{transition:color .2s}.foot a:hover{color:var(--gold)!important}
+
+/* ---------- responsive ---------- */
+@media(max-width:900px){
+  .gears{grid-template-columns:1fr 1fr}.gear .arrow{display:none}
+  .scan-steps{grid-template-columns:1fr}.scan-step{border-right:none;border-bottom:1px solid var(--line)}
+  .rgrid{grid-template-columns:1fr}.eroom{grid-template-columns:1fr}.sgrid{grid-template-columns:1fr 1fr 1fr}
+  .pgrid{grid-template-columns:1fr}.pmeta{grid-template-columns:1fr}.methods{grid-template-columns:1fr 1fr}
+  .ctabanner{flex-direction:column;align-items:flex-start;padding:34px 28px}
+  .actlabel{display:none}
+}
+@media(max-width:560px){
+  .maprow,.maphead{grid-template-columns:1fr 40px 1fr}.mapcell{padding:14px}
+  .sgrid{grid-template-columns:1fr 1fr}.brandmark{font-size:10px;left:16px}
+  .pnode{padding-left:60px}.tl-line,.tl-fill{left:19px}.pnode .marker{left:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:opacity .3s!important}
+  .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="brandmark"><b>FABLE</b> × FIRECRAWL &nbsp;/&nbsp; ORGANICSKINCARE.COM</div>
+<div class="actlabel" id="actlabel">Intro</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" data-act="Intro">
+  <div class="hero-glow"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+  <div class="wrap">
+    <div class="hero-tag rev in"><span class="dot"></span>A Fable&nbsp;+&nbsp;Firecrawl case study</div>
+    <h1 class="rev in d1">I cloned an <span class="fig">$8&nbsp;billion</span> company's marketing machine — and pointed it at my own store.</h1>
+    <p class="hero-sub rev in d2">Hims&nbsp;&amp;&nbsp;Hers turned content, a quiz, and email into a growth flywheel worth roughly <b>$8&nbsp;billion</b>. I used <span class="fw">Firecrawl</span> to read their playbook and <span class="fb">Fable</span> to rebuild it — the same acquisition machine, now running live on <b>organicskincare.com</b>.</p>
+    <div class="hero-meta rev in d3">
+      <span class="chip"><b>organicskincare.com</b></span>
+      <span class="chip">Built <b>Jul 4–7, 2026</b></span>
+      <span class="chip"><b>6</b> phases · <b>autonomous</b></span>
+      <span class="chip"><b>23</b> new pages · <b>1</b> plugin · <b>3</b> email flows</span>
+    </div>
+    <p class="herolink rev in d4">Built by <a href="https://ilift.com" target="_blank" rel="noopener">Dave Gakshteyn</a> — I build funnels like this for businesses. <a href="#contact">Work with me →</a></p>
+  </div>
+  <div class="scrollcue"><span>Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- ===================== INSIGHT ===================== -->
+<section data-act="The Insight">
+  <div class="wrap">
+    <div class="eyebrow rev">01 — The insight</div>
+    <h2 class="hd rev d1">Hims isn't a pharmacy.<br>It's an <em>acquisition machine.</em></h2>
+    <p class="lede rev d2">Strip away the molecules and what's left is a four-gear flywheel that turns strangers into subscribers. The product is a commodity. <strong>The machine is the moat</strong> — and a machine can be rebuilt.</p>
+    <div class="gears">
+      <div class="gear rev d1"><div class="num">GEAR 01</div><h4>Editorial content</h4><p>Condition &amp; ingredient pages that own the search result and answer the question first.</p><div class="arrow">→</div></div>
+      <div class="gear rev d2"><div class="num">GEAR 02</div><h4>The quiz</h4><p>A personalized diagnostic that captures intent and an email in the same breath.</p><div class="arrow">→</div></div>
+      <div class="gear rev d3"><div class="num">GEAR 03</div><h4>The routine</h4><p>A tailored regimen page that converts the answer into a cart in one click.</p><div class="arrow">→</div></div>
+      <div class="gear rev d4"><div class="num">GEAR 04</div><h4>Email flywheel</h4><p>Lifecycle flows that deliver the routine, nurture the concern, and win the reorder.</p></div>
+    </div>
+    <p class="pull rev d2">OSC sells professional organic skincare — Eminence, Dr.&nbsp;Grandel, Phyris, Sothys, ilike. <b>Same machine. Different molecules.</b></p>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="method" data-act="The Method">
+  <div class="wrap">
+    <div class="eyebrow rev">02 — The method</div>
+    <h2 class="hd rev d1">Firecrawl <em>read it.</em><br>Fable <em>rebuilt it.</em></h2>
+    <p class="lede rev d2">No guesswork. Firecrawl scraped the live Hims funnel into structured intelligence; Fable adapted it to OSC's <strong>own-store-first</strong> economics — and shipped every phase to the real site.</p>
+    <div class="scan rev d2">
+      <div class="scan-head"><span class="d d1"></span><span class="d d2"></span><span class="d d3"></span><span class="url">firecrawl ▸ scraping hims &amp; hers acquisition funnel…</span></div>
+      <div class="scan-body">
+        <div class="beam"></div>
+        <div class="scan-steps">
+          <div class="scan-step"><div class="k">Step 01 — Scrape</div><h4>Read the playbook</h4><p>Firecrawl crawled the Hims content → quiz → routine → email funnel, extracting the structure behind the machine: the page types, the intent ladder, the capture points.</p><span class="tool fc">◆ Firecrawl</span></div>
+          <div class="scan-step"><div class="k">Step 02 — Map</div><h4>Adapt to OSC</h4><p>Fable translated every Hims element to an organic-skincare equivalent — keeping their funnel, dropping their paid-media model in favor of own-product-first margins.</p><span class="tool fb">◆ Fable</span></div>
+          <div class="scan-step"><div class="k">Step 03 — Build</div><h4>Ship &amp; verify live</h4><p>Fable wrote the plugin, the pages, and the flows — then verified each on the live WordPress store with a real browser before calling it done.</p><span class="tool fb">◆ Fable</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="lede rev d3" style="margin-top:34px">Firecrawl didn't stop at the scrape. It ran the <strong>AI-citation baseline</strong> too — measuring how ChatGPT, Perplexity, Gemini, Claude and Google's AI mode cite the new pages against 26 fixed queries.</p>
+  </div>
+</section>
+
+<!-- ===================== MIRROR ===================== -->
+<section data-act="The Mirror">
+  <div class="wrap">
+    <div class="eyebrow rev">03 — The mirror</div>
+    <h2 class="hd rev d1">Every Hims move,<br>rebuilt in <em>organic.</em></h2>
+    <p class="lede rev d2">Seven pillars of the $8B funnel, each mapped to a live asset on organicskincare.com.</p>
+    <div class="maphead rev d2"><div class="a">Hims &amp; Hers</div><div></div><div class="b">organicskincare.com</div></div>
+    <div class="map">
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Diagnostic</div><div class="v">Symptom / condition quiz</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Diagnostic</div><div class="v">8-question skin quiz + own-first engine</div></div></div>
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Content</div><div class="v">Condition &amp; ingredient landing pages</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Content</div><div class="v">/concerns/ · /ingredients/ · /compare/ hubs</div></div></div>
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Conversion</div><div class="v">Product / routine PDP</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Conversion</div><div class="v">Named /routines/ + "shop the routine" cart</div></div></div>
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Capture</div><div class="v">"Get started" email capture</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Capture</div><div class="v">Klaviyo Quiz Leads + 3 lifecycle flows</div></div></div>
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Authority</div><div class="v">Clinical trust &amp; provider voice</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Authority</div><div class="v">Editorial methodology · Clelia byline · /reviews/</div></div></div>
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Engagement</div><div class="v">Free interactive tools</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Engagement</div><div class="v">Ingredient Conflict + Pregnancy checkers</div></div></div>
+      <div class="maprow rev"><div class="mapcell h"><div class="lab">Discovery</div><div class="v">SEO surface</div></div><div class="mapmid">→</div><div class="mapcell o"><div class="lab">Discovery</div><div class="v">Schema · llms.txt · AI-crawler product feed</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BUILD ===================== -->
+<section class="phases" data-act="The Build">
+  <div class="wrap">
+    <div class="eyebrow rev">04 — The build</div>
+    <h2 class="hd rev d1">Six phases.<br>Four days. <em>All live.</em></h2>
+    <p class="lede rev d2">Gated, phase by phase — each shipped to the live store and verified with a real browser before the next began.</p>
+    <div class="tl">
+      <div class="tl-line"></div><div class="tl-fill" id="tlfill"></div>
+
+      <div class="pnode rev"><div class="marker">0</div>
+        <div class="pk">Phase 0 — Foundation</div>
+        <h3>The engine under the hood</h3>
+        <p class="pbody">Built <b>osc-concierge</b>, one WordPress plugin that powers the whole funnel, and stood up an <b>owned GA4 property</b> (G-Y81434VVNT) with affiliate sub-ID attribution. Seeded a <b>66-product single source of truth</b>, published the <b>affiliate-disclosure</b> and <b>editorial-methodology</b> pages, and rewrote <b>llms.txt</b> to point only at live URLs.</p>
+        <div class="tags"><span class="ptag">osc-concierge plugin</span><span class="ptag">GA4 dual-tag</span><span class="ptag">66-product SSOT</span><span class="ptag g">/affiliate-disclosure/</span><span class="ptag g">/editorial-methodology/</span></div>
+      </div>
+
+      <div class="pnode rev"><div class="marker">1</div>
+        <div class="pk">Phase 1 — Flagship content cluster</div>
+        <h3>Own the sensitive-skin conversation</h3>
+        <p class="pbody">A full topical cluster: a <b>sensitive-skin pillar</b>, <b>5 ingredient pages</b>, <b>3 head-to-head comparisons</b> (bakuchiol vs. retinol as the flagship), and an upgraded routine guide with a shoppable module. Every claim ran through an <b>adversarial fact-check</b> that caught fabricated citations and unsafe language a rules-gate can't. Then <b>32 existing posts</b> were auto-cross-linked into the cluster.</p>
+        <div class="tags"><span class="ptag">1 pillar</span><span class="ptag">5 ingredient pages</span><span class="ptag">3 comparisons</span><span class="ptag">Answer-first + schema</span><span class="ptag g">32 posts cross-linked</span></div>
+      </div>
+
+      <div class="pnode rev"><div class="marker">2</div>
+        <div class="pk">Phase 2 — The quiz</div>
+        <h3>Capture intent + an email in one flow</h3>
+        <p class="pbody">A dependency-free <b>8-question skin quiz</b> at <b>/quiz/</b> with a fail-closed <b>own-first recommendation engine</b> (own heroes win by default; pregnancy &amp; sensitivity filters never relax). Server-side Klaviyo capture, stateless shareable result links, and a full GA4 event chain. <b>Verified live end-to-end</b> across three personas — result email lands in ~30 seconds.</p>
+        <div class="tags"><span class="ptag">/quiz/</span><span class="ptag">Own-first engine</span><span class="ptag">Klaviyo capture</span><span class="ptag">GA4 events</span><span class="ptag g">E2E verified</span></div>
+      </div>
+
+      <div class="pnode rev"><div class="marker">3</div>
+        <div class="pk">Phase 3 — Named routines</div>
+        <h3>Turn the answer into a cart</h3>
+        <p class="pbody">A <b>/routines/</b> hub and named regimens rendered from the same product map, plus a <b>"shop the routine" one-click cart</b> that adds only <b>in-stock, own SKUs</b> — guest-safe, rate-limited, and honest about what it skips. One data object drives the routine page, the quiz result, and the email alike.</p>
+        <div class="tags"><span class="ptag">/routines/</span><span class="ptag">Shop-the-routine cart</span><span class="ptag">In-stock own SKUs only</span><span class="ptag g">Cart add proven live</span></div>
+      </div>
+
+      <div class="pnode rev"><div class="marker">4</div>
+        <div class="pk">Phase 4 — Free tools</div>
+        <h3>Utility that earns the email</h3>
+        <p class="pbody">Two crawlable, claim-safe tools sourced straight from the ingredient pages: an <b>Ingredient Conflict Checker</b> (32 pairs) and a <b>Pregnancy-Ingredient Checker</b> (17 ingredients). The pregnancy tool is <b>structurally claim-safe</b> — it never renders the word "safe" as a positive claim, only flags what's commonly cautioned, and keeps an OB-GYN disclaimer on every result.</p>
+        <div class="tags"><span class="ptag">/tools/ingredient-conflict-checker/</span><span class="ptag">/tools/pregnancy-ingredient-checker/</span><span class="ptag g">Claim-safe by design</span></div>
+      </div>
+
+      <div class="pnode rev"><div class="marker">5</div>
+        <div class="pk">Phase 5 — AI-search optimization</div>
+        <h3>Get cited by the answer engines</h3>
+        <p class="pbody">A machine-readable <b>/recommendations.json</b> feed, explicit <b>AI-crawler rules</b>, and three trust pages (<b>Clelia's profile</b>, <b>sourcing &amp; standards</b>, <b>/reviews/</b>). Fixed the site's entity name, built an <b>OpenAI merchant feed of 972 products</b>, and measured a <b>5-engine AI-citation baseline</b> — the real scoreboard for the AI era.</p>
+        <div class="tags"><span class="ptag">/recommendations.json feed</span><span class="ptag">AI-crawler rules</span><span class="ptag">3 trust pages</span><span class="ptag g">972-product OpenAI feed</span><span class="ptag g">5-engine baseline</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RECEIPTS ===================== -->
+<section class="receipts" data-act="The Receipts">
+  <div class="wrap">
+    <div class="eyebrow rev">05 — The receipts</div>
+    <h2 class="hd rev d1">Every page. <em>Live.</em></h2>
+    <p class="lede rev d2">Not a mockup. 23 new pages, a working plugin, and a machine-readable feed — all on organicskincare.com right now. <strong>Click any page below to open it live.</strong></p>
+    <div class="rgrid">
+      <div class="rcol rev d1">
+        <h4><span class="ic">◇</span> Content hubs</h4>
+        <div class="csub">The topical cluster — Phase 1</div>
+        <div class="url"><span class="path">/concerns/</span><span class="id">#288825</span></div>
+        <div class="url"><span class="path">/concerns/sensitive-skin/</span><span class="flag">★ pillar</span><span class="id">#288826</span></div>
+        <div class="url"><span class="path">/compare/</span><span class="id">#288827</span></div>
+        <div class="url"><span class="path">/compare/bakuchiol-vs-retinol/</span><span class="flag">★</span><span class="id">#288828</span></div>
+        <div class="url"><span class="path">/compare/mineral-vs-chemical-sunscreen/</span><span class="id">#288829</span></div>
+        <div class="url"><span class="path">/compare/niacinamide-vs-vitamin-c/</span><span class="id">#288830</span></div>
+        <div class="url"><span class="path">/ingredients/</span><span class="id">#288833</span></div>
+        <div class="url"><span class="path">/ingredients/bakuchiol/</span><span class="id">#288834</span></div>
+        <div class="url"><span class="path">/ingredients/niacinamide/</span><span class="id">#288835</span></div>
+        <div class="url"><span class="path">/ingredients/hyaluronic-acid/</span><span class="id">#288836</span></div>
+        <div class="url"><span class="path">/ingredients/zinc-oxide/</span><span class="id">#288837</span></div>
+        <div class="url"><span class="path">/ingredients/ceramides/</span><span class="id">#288838</span></div>
+        <div class="url"><span class="path">/sensitive-skin-routine-guide/</span><span class="flag">upgraded</span><span class="id">#288668</span></div>
+      </div>
+      <div class="rcol rev d2">
+        <h4><span class="ic">◇</span> Funnel &amp; conversion</h4>
+        <div class="csub">Quiz · routines — Phases 2–3</div>
+        <div class="url"><span class="path">/quiz/</span><span class="flag">★ the quiz</span><span class="id">#288861</span></div>
+        <div class="url"><span class="path">/routines/</span><span class="id">#288874</span></div>
+        <div class="url"><span class="path">/routines/clean-transition-starter/</span><span class="id">#288875</span></div>
+        <h4 style="margin-top:26px"><span class="ic">◇</span> Free tools</h4>
+        <div class="csub">Interactive · claim-safe — Phase 4</div>
+        <div class="url"><span class="path">/tools/</span><span class="id">#288879</span></div>
+        <div class="url"><span class="path">/tools/ingredient-conflict-checker/</span><span class="id">#288880</span></div>
+        <div class="url"><span class="path">/tools/pregnancy-ingredient-checker/</span><span class="id">#288881</span></div>
+        <h4 style="margin-top:26px"><span class="ic">◇</span> Trust &amp; discovery</h4>
+        <div class="csub">Authority + AI surface — Phases 0 &amp; 5</div>
+        <div class="url"><span class="path">/editorial-methodology/</span><span class="id">#288822</span></div>
+        <div class="url"><span class="path">/affiliate-disclosure/</span><span class="id">#288821</span></div>
+        <div class="url"><span class="path">/clelia-gakshteyn/</span><span class="id">#288915</span></div>
+        <div class="url"><span class="path">/sourcing-and-standards/</span><span class="id">#288928</span></div>
+        <div class="url"><span class="path">/reviews/</span><span class="id">#288929</span></div>
+        <div class="url"><span class="path">/recommendations.json</span><span class="flag">AI feed</span></div>
+        <div class="url"><span class="path">/llms.txt</span><span class="flag">rebuilt</span></div>
+      </div>
+    </div>
+    <p class="rnote rev">+ 7 ingredient roundups woven into the cluster &nbsp;·&nbsp; 32 existing posts cross-linked &nbsp;·&nbsp; osc-concierge plugin v0.1 → v0.5.1</p>
+  </div>
+</section>
+
+<!-- ===================== ENGINE ROOM ===================== -->
+<section data-act="Engine Room">
+  <div class="wrap">
+    <div class="eyebrow rev">06 — The engine room</div>
+    <h2 class="hd rev d1">Under the surface,<br>a real <em>flywheel.</em></h2>
+    <p class="lede rev d2">The pretty pages are the front of house. Here's the machinery that makes them compound.</p>
+    <div class="eroom">
+      <div class="ecard full rev d1">
+        <div class="et">The quiz funnel — capture → deliver</div>
+        <div class="flow">
+          <div class="fstep"><div class="fn">01</div><div class="fl">8-question quiz</div><div class="fd">skin type → concern → sensitivities</div></div>
+          <span class="fa">→</span>
+          <div class="fstep"><div class="fn">02</div><div class="fl">Own-first engine</div><div class="fd">fail-closed safety filters</div></div>
+          <span class="fa">→</span>
+          <div class="fstep"><div class="fn">03</div><div class="fl">Email capture</div><div class="fd">consent-gated, throttled</div></div>
+          <span class="fa">→</span>
+          <div class="fstep"><div class="fn">04</div><div class="fl">Klaviyo profile</div><div class="fd">12 quiz properties + event</div></div>
+          <span class="fa">→</span>
+          <div class="fstep"><div class="fn">05</div><div class="fl">Routine email</div><div class="fd">delivered in ~30 sec</div></div>
+        </div>
+      </div>
+      <div class="ecard rev d1">
+        <div class="et">Lifecycle — 3 live Klaviyo flows</div>
+        <div class="flowlist">
+          <div class="fl-item"><span class="fid">SBjzuM</span><div class="fx"><b>Quiz Result Delivery</b><span>Trigger: Completed Skin Quiz → instant personalized routine email</span></div></div>
+          <div class="fl-item"><span class="fid">XYnHRe</span><div class="fx"><b>Concern Nurture</b><span>Split by concern → sensitive branch S1–S5 / generic G1–G2</span></div></div>
+          <div class="fl-item"><span class="fid">XGGGM2</span><div class="fx"><b>Abandoned Skin Quiz</b><span>Started → 4h wait → nudge non-completers</span></div></div>
+        </div>
+        <p class="ecap">+ <b>9 coded email templates</b>, the Quiz-Leads list, and two segments — all live and API-verified.</p>
+      </div>
+      <div class="ecard rev d2">
+        <div class="et">AEO — the AI-citation baseline (t0)</div>
+        <div class="aeo" id="aeo">
+          <div class="col"><div class="bar" data-h="20"><span class="bv">7.7%</span></div><div class="bl">Firecrawl<br>web</div></div>
+          <div class="col"><div class="bar" data-h="20"><span class="bv">7.7%</span></div><div class="bl">Perplexity</div></div>
+          <div class="col"><div class="bar hl" data-h="52"><span class="bv">19.2%</span></div><div class="bl">Google<br>AI mode</div></div>
+          <div class="col"><div class="bar" data-h="20"><span class="bv">7.7%</span></div><div class="bl">ChatGPT</div></div>
+          <div class="col"><div class="bar" data-h="20"><span class="bv">7.7%</span></div><div class="bl">Gemini</div></div>
+          <div class="col"><div class="bar" data-h="20"><span class="bv">7.7%</span></div><div class="bl">Claude</div></div>
+        </div>
+        <p class="ecap"><b>10.0% blended</b> share-of-voice across 5 AI engines + a Firecrawl web proxy, on a fixed 26-query panel — the day-zero scoreboard, re-run monthly as the cluster ages.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA BANNER ===================== -->
+<section data-act="Work With Me">
+  <div class="ctabanner rev">
+    <div class="bt">
+      <h3>Want this machine for <em>your</em> business?</h3>
+      <p>I design and build these AI-driven funnels for stores and service businesses — end to end, on your own live site.</p>
+    </div>
+    <div class="cta-row">
+      <a class="cta-btn primary" href="https://cal.com/ilift/automation-audit" target="_blank" rel="noopener">Book a free call <span class="ar">→</span></a>
+      <a class="cta-btn ghost" href="mailto:dave@ilift.com">Email me</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats" data-act="By The Numbers">
+  <div class="wrap">
+    <div class="eyebrow rev">07 — By the numbers</div>
+    <h2 class="hd rev d1">What four days <em>bought.</em></h2>
+    <div class="sgrid rev d2">
+      <div class="stat"><div class="n"><span class="count" data-to="8" data-pre="$" data-suf="B">$0B</span></div><div class="l">Playbook<br>reverse-engineered</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="6">0</span></div><div class="l">Phases<br>shipped live</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="23">0</span></div><div class="l">New pages<br>published</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="66">0</span></div><div class="l">Products in<br>the funnel SSOT</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="3">0</span></div><div class="l">Live email<br>flows</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="2">0</span></div><div class="l">Free claim-safe<br>tools</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="32">0</span></div><div class="l">Posts<br>cross-linked</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="5">0</span></div><div class="l">AI engines<br>measured</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="972">0</span></div><div class="l">Products in the<br>OpenAI feed</div></div>
+      <div class="stat"><div class="n"><span class="count" data-to="4">0</span></div><div class="l">Days,<br>end to end</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSE ===================== -->
+<section class="close" data-act="Close">
+  <div class="hero-glow"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+  <div class="wrap">
+    <h2 class="rev in">An <em>$8-billion</em> playbook.<br>Rebuilt on my own store.<br>In four days.</h2>
+    <p class="csub rev in d2"><span class="fw">Firecrawl</span> read the machine. <span class="fb">Fable</span> built it. It's live on organicskincare.com — and it compounds from here. <b>Here's how to do the same&nbsp;↓</b></p>
+    <div class="credit rev in d3">
+      <span>Built autonomously by <b>Fable&nbsp;5</b></span>
+      <span>Research by <b>Firecrawl</b></span>
+      <span><a href="https://organicskincare.com">organicskincare.com</a></span>
+    </div>
+  </div>
+</section>
+<!-- ===================== PLAYBOOK ===================== -->
+<section class="playbook" data-act="Your Turn">
+  <div class="wrap">
+    <div class="eyebrow rev">08 — Steal this playbook</div>
+    <h2 class="hd rev d1">Want this for your business?<br>Here's the <em>exact recipe.</em></h2>
+    <p class="lede steal-intro rev d2">The whole build was four prompts and two tools. You don't need to code. Point <strong>Fable</strong> at <strong>Firecrawl</strong>, name the competitor whose funnel you admire, and go phase by phase. Copy these, swap the <span style="color:var(--gold)">[brackets]</span>, and run them.</p>
+    <div class="pgrid">
+      <div class="pcard rev d1">
+        <div class="pcard-h"><span class="pnum">1</span><div class="meta"><div class="ptool fc">Firecrawl</div><div class="pttl">Scrape the playbook</div></div><button class="copybtn" data-label="Copy">Copy</button></div>
+        <div class="ptext">Use Firecrawl to scrape the entire marketing funnel of <span class="ph">[COMPETITOR]</span>, the leader in my market. Map their acquisition machine end to end: the content and SEO pages that pull people in, any quiz or diagnostic, the product or offer pages that convert, every email and lead-capture point, and any free tools. Give me a structured teardown — the page types, the path from stranger to customer, and exactly where and how they capture intent.</div>
+      </div>
+      <div class="pcard rev d2">
+        <div class="pcard-h"><span class="pnum">2</span><div class="meta"><div class="ptool">Fable</div><div class="pttl">Map it to your business</div></div><button class="copybtn" data-label="Copy">Copy</button></div>
+        <div class="ptext">I run <span class="ph">[MY BUSINESS]</span>. I sell <span class="ph">[PRODUCTS OR SERVICES]</span> to <span class="ph">[MY CUSTOMER]</span>. Take that competitor teardown and adapt their funnel to my business — keep the architecture that makes it work, but fit my catalog, my margins, and my brand voice. Give me a phased build plan: foundation, a flagship content cluster, a quiz or diagnostic, offer pages, free tools, and AI-search optimization. Flag every decision that needs my approval before you build.</div>
+      </div>
+      <div class="pcard rev d3">
+        <div class="pcard-h"><span class="pnum">3</span><div class="meta"><div class="ptool">Fable</div><div class="pttl">Build it live, phase by phase</div></div><button class="copybtn" data-label="Copy">Copy</button></div>
+        <div class="ptext">Build the plan on my live site one phase at a time. After each phase, verify it works on the real site with a browser before moving on. Lead with my own products, use honest and claim-safe language, cite only real data, and never fabricate a review or a claim. Show me each phase before you continue to the next.</div>
+      </div>
+      <div class="pcard rev d4">
+        <div class="pcard-h"><span class="pnum">4</span><div class="meta"><div class="ptool fc">Fable + Firecrawl</div><div class="pttl">Measure &amp; compound</div></div><button class="copybtn" data-label="Copy">Copy</button></div>
+        <div class="ptext">Set up an AI-search citation baseline for my new pages. Using Firecrawl, measure how ChatGPT, Perplexity, Gemini, Claude, and Google's AI Mode cite me across a fixed set of the questions my customers actually ask. Save it as my day-zero score and re-run it every month so I can watch it climb.</div>
+      </div>
+    </div>
+    <div class="pmeta">
+      <div class="pbox rev d1"><h5>What you need</h5><ul>
+        <li><b>Fable</b> — the AI that plans, writes, and builds it for you.</li>
+        <li><b>A Firecrawl key</b> — the research engine that reads the competitor.</li>
+        <li><b>Your own website</b> — where it all goes live. No code required.</li>
+      </ul></div>
+      <div class="pbox rev d2"><h5>The rules that keep it legit</h5><ul>
+        <li><b>Lead with your own</b> products or offers — never cannibalize yourself.</li>
+        <li><b>Real data only</b> — no fabricated reviews, ratings, or claims.</li>
+        <li><b>Claim-safe language</b> — especially anything health, legal, or financial.</li>
+        <li><b>Verify every change live</b> before you call it done.</li>
+      </ul></div>
+    </div>
+    <p class="pclose rev d2">That's the whole method — an afternoon of prompts, a competitor worth studying, and the discipline to verify.
+      <span class="sig">Built with <b>Fable</b> + <b>Firecrawl</b> · live on organicskincare.com</span></p>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact" data-act="Work With Me">
+  <div class="hero-glow"><span class="g1"></span><span class="g3"></span></div>
+  <div class="wrap">
+    <div class="eyebrow rev">09 — Work with me</div>
+    <h2 class="rev d1">Or skip the DIY —<br><em>let's build yours.</em></h2>
+    <p class="csub rev d2">I'm <b>Dave Gakshteyn</b> — an AI consultant who builds funnels, WordPress sites, and automations like this one for businesses. Want these results without doing it yourself, or need a hand with your website? <b>Reach out — I'd genuinely love to help.</b></p>
+    <div class="methods">
+      <a class="method rev d1" href="https://cal.com/ilift/automation-audit" target="_blank" rel="noopener">
+        <span class="mi">📅</span><span class="ml">Book a call</span><span class="mv">Free AI Audit</span><span class="md">cal.com/ilift</span></a>
+      <a class="method rev d2" href="mailto:dave@ilift.com">
+        <span class="mi">✉️</span><span class="ml">Email</span><span class="mv">dave@ilift.com</span><span class="md">I reply personally</span></a>
+      <a class="method rev d3" href="tel:+15163229380">
+        <span class="mi">📞</span><span class="ml">Call / text</span><span class="mv">516-322-9380</span><span class="md">Mon–Fri</span></a>
+      <a class="method rev d4" href="https://ilift.com" target="_blank" rel="noopener">
+        <span class="mi">🌐</span><span class="ml">Website</span><span class="mv">iLift.com</span><span class="md">AI, sites &amp; automation</span></a>
+    </div>
+    <p class="who rev d3">Need help with WordPress, a new website, or a funnel like this one? <b>I do this for a living.</b> &nbsp;·&nbsp; Also on <a href="https://www.linkedin.com/in/aiautomationpro/" target="_blank" rel="noopener">LinkedIn</a></p>
+  </div>
+</section>
+
+<div class="foot">
+  Built by <a href="https://ilift.com" target="_blank" rel="noopener" style="color:var(--sage)">Dave Gakshteyn · iLift</a>
+  &nbsp;·&nbsp; <a href="mailto:dave@ilift.com" style="color:var(--muted)">dave@ilift.com</a>
+  &nbsp;·&nbsp; <a href="tel:+15163229380" style="color:var(--muted)">516-322-9380</a>
+  &nbsp;·&nbsp; <a href="https://cal.com/ilift/automation-audit" target="_blank" rel="noopener" style="color:var(--muted)">Book a free call</a>
+  <br><span style="opacity:.55">Fable × Firecrawl · OSC Hims-funnel replication · Phases 0–5 · Jul 2026</span>
+</div>
+
+<script>
+(function(){
+  var prog=document.getElementById('progress');
+  var actlabel=document.getElementById('actlabel');
+  var tlfill=document.getElementById('tlfill');
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* scroll progress + act label */
+  var sections=[].slice.call(document.querySelectorAll('section[data-act]'));
+  function onScroll(){
+    var h=document.documentElement;
+    var p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+    prog.style.width=(p*100)+'%';
+    var mid=h.scrollTop+window.innerHeight*0.4, cur='Intro';
+    for(var i=0;i<sections.length;i++){ if(sections[i].offsetTop<=mid) cur=sections[i].dataset.act; }
+    if(actlabel.textContent!==cur) actlabel.textContent=cur;
+    /* timeline fill */
+    if(tlfill){
+      var tl=tlfill.parentElement.getBoundingClientRect();
+      var vh=window.innerHeight;
+      var start=tl.top-vh*0.55, total=tl.height+vh*0.2;
+      var f=Math.max(0,Math.min(1,-start/total));
+      tlfill.style.height=(f*tl.height)+'px';
+    }
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll); onScroll();
+
+  /* reveal */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);
+      if(e.target.classList.contains('pnode')) e.target.classList.add('in');
+    }});
+  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rev,.pnode').forEach(function(el){ if(!el.classList.contains('in')) io.observe(el); });
+
+  /* count-up */
+  function animCount(el){
+    var to=parseFloat(el.dataset.to), pre=el.dataset.pre||'', suf=el.dataset.suf||'';
+    var dur=1400, t0=null, dec=(to%1!==0)?1:0;
+    if(reduce){ el.textContent=pre+to+suf; return; }
+    function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/dur);
+      var e=1-Math.pow(1-k,3); var v=to*e;
+      el.textContent=pre+(dec?v.toFixed(1):Math.round(v))+suf;
+      if(k<1) requestAnimationFrame(step); else el.textContent=pre+(dec?to.toFixed(1):to)+suf;
+    } requestAnimationFrame(step);
+  }
+  var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){animCount(e.target);cio.unobserve(e.target);}});},{threshold:.6});
+  document.querySelectorAll('.count').forEach(function(el){cio.observe(el);});
+
+  /* aeo bars */
+  var aeo=document.getElementById('aeo');
+  if(aeo){ var aio=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){
+    aeo.querySelectorAll('.bar').forEach(function(b,i){ setTimeout(function(){ b.style.height=b.dataset.h+'%'; }, i*120); });
+    aio.unobserve(e.target);
+  }});},{threshold:.5}); aio.observe(aeo);
+  aeo.querySelectorAll('.bar').forEach(function(b){b.style.height='2%';}); }
+
+  /* make every receipt URL open live on organicskincare.com */
+  document.querySelectorAll('.receipts .url').forEach(function(row){
+    var p=row.querySelector('.path'); if(!p) return;
+    var path=p.textContent.trim(); if(!path||path.charAt(0)!=='/') return;
+    var href='https://organicskincare.com'+path;
+    row.classList.add('link'); row.setAttribute('role','link'); row.setAttribute('tabindex','0');
+    row.title='Open '+href;
+    function go(){ window.open(href,'_blank','noopener'); }
+    row.addEventListener('click',go);
+    row.addEventListener('keydown',function(e){ if(e.key==='Enter'){go();} });
+  });
+
+  /* copy-to-clipboard on the playbook prompts (with a file:// fallback) */
+  function legacyCopy(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+  function flip(btn){var o=btn.getAttribute('data-label')||'Copy';btn.textContent='Copied ✓';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done');},1600);}
+  document.querySelectorAll('.copybtn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.pcard'); var t=card?card.querySelector('.ptext'):null; if(!t) return;
+      var txt=t.innerText.trim();
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(txt).then(function(){flip(btn);}).catch(function(){legacyCopy(txt);flip(btn);});}
+      else { legacyCopy(txt); flip(btn); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
