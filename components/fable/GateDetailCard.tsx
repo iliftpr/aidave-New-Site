@@ -2,9 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { Check } from 'lucide-react'
+import { Check, PenTool } from 'lucide-react'
 import { type Gate } from '@/lib/fable-content'
 import { FABLE_ICONS } from './fableIcons'
+import { CheckpointSketch } from './CheckpointSketch'
 
 // One gate, expanded: a builder-facing "mechanic" line and an operator-facing
 // "what you get" line, plus the gate's three rules. Reports itself as the
@@ -74,6 +75,15 @@ export function GateDetailCard({
           </li>
         ))}
       </ul>
+
+      {/* Hand-drawn analogy: paints the checkpoint as a plain-English picture. */}
+      <div className="mt-6 border-t border-white/10 pt-5">
+        <div className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white/40">
+          <PenTool size={14} className="text-white/40" />
+          Picture it
+        </div>
+        <CheckpointSketch id={gate.id} />
+      </div>
     </motion.div>
   )
 }
