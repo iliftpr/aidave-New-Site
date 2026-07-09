@@ -53,7 +53,7 @@ export default function OGImage() {
             The Fable Method
           </div>
           <div style={{ display: 'flex', fontSize: 34, fontWeight: 500, color: 'rgba(255,255,255,0.72)', maxWidth: 1000 }}>
-            The five-gate discipline that makes AI verify before it says done.
+            The five-checkpoint discipline that makes AI verify before it says done.
           </div>
         </div>
 

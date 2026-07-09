@@ -4,13 +4,13 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { GATES, type Gate } from '@/lib/fable-content'
 import { FABLE_ICONS } from './fableIcons'
 
-// A glowing rail of five gates. The gradient connector draws once on scroll-in;
+// A glowing rail of five checkpoints. The gradient connector draws once on scroll-in;
 // nodes pop in sequence; every node up to `activeGate` is lit, and the active
 // node gets an extra pulsing glow. Reduced motion → everything lit and static.
 export function GateFlowDiagram({ activeGate }: { activeGate: number }) {
   const reduce = useReducedMotion() ?? false
   const label =
-    'The Five Gates, run in order: ' + GATES.map((g) => `${g.num}. ${g.title}`).join('; ') + '.'
+    'The Five Checkpoints, run in order: ' + GATES.map((g) => `${g.num}. ${g.title}`).join('; ') + '.'
 
   return (
     <div role="img" aria-label={label}>
@@ -22,7 +22,7 @@ export function GateFlowDiagram({ activeGate }: { activeGate: number }) {
             <div key={g.id} className="flex w-1/5 flex-col items-center gap-3 text-center">
               <GateNode gate={g} lit={g.num <= activeGate} active={g.num === activeGate} reduce={reduce} />
               <div
-                className={`px-2 font-heading text-sm font-bold leading-tight transition-colors duration-500 ${
+                className={`px-1 font-heading text-base font-bold leading-tight transition-colors duration-500 ${
                   g.num <= activeGate ? 'text-white' : 'text-white/40'
                 }`}
               >
@@ -42,13 +42,13 @@ export function GateFlowDiagram({ activeGate }: { activeGate: number }) {
               <GateNode gate={g} lit={g.num <= activeGate} active={g.num === activeGate} reduce={reduce} />
               <div>
                 <div
-                  className={`font-heading text-base font-bold leading-tight transition-colors duration-500 ${
+                  className={`font-heading text-lg font-bold leading-tight transition-colors duration-500 ${
                     g.num <= activeGate ? 'text-white' : 'text-white/40'
                   }`}
                 >
                   {g.title}
                 </div>
-                <div className="text-sm text-white/40">{g.short}</div>
+                <div className="text-sm text-white/50">{g.short}</div>
               </div>
             </div>
           ))}
@@ -59,7 +59,7 @@ export function GateFlowDiagram({ activeGate }: { activeGate: number }) {
       <ol className="sr-only">
         {GATES.map((g) => (
           <li key={g.id}>
-            Gate {g.num}: {g.title}. {g.benefit}
+            Checkpoint {g.num}: {g.title}. {g.benefit}
           </li>
         ))}
       </ol>

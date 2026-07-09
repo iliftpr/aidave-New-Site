@@ -49,27 +49,27 @@ export function GateDetailCard({
           {Icon ? <Icon size={22} /> : null}
         </div>
         <div className="min-w-0">
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-400">Gate {gate.num}</span>
-          <h3 className="font-heading text-xl font-bold text-white md:text-2xl">{gate.title}</h3>
-          <p className="mt-1 text-white/50">{gate.short}</p>
+          <span className="text-sm font-bold uppercase tracking-wider text-amber-400">Checkpoint {gate.num}</span>
+          <h3 className="font-heading text-2xl font-bold text-white md:text-3xl">{gate.title}</h3>
+          <p className="mt-1.5 text-lg leading-relaxed text-white/60">{gate.short}</p>
         </div>
       </div>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-white/5 bg-white/[0.03] p-4">
-          <div className="mb-1 text-[11px] font-bold uppercase tracking-wider text-primary-300">For builders</div>
-          <p className="text-sm leading-relaxed text-white/70">{gate.mechanic}</p>
+          <div className="mb-1.5 text-xs font-bold uppercase tracking-wider text-primary-300">For builders</div>
+          <p className="text-base leading-relaxed text-white/75">{gate.mechanic}</p>
         </div>
         <div className="rounded-xl border border-white/5 bg-white/[0.03] p-4">
-          <div className="mb-1 text-[11px] font-bold uppercase tracking-wider text-secondary-300">What you get</div>
-          <p className="text-sm leading-relaxed text-white/70">{gate.benefit}</p>
+          <div className="mb-1.5 text-xs font-bold uppercase tracking-wider text-secondary-300">What you get</div>
+          <p className="text-base leading-relaxed text-white/75">{gate.benefit}</p>
         </div>
       </div>
 
-      <ul className="mt-5 space-y-2">
+      <ul className="mt-5 space-y-2.5">
         {gate.rules.map((rule, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-white/60">
-            <Check size={16} className="mt-0.5 flex-shrink-0 text-amber-400" />
+          <li key={i} className="flex items-start gap-2.5 text-base leading-relaxed text-white/65">
+            <Check size={18} className="mt-0.5 flex-shrink-0 text-amber-400" />
             <span>{rule}</span>
           </li>
         ))}

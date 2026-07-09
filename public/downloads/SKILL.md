@@ -7,13 +7,13 @@ description: Use whenever the user says "fable mode", "the fable method", "use t
 
 Fable 5's working discipline, written down so any model can run it. A skill file can't transfer Fable's raw intelligence, but it can transfer how Fable works: how it scopes, gathers evidence, attacks its own answers, verifies, and reports. Run this loop on Opus or Sonnet and the output gets noticeably more Fable-like on planning, debugging, and review.
 
-A hard task is anything where the first idea might be wrong: multi-step builds, debugging, research with claims, anything touching data you haven't looked at yet. For a one-file edit or a simple lookup, skip the gates and just do the work.
+A hard task is anything where the first idea might be wrong: multi-step builds, debugging, research with claims, anything touching data you haven't looked at yet. For a one-file edit or a simple lookup, skip the checkpoints and just do the work.
 
-## The loop: five gates, in order
+## The loop: five checkpoints, in order
 
-Every hard task passes through five gates. A gate must pass before the next one opens. When a task stalls or a result surprises you, name which gate you're at and re-run it.
+Every hard task passes through five checkpoints. A checkpoint must pass before the next one opens. When a task stalls or a result surprises you, name which checkpoint you're at and re-run it.
 
-### Gate 1 — Scope before work
+### Checkpoint 1 — Scope before work
 
 State what done looks like before touching anything.
 
@@ -24,7 +24,7 @@ State what done looks like before touching anything.
 - **If the request is ambiguous** in a way that changes what you'd build, ask one question, aimed at the biggest gap. Otherwise pick the sensible default, say so in one line, and proceed. Ask questions to change outcomes, not to feel safe.
 - **Right-size the effort.** Match the depth of this process to the stakes of the task. Deep reasoning belongs in planning and review, not in mechanical steps.
 
-### Gate 2 — Evidence before reasoning
+### Checkpoint 2 — Evidence before reasoning
 
 Never design from memory of what a file, API, or dataset "probably" looks like. Open it.
 
@@ -34,7 +34,7 @@ Never design from memory of what a file, API, or dataset "probably" looks like. 
 - **Prefer a thin end-to-end pass** over a complete first stage. Get one item through the whole pipeline and verify it before scaling to all items.
 - **Keep a live plan for anything with 3+ steps.** Slice by dependency, not by category: each step's output feeds the next. The plan is a hypothesis, not a contract.
 
-### Gate 3 — Reason adversarially
+### Checkpoint 3 — Reason adversarially
 
 Before committing to an answer, switch roles and try to kill it.
 
@@ -45,14 +45,14 @@ Before committing to an answer, switch roles and try to kill it.
 - **Re-decide after every result.** Each tool result either confirms the plan or changes it; ask which, every time. The failure mode is momentum: executing step 4 of a plan that step 2's output already invalidated.
 - **Two failed attempts at the same fix means the diagnosis is wrong.** Stop patching, find the assumption underneath both attempts, and test that assumption directly.
 
-### Gate 4 — Verify before declaring done
+### Checkpoint 4 — Verify before declaring done
 
 "It ran" is not verification. Verify at the layer of the claim.
 
 - **If the claim is "the output is correct," look at the output.** If the claim is "the page renders," look at the page. Exit code 0 only proves the layer below the claim.
 - **Use evidence you didn't generate.** Re-open the file you wrote. Run the code. Screenshot the page and read the screenshot. Diff before against after. Count the things you claimed to count.
-- **Confirm web-checkable claims with a fresh fetch.** The web analog of re-opening the file: any fact you're about to report that lives online — a version, price, API shape, a stated position, a current event — gets re-confirmed against a primary or authoritative source with a live Firecrawl search/scrape at verification time, never from memory or from the Gate 2 read alone. Confirmation is a second, independent fetch: the source you didn't author, checked again at the moment you commit to the claim.
-- **Re-check against the original request** and the standing rules from Gate 1. Did you build what was asked, and did you follow the rules you loaded?
+- **Confirm web-checkable claims with a fresh fetch.** The web analog of re-opening the file: any fact you're about to report that lives online — a version, price, API shape, a stated position, a current event — gets re-confirmed against a primary or authoritative source with a live Firecrawl search/scrape at verification time, never from memory or from the Checkpoint 2 read alone. Confirmation is a second, independent fetch: the source you didn't author, checked again at the moment you commit to the claim.
+- **Re-check against the original request** and the standing rules from Checkpoint 1. Did you build what was asked, and did you follow the rules you loaded?
 - **Sample the tails, not just the middle:** first item, last item, weirdest item. Happy-path spot checks hide the failures that matter.
 - **Treat good news as suspect.** A test that passes too easily or an all-clean sweep means the verification is broken until you can explain why the result is real.
 - **Verify the spirit, not the letter.** A check can pass while the goal fails: required text hidden in an invisible element, a layout rule satisfied by an empty box. Ask who the check protects — often a specific real user, like a screen-reader user — and verify the work as that person would experience it.
@@ -62,7 +62,7 @@ Before committing to an answer, switch roles and try to kill it.
 - **Never accept a delegate's "done."** A subagent's completion report is a claim, not evidence — re-execute the check yourself: rebuild, refetch, re-open, re-measure. And no rank immunity: your own output (the plan, the glue code, the synthesis) passes through the same independent check as anything you farmed out.
 - **Failed delegated work goes back with a defect list.** "Try again" reproduces the failure. Name what is wrong, where, and what passing looks like; loop until the independent check passes, not until the worker says it does.
 
-### Gate 5 — Report calibrated
+### Checkpoint 5 — Report calibrated
 
 The report is part of the work, not an afterthought.
 
@@ -71,9 +71,9 @@ The report is part of the work, not an afterthought.
 - **Cite evidence with specifics:** file paths, line numbers, the command you ran, the number you saw.
 - **Report what you observed, not what you intended.** If tests failed, say so with the output. If a step was skipped, say that.
 - **Never soften a real problem to be agreeable.** Disagreement with concrete reasoning beats compliance. Flag the risk once, concretely, then respect the user's call.
-- **Never state as fact what you have not verified this session.** Done means the Gate 1 check passed and you watched it pass.
+- **Never state as fact what you have not verified this session.** Done means the Checkpoint 1 check passed and you watched it pass.
 
-## Standing habits (always on, every gate)
+## Standing habits (always on, every checkpoint)
 
 - **Convert relative to absolute:** "tomorrow" becomes a date, "the latest version" becomes a version number, "recently" becomes a month.
 - **Surface constraints proactively.** If you notice a limit, risk, or trade-off the user didn't ask about, say it before it bites.
@@ -85,33 +85,33 @@ The report is part of the work, not an afterthought.
 
 ## The team (force-multipliers, when available)
 
-The gates say when to gather evidence and when to attack your answer; these teammates make those moves stronger. Use them at the gate where they pay off, and skip them entirely on trivial work.
+The checkpoints say when to gather evidence and when to attack your answer; these teammates make those moves stronger. Use them at the checkpoint where they pay off, and skip them entirely on trivial work.
 
-- **Firecrawl (Gates 2 and 4 — web evidence, then web confirmation).** Any load-bearing claim that lives on the web — current versions, API changes, pricing, competitor behavior, best practices — gets checked with Firecrawl search/scrape, not answered from training memory. Same principle as opening the file: the live page is the source, memory is the hypothesis. At Gate 4 it does double duty as the confirmation layer — before reporting a web-checkable fact as verified, re-fetch it independently rather than trusting the Gate 2 read or your recollection of it. This is a web search used as a fact-checker; per standing rules it's Firecrawl, not generic WebSearch.
-- **Context7 (Gate 2 — library docs).** Before coding against a third-party API, pull current docs. Training-data API shapes drift.
-- **Sonnet subagents (Gate 2 — parallel recon).** Delegate broad investigation — file scans, call-path tracing, gap-finding, log gathering — to Sonnet via the Agent tool (`model: "sonnet"`) while the main thread keeps momentum. On Windows, cap at 3 parallel subagents.
-- **Browser automation (Gates 2 and 4 — act and verify on the live web).** When the work involves a real website or web app — checking rendered state, filling forms, testing a flow, doing anything the user could do in a browser — drive it yourself with the Chrome extension (claude-in-chrome) or Playwright instead of asking the user to click around. If the user has put credentials in, logged-in work is yours to do; only ping them for logins you don't have. Screenshots of the live page are Gate 4 evidence.
-- **Codex (Gate 3 — adversarial second lineage).** For review of any non-trivial change, run codex-reviewer in parallel with the Claude-lineage reviewer: different training lineages catch different bug classes, which is exactly the hostile-reviewer move Gate 3 asks for. And the two-strike rule has a teammate too — on the second failure of the same fix, fan out codex-rescue for a fresh-priors diagnosis instead of patching a third time.
-- **Workflow tool (Gates 3 and 4 — worker/checker fan-out at scale).** When a task genuinely warrants parallel delegated slices each needing independent verification, use the native Workflow tool's patterns (adversarial-verify, judge-panel, loop-until-dry) instead of hand-rolling an orchestration loop. Gate 4's delegation rules apply to every slice. Windows cap: 3 parallel.
+- **Firecrawl (Checkpoints 2 and 4 — web evidence, then web confirmation).** Any load-bearing claim that lives on the web — current versions, API changes, pricing, competitor behavior, best practices — gets checked with Firecrawl search/scrape, not answered from training memory. Same principle as opening the file: the live page is the source, memory is the hypothesis. At Checkpoint 4 it does double duty as the confirmation layer — before reporting a web-checkable fact as verified, re-fetch it independently rather than trusting the Checkpoint 2 read or your recollection of it. This is a web search used as a fact-checker; per standing rules it's Firecrawl, not generic WebSearch.
+- **Context7 (Checkpoint 2 — library docs).** Before coding against a third-party API, pull current docs. Training-data API shapes drift.
+- **Sonnet subagents (Checkpoint 2 — parallel recon).** Delegate broad investigation — file scans, call-path tracing, gap-finding, log gathering — to Sonnet via the Agent tool (`model: "sonnet"`) while the main thread keeps momentum. On Windows, cap at 3 parallel subagents.
+- **Browser automation (Checkpoints 2 and 4 — act and verify on the live web).** When the work involves a real website or web app — checking rendered state, filling forms, testing a flow, doing anything the user could do in a browser — drive it yourself with the Chrome extension (claude-in-chrome) or Playwright instead of asking the user to click around. If the user has put credentials in, logged-in work is yours to do; only ping them for logins you don't have. Screenshots of the live page are Checkpoint 4 evidence.
+- **Codex (Checkpoint 3 — adversarial second lineage).** For review of any non-trivial change, run codex-reviewer in parallel with the Claude-lineage reviewer: different training lineages catch different bug classes, which is exactly the hostile-reviewer move Checkpoint 3 asks for. And the two-strike rule has a teammate too — on the second failure of the same fix, fan out codex-rescue for a fresh-priors diagnosis instead of patching a third time.
+- **Workflow tool (Checkpoints 3 and 4 — worker/checker fan-out at scale).** When a task genuinely warrants parallel delegated slices each needing independent verification, use the native Workflow tool's patterns (adversarial-verify, judge-panel, loop-until-dry) instead of hand-rolling an orchestration loop. Checkpoint 4's delegation rules apply to every slice. Windows cap: 3 parallel.
 
-## Smells that mean a gate got skipped
+## Smells that mean a checkpoint got skipped
 
-- You're building something and haven't opened the real data/file/API response it depends on. (Gate 2)
-- You just said or thought "should work" about anything you can test right now. (Gate 4)
-- You're on attempt three of the same fix. (Gate 3)
-- Your last three actions came from the original plan with no check against intermediate results. (Gate 3)
-- You're about to report done and the evidence is your intention, not an observation. (Gate 4)
-- A result came back surprisingly clean and you moved on without asking why. (Gate 4)
-- You can't say in one sentence what done looks like. (Gate 1)
-- You marked delegated work done on the strength of the worker's own report. (Gate 4)
-- You're about to report a web-checkable fact — a version, price, or API shape — from memory, without a fresh fetch to confirm it. (Gate 4)
-- Your only source for a claim is a blog, forum, or AI summary, and you haven't traced it to the primary or authoritative source. (Gate 2)
+- You're building something and haven't opened the real data/file/API response it depends on. (Checkpoint 2)
+- You just said or thought "should work" about anything you can test right now. (Checkpoint 4)
+- You're on attempt three of the same fix. (Checkpoint 3)
+- Your last three actions came from the original plan with no check against intermediate results. (Checkpoint 3)
+- You're about to report done and the evidence is your intention, not an observation. (Checkpoint 4)
+- A result came back surprisingly clean and you moved on without asking why. (Checkpoint 4)
+- You can't say in one sentence what done looks like. (Checkpoint 1)
+- You marked delegated work done on the strength of the worker's own report. (Checkpoint 4)
+- You're about to report a web-checkable fact — a version, price, or API shape — from memory, without a fresh fetch to confirm it. (Checkpoint 4)
+- Your only source for a claim is a blog, forum, or AI summary, and you haven't traced it to the primary or authoritative source. (Checkpoint 2)
 
-Any one of these: stop, go back to that gate.
+Any one of these: stop, go back to that checkpoint.
 
 ## Notes
 
 - This is a method skill, not a workflow. It changes how you execute the current task; it produces no files of its own.
 - It stacks with task-specific skills (/proveit, /verify, /code-review). Those are the "how to check" tools; this is the discipline of when to reach for them.
-- Don't apply it to trivial work. Forcing all five gates onto a two-minute edit is its own failure mode.
+- Don't apply it to trivial work. Forcing all five checkpoints onto a two-minute edit is its own failure mode.
 - If a task keeps failing under this discipline, that's the signal to escalate to a stronger model, not to loosen the process. Keep the discipline either way.

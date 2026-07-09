@@ -11,21 +11,21 @@ export function DownloadCTA() {
       <div className="glass-dark rounded-2xl border border-white/10 p-6 md:p-8">
         <div className="grid gap-8 md:grid-cols-2">
           <div>
-            <h3 className="font-heading text-lg font-bold text-white">What&apos;s in the download</h3>
-            <ul className="mt-4 space-y-3">
+            <h3 className="font-heading text-xl font-bold text-white">What&apos;s in the download</h3>
+            <ul className="mt-4 space-y-4">
               {DOWNLOAD_CONTENTS.map((d) => (
                 <li key={d.file}>
-                  <code className="rounded bg-white/10 px-1.5 py-0.5 font-mono text-xs text-amber-300">{d.file}</code>
-                  <p className="mt-1 text-sm text-white/60">{d.desc}</p>
+                  <code className="rounded bg-white/10 px-2 py-0.5 font-mono text-sm text-amber-300">{d.file}</code>
+                  <p className="mt-1.5 text-base leading-relaxed text-white/65">{d.desc}</p>
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <h3 className="font-heading text-lg font-bold text-white">Install in 30 seconds</h3>
-            <ol className="mt-4 space-y-3">
+            <h3 className="font-heading text-xl font-bold text-white">Install in 30 seconds</h3>
+            <ol className="mt-4 space-y-4">
               {INSTALL_STEPS.map((s, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-white/70">
+                <li key={i} className="flex items-start gap-3 text-base leading-relaxed text-white/75">
                   <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-amber-500 text-xs font-bold text-white">
                     {i + 1}
                   </span>
@@ -48,27 +48,27 @@ export function DownloadCTA() {
           <Download size={22} />
           Download the Fable Method
         </motion.a>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-base">
           <a
             href={FABLE_LINKS.rawSkill}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white/60 transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 text-white/65 transition-colors hover:text-white"
           >
-            <FileText size={16} />
+            <FileText size={18} />
             View the raw SKILL.md
           </a>
           <a
             href={FABLE_LINKS.youtube}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-white/60 transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 text-white/65 transition-colors hover:text-white"
           >
-            <Youtube size={16} />
+            <Youtube size={18} />
             Watch the walkthrough
           </a>
         </div>
-        <p className="text-xs text-white/40">Free · one file · works on Opus or Sonnet · no API key</p>
+        <p className="text-sm text-white/45">Free · one file · works on Opus or Sonnet · no API key</p>
       </div>
     </div>
   )

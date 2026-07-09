@@ -16,11 +16,11 @@ import { DownloadCTA } from '@/components/fable/DownloadCTA'
 function SectionHeading({ kicker, children, sub }: { kicker: string; children: ReactNode; sub?: string }) {
   return (
     <ScrollReveal className="mx-auto max-w-3xl text-center">
-      <div className="text-sm font-bold uppercase tracking-widest text-amber-400">{kicker}</div>
+      <div className="text-sm font-bold uppercase tracking-widest text-amber-400 md:text-base">{kicker}</div>
       <h2 className="mt-3 font-heading text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
         {children}
       </h2>
-      {sub && <p className="mt-4 text-lg leading-relaxed text-white/60">{sub}</p>}
+      {sub && <p className="mt-5 text-lg leading-relaxed text-white/75 md:text-xl">{sub}</p>}
     </ScrollReveal>
   )
 }
@@ -51,13 +51,13 @@ export function FableClient() {
             transition={{ duration: 0.7 }}
             className="mx-auto max-w-4xl"
           >
-            <div className="mb-6 inline-block rounded-full border border-white/15 bg-white/10 px-4 py-2 backdrop-blur-sm">
-              <span className="text-sm font-semibold text-amber-400">A Claude Code skill · one file · free</span>
+            <div className="mb-6 inline-block rounded-full border border-white/15 bg-white/10 px-5 py-2 backdrop-blur-sm">
+              <span className="text-base font-semibold text-amber-400">A Claude Code skill · one file · free</span>
             </div>
             <h1 className="font-heading text-4xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
               AI that doesn&apos;t call it <span className="gradient-text">done</span> until it checked.
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl text-xl leading-relaxed text-white/80 md:text-2xl">
               The Fable Method is a discipline for AI coding agents: scope the work, ground every claim in real
               evidence, attack its own answer, verify before declaring done, and report straight. Fewer
               hallucinations. Less &ldquo;done&rdquo; that wasn&apos;t.
@@ -85,8 +85,8 @@ export function FableClient() {
                 Watch the walkthrough
               </a>
             </motion.div>
-            <p className="mt-8 text-sm font-medium tracking-wide text-white/40">
-              Five gates · works on Opus or Sonnet · no install, no API key
+            <p className="mt-8 text-base font-medium tracking-wide text-white/50">
+              Five checkpoints · works on Opus or Sonnet · no install, no API key
             </p>
           </motion.div>
         </div>
@@ -104,9 +104,9 @@ export function FableClient() {
           <div className="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-3">
             {STAKES.map((s, i) => (
               <ScrollReveal key={s} delay={i * 0.1}>
-                <div className="flex h-full items-start gap-3 rounded-2xl border border-red-500/20 bg-red-500/[0.06] p-5">
-                  <AlertTriangle size={20} className="mt-0.5 flex-shrink-0 text-red-400" />
-                  <span className="text-sm font-medium text-white/80">{s}</span>
+                <div className="flex h-full items-start gap-3 rounded-2xl border border-red-500/20 bg-red-500/[0.06] p-6">
+                  <AlertTriangle size={24} className="mt-0.5 flex-shrink-0 text-red-400" />
+                  <span className="text-base font-medium leading-relaxed text-white/85 md:text-lg">{s}</span>
                 </div>
               </ScrollReveal>
             ))}
@@ -129,9 +129,9 @@ export function FableClient() {
                 <span className="h-3 w-3 rounded-full bg-red-400/70" />
                 <span className="h-3 w-3 rounded-full bg-amber-400/70" />
                 <span className="h-3 w-3 rounded-full bg-emerald-400/70" />
-                <span className="ml-2 font-mono text-xs text-white/40">claude-code</span>
+                <span className="ml-2 font-mono text-sm text-white/40">claude-code</span>
               </div>
-              <div className="p-5 font-mono text-sm leading-relaxed">
+              <div className="p-5 font-mono text-base leading-relaxed">
                 <div className="text-white/50">
                   <span className="text-emerald-400">$</span> cp -r fable-mode ~/.claude/skills/
                 </div>
@@ -149,9 +149,9 @@ export function FableClient() {
         <div className="container-custom">
           <SectionHeading
             kicker="The method"
-            sub="Five gates, run in order. Each one must pass before the next opens. Scroll through them — the rail lights up as you go."
+            sub="Five checkpoints, run in order. Each one must pass before the next opens. Scroll through them — the rail lights up as you go."
           >
-            The <span className="gradient-text">Five Gates</span>.
+            The <span className="gradient-text">Five Checkpoints</span>.
           </SectionHeading>
 
           {/* Sticky rail (desktop) — stays visible and lights up while the cards scroll */}
@@ -174,7 +174,7 @@ export function FableClient() {
         <div className="container-custom">
           <SectionHeading
             kicker="The payoff"
-            sub="Every gate exists to catch the same failure: work that looks done but was never checked. Here&apos;s the shape of the difference."
+            sub="Every checkpoint exists to catch the same failure: work that looks done but was never checked. Here&apos;s the shape of the difference."
           >
             Measure twice, <span className="gradient-text">ship once</span>.
           </SectionHeading>
@@ -189,7 +189,7 @@ export function FableClient() {
         <div className="container-custom">
           <SectionHeading
             kicker="Force-multipliers"
-            sub="The method doesn&apos;t just tell the agent to be careful — it wires in real tools at the exact gate where they pay off."
+            sub="The method doesn&apos;t just tell the agent to be careful — it wires in real tools at the exact checkpoint where they pay off."
           >
             It brings a <span className="gradient-text">team</span>.
           </SectionHeading>
@@ -212,7 +212,10 @@ export function FableClient() {
       </section>
 
       {/* ============================ 8. WHO IT'S FOR ============================ */}
-      <section className="section-padding bg-gray-950">
+      {/* overflow-hidden clips the cards' ±40px slide-in offset so it can't create
+          horizontal scroll on mobile. Scoped to this section only — NOT on <main>,
+          which would break the sticky checkpoint rail. */}
+      <section className="section-padding overflow-hidden bg-gray-950">
         <div className="container-custom">
           <SectionHeading kicker="Who it's for">
             Built for <span className="gradient-text">two kinds</span> of people.
@@ -227,12 +230,12 @@ export function FableClient() {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="glass-dark rounded-2xl border border-white/10 p-6 md:p-8"
               >
-                <div className="text-xs font-bold uppercase tracking-wider text-amber-400">{aud.kicker}</div>
-                <h3 className="mt-2 font-heading text-2xl font-bold text-white">{aud.title}</h3>
-                <ul className="mt-5 space-y-3">
+                <div className="text-sm font-bold uppercase tracking-wider text-amber-400">{aud.kicker}</div>
+                <h3 className="mt-2 font-heading text-2xl font-bold text-white md:text-3xl">{aud.title}</h3>
+                <ul className="mt-6 space-y-4">
                   {aud.points.map((p, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-white/70">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400" />
+                    <li key={i} className="flex items-start gap-3 text-base leading-relaxed text-white/80 md:text-lg">
+                      <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r from-primary-400 to-secondary-400" />
                       <span>{p}</span>
                     </li>
                   ))}

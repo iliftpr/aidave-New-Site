@@ -23,7 +23,7 @@ function CountUp({ to, play, reduce }: { to: number; play: boolean; reduce: bool
 }
 
 // Illustrative before/after: two animated bars + count-up. Honestly labeled as a
-// discipline, not a benchmark (Gate 5 applied to our own marketing).
+// discipline, not a benchmark (Checkpoint 5 applied to our own marketing).
 export function BeforeAfterGraph() {
   const reduce = useReducedMotion() ?? false
   const ref = useRef<HTMLDivElement>(null)
@@ -31,8 +31,8 @@ export function BeforeAfterGraph() {
 
   return (
     <div ref={ref} className="mx-auto max-w-2xl">
-      <p className="mb-6 text-center text-sm font-semibold uppercase tracking-wider text-white/50">
-        {BEFORE_AFTER.metric} <span className="text-white/30">· {BEFORE_AFTER.unit}</span>
+      <p className="mb-6 text-center text-base font-semibold uppercase tracking-wider text-white/60">
+        {BEFORE_AFTER.metric} <span className="text-white/40">· {BEFORE_AFTER.unit}</span>
       </p>
       <div className="flex h-64 items-end justify-center gap-10 sm:gap-20">
         {BEFORE_AFTER.bars.map((bar, i) => {
@@ -60,12 +60,12 @@ export function BeforeAfterGraph() {
                   style={reduce ? { height: `${pct}%` } : undefined}
                 />
               </div>
-              <div className="mt-4 text-center text-sm font-medium text-white/60">{bar.label}</div>
+              <div className="mt-4 text-center text-base font-medium text-white/70">{bar.label}</div>
             </div>
           )
         })}
       </div>
-      <p className="mt-8 text-center text-xs italic leading-relaxed text-white/40">{BEFORE_AFTER.caption}</p>
+      <p className="mt-8 text-center text-sm italic leading-relaxed text-white/45">{BEFORE_AFTER.caption}</p>
     </div>
   )
 }

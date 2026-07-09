@@ -1,7 +1,10 @@
 // Single source of truth for the /fable landing page ("The Fable Method").
-// All copy is drawn from ~/.claude/skills/fable-mode/SKILL.md (the Five Gates method)
-// and paraphrased for a marketing page. Keep the gate MECHANICS faithful to the skill;
+// All copy is drawn from ~/.claude/skills/fable-mode/SKILL.md (the Five Checkpoints method)
+// and paraphrased for a marketing page. Keep the checkpoint MECHANICS faithful to the skill;
 // the BENEFIT lines are the plain-English translation for non-technical readers.
+// NOTE: the marketing word is "Checkpoint"; the skill file itself still says "gate"
+// internally (quality-gate is standard QA vocab). Internal code identifiers below
+// (GateId, Gate, GATES, activeGate) are kept as-is on purpose — users never see them.
 
 export type GateId = 'scope' | 'evidence' | 'adversarial' | 'verify' | 'report'
 
@@ -10,7 +13,7 @@ export interface Gate {
   id: GateId
   /** e.g. "Scope before work" */
   title: string
-  /** one-line tagline of what the gate is */
+  /** one-line tagline of what the checkpoint is */
   short: string
   /** technical one-liner for builders */
   mechanic: string
@@ -102,7 +105,7 @@ export const GATES: Gate[] = [
 
 export interface TeamMember {
   name: string
-  /** which gate(s) it serves, e.g. "Gate 2 + 4" */
+  /** which checkpoint(s) it serves, e.g. "Checkpoint 2 + 4" */
   gates: string
   /** lucide-react icon name */
   icon: string
@@ -115,49 +118,49 @@ export interface TeamMember {
 export const TEAM: TeamMember[] = [
   {
     name: 'Firecrawl',
-    gates: 'Gate 2 + 4',
+    gates: 'Checkpoint 2 + 4',
     icon: 'Globe',
     tech: 'Checks any web-based claim — versions, pricing, API changes — against the live page, then re-confirms it at verify time.',
     plain: 'Facts get checked against the real web, not the AI’s memory.',
   },
   {
     name: 'Context7',
-    gates: 'Gate 2',
+    gates: 'Checkpoint 2',
     icon: 'BookOpen',
     tech: 'Pulls current library and API docs before coding against them, so it never relies on stale training data.',
     plain: 'It reads the up-to-date manual before it builds.',
   },
   {
     name: 'Sonnet subagents',
-    gates: 'Gate 2',
+    gates: 'Checkpoint 2',
     icon: 'Users',
     tech: 'Fans out broad investigation — file scans, call-path tracing, gap-finding — in parallel while the main thread keeps momentum.',
     plain: 'It sends a research team ahead so nothing gets missed.',
   },
   {
     name: 'Browser automation',
-    gates: 'Gate 2 + 4',
+    gates: 'Checkpoint 2 + 4',
     icon: 'MousePointerClick',
     tech: 'Drives a real browser to check rendered state, fill forms, and test flows — screenshots become verification evidence.',
     plain: 'It actually clicks through the site to confirm it works.',
   },
   {
     name: 'Codex second-opinion',
-    gates: 'Gate 3',
+    gates: 'Checkpoint 3',
     icon: 'ScanSearch',
     tech: 'Runs a different AI model family in parallel to review the same change — two lineages catch different classes of bug.',
     plain: 'A second, independent expert double-checks the work.',
   },
   {
     name: 'Workflow fan-out',
-    gates: 'Gate 3 + 4',
+    gates: 'Checkpoint 3 + 4',
     icon: 'Workflow',
     tech: 'Spawns parallel worker and checker agents at scale, with adversarial verification, when a task genuinely warrants it.',
     plain: 'It splits a big job across a team that checks each other.',
   },
 ]
 
-/** Standing habits — always on, every gate. */
+/** Standing habits — always on, every checkpoint. */
 export const HABITS: string[] = [
   'Convert relative to absolute — "tomorrow" becomes a date, "latest" becomes a version.',
   'Surface constraints and trade-offs before they bite.',
@@ -173,17 +176,17 @@ export interface Smell {
   gate: string
 }
 
-/** Smells that mean a gate got skipped. */
+/** Smells that mean a checkpoint got skipped. */
 export const SMELLS: Smell[] = [
-  { text: 'Building something without opening the real data it depends on.', gate: 'Gate 2' },
-  { text: 'You just said "should work" about something you can test right now.', gate: 'Gate 4' },
-  { text: 'You’re on attempt three of the same fix.', gate: 'Gate 3' },
-  { text: 'Your last three actions came from the plan with no check against results.', gate: 'Gate 3' },
-  { text: 'About to report done, and the evidence is your intention, not an observation.', gate: 'Gate 4' },
-  { text: 'A result came back suspiciously clean and you moved on.', gate: 'Gate 4' },
-  { text: 'You can’t say in one sentence what "done" looks like.', gate: 'Gate 1' },
-  { text: 'You marked a delegate’s work done on the strength of their own report.', gate: 'Gate 4' },
-  { text: 'Your only source is a blog or AI summary, not the primary source.', gate: 'Gate 2' },
+  { text: 'Building something without opening the real data it depends on.', gate: 'Checkpoint 2' },
+  { text: 'You just said "should work" about something you can test right now.', gate: 'Checkpoint 4' },
+  { text: 'You’re on attempt three of the same fix.', gate: 'Checkpoint 3' },
+  { text: 'Your last three actions came from the plan with no check against results.', gate: 'Checkpoint 3' },
+  { text: 'About to report done, and the evidence is your intention, not an observation.', gate: 'Checkpoint 4' },
+  { text: 'A result came back suspiciously clean and you moved on.', gate: 'Checkpoint 4' },
+  { text: 'You can’t say in one sentence what "done" looks like.', gate: 'Checkpoint 1' },
+  { text: 'You marked a delegate’s work done on the strength of their own report.', gate: 'Checkpoint 4' },
+  { text: 'Your only source is a blog or AI summary, not the primary source.', gate: 'Checkpoint 2' },
 ]
 
 /** The three pain chips in the "stakes" section. */
@@ -214,7 +217,7 @@ export const BEFORE_AFTER: {
     'Illustrative — the Fable Method is a working discipline, not a benchmark. The shape is the point, not the exact numbers.',
   bars: [
     { label: 'A fast, unchecked agent', value: 9, tone: 'bad' },
-    { label: 'With the Five Gates', value: 1, tone: 'good' },
+    { label: 'With the Five Checkpoints', value: 1, tone: 'good' },
   ],
 }
 
@@ -259,7 +262,7 @@ export interface DownloadItem {
 export const DOWNLOAD_CONTENTS: DownloadItem[] = [
   {
     file: 'fable-mode/SKILL.md',
-    desc: 'The full method — five gates, standing habits, and the team — ready to drop into ~/.claude/skills/.',
+    desc: 'The full method — five checkpoints, standing habits, and the team — ready to drop into ~/.claude/skills/.',
   },
   { file: 'INSTALL.md', desc: '30-second setup and how to trigger it.' },
   { file: 'README.md', desc: 'Plain-English overview of what it does and who it’s for.' },

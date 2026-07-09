@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'The Fable Method — AI that doesn’t call it done until it checked',
     description:
-      'A five-gate discipline that makes an AI coding agent scope, gather evidence, attack its own answer, verify, and report straight. Free skill file for Claude Code.',
+      'A five-checkpoint discipline that makes an AI coding agent scope, gather evidence, attack its own answer, verify, and report straight. Free skill file for Claude Code.',
     url: 'https://ilift.com/fable',
     type: 'website',
   },
@@ -37,7 +37,7 @@ const SOFTWARE_JSON_LD = {
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Claude Code (Opus or Sonnet)',
   description:
-    'A Claude Code skill that enforces a five-gate working discipline — scope, evidence, adversarial reasoning, verification, and calibrated reporting — so AI coding agents hallucinate less and stop declaring unverified work done.',
+    'A Claude Code skill that enforces a five-checkpoint working discipline — scope, evidence, adversarial reasoning, verification, and calibrated reporting — so AI coding agents hallucinate less and stop declaring unverified work done.',
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
   url: 'https://ilift.com/fable',
   author: { '@type': 'Person', name: 'Dave Gakshteyn', url: 'https://ilift.com' },

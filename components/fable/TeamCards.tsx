@@ -5,7 +5,7 @@ import { TEAM } from '@/lib/fable-content'
 import { FABLE_ICONS } from './fableIcons'
 import { staggerContainer, fadeInUp } from '@/lib/animations'
 
-// The "team" — real tools wired in at the gate where they pay off.
+// The "team" — real tools wired in at the checkpoint where they pay off.
 export function TeamCards() {
   const reduce = useReducedMotion() ?? false
   return (
@@ -30,12 +30,12 @@ export function TeamCards() {
                 {Icon ? <Icon size={20} /> : null}
               </div>
               <div>
-                <div className="font-heading font-bold text-white">{m.name}</div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-amber-400/80">{m.gates}</div>
+                <div className="font-heading text-lg font-bold text-white">{m.name}</div>
+                <div className="text-sm font-semibold uppercase tracking-wider text-amber-400/80">{m.gates}</div>
               </div>
             </div>
-            <p className="mt-4 text-sm leading-relaxed text-white/70">{m.tech}</p>
-            <p className="mt-2 text-sm leading-relaxed text-white/45">{m.plain}</p>
+            <p className="mt-4 text-base leading-relaxed text-white/75">{m.tech}</p>
+            <p className="mt-2.5 text-base leading-relaxed text-white/55">{m.plain}</p>
           </motion.div>
         )
       })}
