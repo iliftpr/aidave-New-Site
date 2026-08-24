@@ -10,8 +10,17 @@ printf '%s' 'VALUE' | vercel env add NAME production
 ## A. Before the PR is merged (≈10 minutes)
 
 1. **Supabase service key** → `LEADS_SUPABASE_SERVICE_KEY`
-   Supabase → project `apkiueduxqspzefzybpx` → Settings → API → *service_role* (secret). Server-only;
-   never goes in a `NEXT_PUBLIC_` var.
+   Supabase → project `apkiueduxqspzefzybpx` → Settings → API Keys → either the legacy *service_role*
+   JWT or a new `sb_secret_…` key (both verified to work with the `apikey` + `Bearer` headers the code
+   sends). Server-only; never goes in a `NEXT_PUBLIC_` var.
+   ⚠ 2026-08-24 release: the stored value was rejected by Supabase (`401 Invalid API key` on every
+   cron run — wrong project or truncated paste). **Validate the key in a terminal before storing it:**
+   ```
+   K='paste-key-here'; curl -s -o /dev/null -w '%{http_code}\n' -H "apikey: $K" -H "Authorization: Bearer $K" \
+     'https://apkiueduxqspzefzybpx.supabase.co/rest/v1/ilift_lead_sync?select=form_id&limit=1'
+   ```
+   `200` = good; `401` = wrong key. Then `printf '%s' "$K" | vercel env add LEADS_SUPABASE_SERVICE_KEY production --force`
+   and redeploy (env changes need a real deploy). Proof it took: a row in `ilift_lead_sync` within a minute.
 2. **Leads page login** → `LEADS_DASH_USER`, `LEADS_DASH_PASS`
    Any username + a long password. The page fails closed until both exist.
 3. **Cron secret** → `CRON_SECRET`

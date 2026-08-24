@@ -7,7 +7,7 @@ chk() { if [ "$1" = "$2" ]; then echo "PASS  $3 ($1)"; pass=$((pass+1)); else ec
 
 echo "== deployment serving www =="
 html=$(curl -s -A "$UA" --max-time 25 "$H/")
-echo "data-dpl-id: $(printf '%s' "$html" | grep -o 'data-dpl-id="[^"]*"' | head -1 | cut -d'"' -f2)"
+echo "data-dpl-id: $(printf '%s' "$html" | grep -o -E 'dpl_[A-Za-z0-9]{20,}' | head -1)"
 
 echo "== landing pages =="
 for s in contractors dental-medspa restaurants; do
