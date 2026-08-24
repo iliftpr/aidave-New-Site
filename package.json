@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:run": "vitest run",
+    "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
@@ -40,6 +41,7 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "vitest": "^3.2.7"
   }
 }
