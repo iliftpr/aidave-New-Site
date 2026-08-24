@@ -31,11 +31,11 @@ printf '%s' 'VALUE' | vercel env add NAME production
    ✅ Form built 2026-08-24 ("iLift - Missed-Call Audit LI owners (Aug 2026)", see CAMPAIGN.md).
    Comma-separate if you ever add the July "NSBCC" form (id in Business Suite → Lead ads forms).
 
-Status 2026-08-24: `CRON_SECRET` ✅ set by the agent. The other six are still missing
-(`vercel env ls production`). `LEADS_DASH_USER` and `META_LEAD_FORM_IDS` are not secrets — the agent
-tried to add them but the permission classifier blocked `vercel env add`; run:
-`printf '%s' '4103248023306565' | vercel env add META_LEAD_FORM_IDS production` and
-`printf '%s' 'dave' | vercel env add LEADS_DASH_USER production`.
+Status 2026-08-24 PM: **all seven are set** on the live target (verified with `vercel env ls`; values are stored
+as sensitive, so they cannot be read back — the cron row in `ilift_lead_sync` is the first real proof of the Page token).
+DB: the original `ilift_leads_source_check` rejected `meta_lp`/`meta_form` — widened by
+`supabase/migrations/20260824202452_lead_machine_source_check.sql` (applied + probe-verified 2026-08-24). Without it every
+landing-page submission would have returned 500 and the poller would have failed every minute.
 
 ## B. Merge and go live
 
@@ -53,7 +53,12 @@ tried to add them but the permission classifier blocked `vercel env add`; run:
 8. Submit one **test lead** on the LP with your own mobile → expect: Telegram ping with a tap-to-call
    link, the row on `/leads` (yellow = new), Events Manager → Test events shows a server `Lead`.
    Set the row to *lost* afterwards.
-9. Ads Manager → Lead form → *Create test lead* → it should appear on `/leads` within ~1 minute.
+9. **Ads Manager → All Tools → Instant Forms → "iLift - Missed-Call Audit LI owners (Aug 2026)" → Test Form** — type real
+   values and use a **different phone number than step 8** (the intake dedupes by phone for 24 h, so the same mobile
+   yields no new row and no ping — it looks like a failure but is not). It should appear on `/leads` within ~1 minute.
+   The developer tool at developers.facebook.com/tools/lead-ads-testing → *Create Lead* sends dummy data instead
+   (email `test@fb.com`; a placeholder phone may be skipped as `invalid_phone`), and its *Preview Form* button is
+   disabled by Meta in 2026. Only one test lead can exist per form — delete it in that tool afterwards.
    The poller deliberately starts each form at "now minus 10 minutes" the first time it sees it,
    so the 59 July leads are **not** re-texted. If you want them in `/leads`, export the CSV from
    Ads Manager and ask the agent to import it as `source=meta_form`, status `contacted`.
