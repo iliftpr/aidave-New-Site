@@ -43,7 +43,12 @@ export function LeadForm({ slug, submitLabel }: { slug: string; submitLabel: str
     if (fbp) t.fbp = fbp
     const fbc = readCookie('_fbc')
     if (fbc) t.fbc = fbc
-    else if (t.fbclid) t.fbc = `fb.1.${Date.now()}.${t.fbclid}`
+    else if (t.fbclid) {
+      // Meta's _fbc format: fb.<subdomainIndex>.<ms>.<fbclid>; index = levels in the host minus one
+      // (ilift.com → 1, www.ilift.com → 2). The pixel usually sets the cookie itself; this is the fallback.
+      const idx = Math.max(1, window.location.hostname.split('.').length - 1)
+      t.fbc = `fb.${idx}.${Date.now()}.${t.fbclid}`
+    }
     setTracking(t)
   }, [slug])
 
