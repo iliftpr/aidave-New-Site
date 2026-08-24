@@ -27,15 +27,27 @@ printf '%s' 'VALUE' | vercel env add NAME production
    back in the Explorer paste the extended token and run `GET /me/accounts` → copy the
    `access_token` of **"AI Smart Marketing, AI Consulting & Business Systems"** (Page
    `527833293737471`). Page tokens derived from a long-lived user token do not expire.
-6. **Which Instant Form(s) to poll** → `META_LEAD_FORM_IDS`
-   Ads Manager → the July "NSBCC" lead form (or a new 3-field form: name, phone, business + the
-   one qualifying question *"What's costing you the most right now?"* with answers
-   Missed calls / No-shows / Not enough leads / Reviews). Copy the form id; comma-separate several.
+6. **Which Instant Form(s) to poll** → `META_LEAD_FORM_IDS` = `4103248023306565`
+   ✅ Form built 2026-08-24 ("iLift - Missed-Call Audit LI owners (Aug 2026)", see CAMPAIGN.md).
+   Comma-separate if you ever add the July "NSBCC" form (id in Business Suite → Lead ads forms).
+
+Status 2026-08-24: `CRON_SECRET` ✅ set by the agent. The other six are still missing
+(`vercel env ls production`). `LEADS_DASH_USER` and `META_LEAD_FORM_IDS` are not secrets — the agent
+tried to add them but the permission classifier blocked `vercel env add`; run:
+`printf '%s' '4103248023306565' | vercel env add META_LEAD_FORM_IDS production` and
+`printf '%s' 'dave' | vercel env add LEADS_DASH_USER production`.
 
 ## B. Merge and go live
 
-7. Merge the PR into `feature/fable-method-landing` (the branch Vercel deploys as production)
-   and push. Confirm:
+7. Merge the PR into `feature/fable-method-landing` and push. ⚠ **That push does NOT deploy
+   ilift.com**: the Pro project `ai-dave-website` (owns ilift.com) is not Git-linked — every prod
+   deploy since July has been a CLI `vercel --prod` from this branch. After merging, from a clean
+   checkout of `feature/fable-method-landing` run `vercel --prod` (or link the project: Vercel →
+   ai-dave-website → Settings → Git → connect `iliftpr/aidave-New-Site`, production branch
+   `feature/fable-method-landing`, so pushes deploy from then on). The red "Vercel — Deployment
+   failed" check on the PR comes from a *different* project, `aidaves-projects/aidave-new-site`
+   (Hobby plan, rejects the every-minute cron); it does not serve ilift.com — disconnect or delete
+   that stale project to silence it. Confirm after deploy:
    - `https://www.ilift.com/lp/contractors` renders (also `/lp/dental-medspa`, `/lp/restaurants`)
    - `https://www.ilift.com/leads` asks for the password, then shows the table
 8. Submit one **test lead** on the LP with your own mobile → expect: Telegram ping with a tap-to-call
@@ -59,12 +71,13 @@ printf '%s' 'VALUE' | vercel env add NAME production
 
 ## D. Campaign
 
-12. **Accept the Lead Ads Terms of Service for the Page (blocks the Instant-Form ad set):**
-    https://www.facebook.com/legal/leadgen/tos → choose "AI Smart Marketing, AI Consulting &
-    Business Systems" → Accept. Meta returned `leadgen_tos_accepted: false` for this Page on
-    2026-08-24, so the "A • Instant Form" ad set could not be created by the agent — tell the
-    agent once accepted and it will finish it, or create it yourself (Leads → Instant form,
-    East Meadow +20 mi, 30–60, $30/day, the 3 vertical ads).
+12. ✅ **Lead Ads Terms of Service accepted** for "AI Smart Marketing, AI Consulting & Business
+    Systems" (verified 2026-08-24 at https://www.facebook.com/legal/leadgen/tos — button reads
+    "Accepted"). The "A • Instant Form" ad set is still **not created**: the agent's Meta create
+    call was blocked by the Claude Code permission classifier. Either approve that action for the
+    agent (it has the full spec in CAMPAIGN.md) or build it in Ads Manager: Leads → Instant form
+    `4103248023306565`, East Meadow +20 mi (living there), 30–60, $30/day, the 9 NMC creatives
+    (same images/copy as ad set B, CTA "Sign up" → the form).
 13. Ads Manager → campaign **"iLift • Missed-Call Audit • Leads"** (id `120250129011790337`,
     created PAUSED by the agent; ad set "B • Landing pages" is the website/LP path) → open each
     ad preview → when happy, set the **campaign** to Active. Start the Instant-Form ad set at

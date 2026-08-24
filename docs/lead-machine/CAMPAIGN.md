@@ -6,8 +6,18 @@ Ads Manager: https://www.facebook.com/adsmanager/manage/campaigns/edit?act=11795
 | Level | Name | ID | Notes |
 |---|---|---|---|
 | Campaign | iLift • Missed-Call Audit • Leads | `120250129011790337` | OUTCOME_LEADS, ABO, PAUSED |
-| Ad set A | Instant Form • LI owners 20mi | — | **not created**: Page has not accepted the Lead Ads ToS (`leadgen_tos_accepted:false`). Accept at https://www.facebook.com/legal/leadgen/tos then tell the agent. Planned: LEAD_GENERATION, $30/day, same targeting, same 9 creatives with the Instant Form |
+| Ad set A | Instant Form • LI owners 20mi | — | **not created yet** (ToS accepted 2026-08-24; the agent's create call was blocked by the Claude Code permission classifier — owner runs it or approves). Spec: LEAD_GENERATION, `destination_type=ON_AD`, `promoted_object={page_id:527833293737471}`, $30/day, targeting = same as B (East Meadow +20 mi, living there; 30–60 as A+ suggestion). Ads = 9 new creatives: same `image_hash` + copy as B, `call_to_action={type:SIGN_UP,value:{lead_gen_form_id:4103248023306565}}`, AI disclosure OPT_IN |
 | Ad set B | Landing pages • LI owners 20mi | `120250129035250337` | OFFSITE_CONVERSIONS on pixel event LEAD, WEBSITE, $20/day, East Meadow +20 mi (people living there), 30–60 as Advantage+ suggestion, PAUSED |
+
+## Instant Form (created 2026-08-24 in Business Suite → Lead ads forms)
+
+**"iLift - Missed-Call Audit LI owners (Aug 2026)" — form id `4103248023306565`** (= `META_LEAD_FORM_IDS`).
+Higher intent (review screen, no SMS passcode yet) · Intro "Free 15-Minute Missed-Call Audit" · fields
+Full name, Phone number, Company name (prefilled) · required multiple-choice *"What's costing you the most
+right now?"* → Missed calls / No-shows / Not enough leads / Reviews (labels match `PAIN_BY_LABEL` in
+`lib/lead-machine/meta-leads.ts`) · privacy https://www.ilift.com/privacy · ending "You're in. Here's what
+happens next." with "See how it works" → https://www.ilift.com. Sharing: Restricted. Swap the ending CTA to
+*Call business* once the iLift AI-receptionist line exists (research §3).
 
 ## Ads in ad set B (all PAUSED, AI-disclosure OPT_IN)
 
