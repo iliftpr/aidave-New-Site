@@ -71,13 +71,13 @@ tried to add them but the permission classifier blocked `vercel env add`; run:
 
 ## D. Campaign
 
-12. ✅ **Lead Ads Terms of Service accepted** for "AI Smart Marketing, AI Consulting & Business
-    Systems" (verified 2026-08-24 at https://www.facebook.com/legal/leadgen/tos — button reads
-    "Accepted"). The "A • Instant Form" ad set is still **not created**: the agent's Meta create
-    call was blocked by the Claude Code permission classifier. Either approve that action for the
-    agent (it has the full spec in CAMPAIGN.md) or build it in Ads Manager: Leads → Instant form
-    `4103248023306565`, East Meadow +20 mi (living there), 30–60, $30/day, the 9 NMC creatives
-    (same images/copy as ad set B, CTA "Sign up" → the form).
+12. ✅ **Ad set A exists** — `120250132160990337`, Instant form `4103248023306565`, $30/day, 9 ads
+    (ids in CAMPAIGN.md), all PAUSED / pending review, built in Ads Manager on 2026-08-24. The
+    Marketing API still says `leadgen_tos_accepted:false` for the Page even though the ToS page
+    shows "Accepted" — Ads Manager works regardless; only API-created lead ads are blocked.
+    Before activating: open 2–3 ads in set A → preview → *Destination* tab shows the iLift form;
+    and confirm the "AI info" (AI-generated content) declaration on each — set B's creatives were
+    OPT_IN, the copies should have inherited it.
 13. Ads Manager → campaign **"iLift • Missed-Call Audit • Leads"** (id `120250129011790337`,
     created PAUSED by the agent; ad set "B • Landing pages" is the website/LP path) → open each
     ad preview → when happy, set the **campaign** to Active. Start the Instant-Form ad set at
