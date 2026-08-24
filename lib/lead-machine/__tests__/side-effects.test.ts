@@ -32,7 +32,8 @@ describe('sms', () => {
     expect(t).toMatch(/^Hey Mike — Dave from iLift\./)
     expect(t).toContain('missed calls')
     expect(t).toContain('cal.com/ilift/automation-audit')
-    expect(t.length).toBeLessThanOrEqual(170)
+    expect(t).toContain('after hours')
+    expect(t.length).toBeLessThanOrEqual(200)
   })
   it('falls back gracefully without a name or pain', () => {
     expect(buildSmsText({ ...lead, name: null, pain: null })).toMatch(/^Hey there — Dave from iLift\. Got your note about your business\./)

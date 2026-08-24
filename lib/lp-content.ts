@@ -1,5 +1,10 @@
 import { OUTCOMES } from '@/lib/constants'
 
+// Copy is grounded in marketing/research/2026-08-24-hooks-offers-research.md:
+// lead with text-back (not "AI voice"), name the beneficiary of a missed call, avoid the
+// fatigued "never miss a call" / "stop losing" / "never sleeps" family, keep dollar results
+// out of the ads (FTC 255.2), and make the offer specific: the Missed-Call Audit.
+
 export const LP_SLUGS = ['contractors', 'dental-medspa', 'restaurants'] as const
 export type LpSlug = (typeof LP_SLUGS)[number]
 
@@ -17,18 +22,23 @@ export interface LpContent {
   submitLabel: string
 }
 
+export const OFFER_NAME = 'Missed-Call Audit'
+const FORM_TITLE = `Get your free ${OFFER_NAME}`
+const FORM_SUB = 'I call your line after hours, record what a customer hears, and show you the fix in 15 minutes. Dave texts you within minutes — no pitch.'
+const SUBMIT = 'Get my free audit'
+
 const COMMON_FAQ: LpContent['faq'] = [
   {
-    q: 'What happens after I submit?',
-    a: 'Dave texts you within minutes. You can also grab a free 15-minute slot on his calendar right away — no pitch, just a look at where calls and leads are leaking.',
+    q: 'What actually happens in the audit?',
+    a: 'Dave calls your business line after you have closed, records what a customer gets (voicemail, a menu, a dropped call), and walks you through the fix on a 15-minute call. You keep the recording either way.',
   },
   {
     q: 'What does it cost?',
-    a: 'The 15-minute look is free. Done-for-you builds like the AI receptionist start at $1,500 and are quoted after the audit — you always know the number before any work starts.',
+    a: 'The audit is free. Done-for-you builds like the AI receptionist start at $1,500 and are quoted after the audit — you always know the number before any work starts. Month to month, no contract.',
   },
   {
     q: 'Do I have to change my phone number?',
-    a: 'No. You keep your number. The AI answers what you miss and texts back missed callers.',
+    a: 'No. You keep your number. Missed callers get a text back within 60 seconds, and the AI answers what you miss.',
   },
   {
     q: 'Who is Dave?',
@@ -36,22 +46,18 @@ const COMMON_FAQ: LpContent['faq'] = [
   },
 ]
 
-const FORM_TITLE = 'Get a free 15-minute look'
-const FORM_SUB = 'Dave texts you back within minutes. No pitch.'
-const SUBMIT = 'Text me the details'
-
 const CONTENT: Record<LpSlug, LpContent> = {
   contractors: {
     slug: 'contractors',
     vertical: 'Contractors & home services',
     eyebrow: 'For Long Island trades',
-    headline: 'Stop sending jobs to voicemail.',
+    headline: "Who's answering while you're on the roof?",
     subhead:
-      'While you are on a roof, under a sink, or driving, your AI receptionist answers 24/7, texts back every missed caller in seconds, and books the job to your calendar.',
+      "You're 30 feet up in Levittown. The phone buzzes twice. By the time you're down, that homeowner booked whoever answered. Your line should text them back before you fold the ladder.",
     bullets: [
-      { title: 'Answers every call', body: 'Nights, weekends, mid-job. Every caller gets a real answer instead of a voicemail.' },
-      { title: 'Texts back in seconds', body: 'Missed a call anyway? The caller gets a text before they dial your competitor.' },
-      { title: 'Books to your calendar', body: 'Estimates land on your schedule with the address and the problem already captured.' },
+      { title: 'A text back in 60 seconds', body: 'Every missed caller hears from you before they dial the next name on the list.' },
+      { title: 'Answered while you work', body: 'Nights, weekends, mid-job — a real answer instead of your voicemail hiring your competitor.' },
+      { title: 'Booked to your calendar', body: 'Estimates land on your schedule with the address and the problem already captured.' },
     ],
     proof: [OUTCOMES[0]],
     faq: COMMON_FAQ,
@@ -63,13 +69,13 @@ const CONTENT: Record<LpSlug, LpContent> = {
     slug: 'dental-medspa',
     vertical: 'Dental & med spa',
     eyebrow: 'For Long Island practices',
-    headline: 'Keep the chairs full.',
+    headline: "Weekend voicemails don't rebook themselves.",
     subhead:
-      'Empty chairs and no-shows quietly cost practices thousands a month. The AI front desk books appointments, sends smart reminders, fills cancellations, and answers after hours.',
+      "Monday 8am, Garden City. Your front desk is returning Saturday's calls while today's patients wait. A text within 60 seconds on Saturday would have booked half of them already.",
     bullets: [
-      { title: 'Never miss a new patient', body: 'Lunch, after hours, and weekends are when new patients call. Every one gets booked.' },
-      { title: 'Fewer no-shows', body: 'Smart reminders and instant rebooking keep the schedule full without front-desk chasing.' },
-      { title: 'More 5-star reviews', body: 'Happy patients get asked at the right moment, so you climb Google while you work.' },
+      { title: 'New patients booked after close', body: 'The 7:15pm caller gets a text and a booking link instead of the office-hours recording.' },
+      { title: 'Front desk, un-buried', body: 'Reminders, rebooking, and text-backs run automatically so your team can look up from the phone.' },
+      { title: 'Your ad spend stays yours', body: 'You paid for the click. The patient should not end up booking the practice that texted back first.' },
     ],
     proof: [OUTCOMES[1], OUTCOMES[2]],
     faq: COMMON_FAQ,
@@ -81,13 +87,13 @@ const CONTENT: Record<LpSlug, LpContent> = {
     slug: 'restaurants',
     vertical: 'Restaurants & local retail',
     eyebrow: 'For Long Island restaurants',
-    headline: 'Answer every call during the rush.',
+    headline: 'The party of 12 called during the rush.',
     subhead:
-      'Every unanswered call is a table or an order walking away. The AI answers, takes reservations and questions, and texts back missed callers so the dinner rush never costs you covers.',
+      'Friday, 7:40, Merrick Road. The phone rings, nobody can grab it, and that catering order goes to the place that picked up. A text back with your menu link would have held them.',
     bullets: [
-      { title: 'Reservations without the phone tag', body: 'Callers get booked or answered while your staff stays on the floor.' },
-      { title: 'Texts back missed callers', body: 'Slammed? The caller hears from you in seconds, not never.' },
-      { title: 'Get found, get chosen', body: 'Automated review requests and a clean Google presence bring more locals in.' },
+      { title: 'Hold music, or a text in 60 seconds?', body: 'Missed callers get hours, menu, and a reservation link automatically — while your host seats the four-top.' },
+      { title: 'Big orders stop slipping', body: 'Catering and large parties are the calls that die on hold. Now they get an answer.' },
+      { title: 'Found and chosen', body: 'Automated review requests and a clean Google presence bring more locals in.' },
     ],
     proof: [OUTCOMES[2]],
     faq: COMMON_FAQ,

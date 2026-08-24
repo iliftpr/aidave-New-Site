@@ -3,7 +3,7 @@ import { PAIN_LABELS, firstName, type LeadForNotify, type SideEffectResult } fro
 
 export function buildSmsText(lead: LeadForNotify): string {
   const pain = (lead.pain && PAIN_LABELS[lead.pain]) || 'your business'
-  return `Hey ${firstName(lead.name)} — Dave from iLift. Got your note about ${pain}. Want 2 quick ideas by text, or a free 15-min look? ${env.auditUrl()} — Dave`
+  return `Hey ${firstName(lead.name)} — Dave from iLift. Got your note about ${pain}. I'll call your line after hours and show you what customers hear. Grab 15 min: ${env.auditUrl()} — Dave`
 }
 
 /** Twilio REST send. Flag-gated: nothing happens until LEAD_SMS_ENABLED=1 (A2P approval). */
