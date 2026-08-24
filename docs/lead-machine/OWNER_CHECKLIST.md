@@ -42,6 +42,9 @@ printf '%s' 'VALUE' | vercel env add NAME production
    link, the row on `/leads` (yellow = new), Events Manager → Test events shows a server `Lead`.
    Set the row to *lost* afterwards.
 9. Ads Manager → Lead form → *Create test lead* → it should appear on `/leads` within ~1 minute.
+   The poller deliberately starts each form at "now minus 10 minutes" the first time it sees it,
+   so the 59 July leads are **not** re-texted. If you want them in `/leads`, export the CSV from
+   Ads Manager and ask the agent to import it as `source=meta_form`, status `contacted`.
    If not: Vercel → project → Cron Jobs shows the last run; the `ilift_lead_sync` row holds
    `last_error`.
 
