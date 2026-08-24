@@ -47,7 +47,12 @@ landing-page submission would have returned 500 and the poller would have failed
    `feature/fable-method-landing`, so pushes deploy from then on). The red "Vercel — Deployment
    failed" check on the PR comes from a *different* project, `aidaves-projects/aidave-new-site`
    (Hobby plan, rejects the every-minute cron); it does not serve ilift.com — disconnect or delete
-   that stale project to silence it. Confirm after deploy:
+   that stale project to silence it. The worktree `.worktrees/ilift-lead-machine` is already
+   `vercel link`ed to `ai-dave-website`, so the one-command path after the merge is
+   `vercel --prod --cwd "<repo>/.worktrees/ilift-lead-machine"` (the checkout there is the PR head).
+   Confirm after deploy — run `bash docs/lead-machine/verify-live.sh` (read-only except one
+   honeypot POST; prints the `data-dpl-id` www is serving and 19 PASS/FAIL probes; before the
+   release it fails on every lead-machine route, which is the expected negative result), then:
    - `https://www.ilift.com/lp/contractors` renders (also `/lp/dental-medspa`, `/lp/restaurants`)
    - `https://www.ilift.com/leads` asks for the password, then shows the table
 8. Submit one **test lead** on the LP with your own mobile → expect: Telegram ping with a tap-to-call
