@@ -42,7 +42,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",
-    "critters": "^0.0.23",
     "vitest": "^3.2.7"
   }
 }

@@ -13,7 +13,7 @@ test('LP form submits and the thanks page fires a deduped Lead', async ({ page }
   await page.route('https://www.facebook.com/tr/**', (route) => route.fulfill({ status: 200, body: '' }))
 
   await page.goto('/lp/contractors?utm_source=meta&utm_campaign=nmc')
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Stop sending jobs to voicemail')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText("Who's answering while you're on the roof?")
 
   await page.getByLabel('Your name').fill('Test Lead')
   await page.getByLabel('Mobile number').fill('516-555-0100')
@@ -22,7 +22,7 @@ test('LP form submits and the thanks page fires a deduped Lead', async ({ page }
 
   const [req] = await Promise.all([
     page.waitForRequest('**/api/lead'),
-    page.getByRole('button', { name: /Text me the details/ }).click(),
+    page.getByRole('button', { name: /Get my free audit/ }).click(),
   ])
   const body = req.postDataJSON() as { vertical: string; tracking: Record<string, string>; eventId: string }
   expect(body.vertical).toBe('contractors')
@@ -54,7 +54,7 @@ test('honeypot submissions still post but the server swallows them', async ({ pa
   await page.getByLabel('Mobile number').fill('516-555-0100')
   await page.getByLabel('Business name').fill('Bot Co')
   await page.getByLabel(/costing you the most/).selectOption('reviews')
-  await page.getByRole('button', { name: /Text me the details/ }).click()
+  await page.getByRole('button', { name: /Get my free audit/ }).click()
   await expect.poll(() => posted).not.toBeNull()
   expect(posted!.website).toBe('http://spam')
 })

@@ -121,7 +121,7 @@ FTC 16 CFR 239.3: use "Money Back Guarantee"/"Free Trial Offer" only if you refu
 - Avoid revenue/ROI guarantees ("covers your subscription or you don't pay"): attribution disputes fall entirely on you and the FTC "satisfaction" rule then requires a full refund on request.
 - Never say "results guaranteed"; say "every missed call gets a text within 60 seconds" (a measurable service-level, verifiable from logs).
 
-Scrapes saved: `C:\Users\admin\AppData\Local\Temp\claude\C--Users-admin\f21feb10-e544-474e-acb9-4bfa1c4ec45c\scratchpad\offers\` (Reddit/Facebook threads unscrapable by Firecrawl and Bright Data returned 401; Reddit claims above are from Firecrawl search snippets only).
+Scrapes saved: `(session scratchpad, not kept)\scratchpad\offers\` (Reddit/Facebook threads unscrapable by Firecrawl and Bright Data returned 401; Reddit claims above are from Firecrawl search snippets only).
 
 
 ---
@@ -255,4 +255,4 @@ https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255 · https:/
 
 No data: hook-level CPL/CTR in this niche; B2B-to-local-owner benchmarks.
 
-Saved copy: `C:\Users\admin\AppData\Local\Temp\claude\C--Users-admin\f21feb10-e544-474e-acb9-4bfa1c4ec45c\scratchpad\creative-brief.md`
+Saved copy: `(session scratchpad, not kept)\scratchpad\creative-brief.md`
