@@ -20,6 +20,20 @@ const TRACKING_KEYS = [
 ] as const
 
 const EMAIL_RE = /^[^\s@<>"'\\]+@[^\s@<>"'\\]+\.[^\s@<>"'\\]+$/
+const EVENT_ID_RE = /^[A-Za-z0-9_-]{8,80}$/
+const FBP_RE = /^fb\.\d\.\d{10,16}\.\d{1,20}$/
+const FBC_RE = /^fb\.\d\.\d{10,16}\.[A-Za-z0-9_-]{1,256}$/
+const SITE_ORIGINS = ['https://www.ilift.com', 'https://ilift.com', 'http://localhost:3000', 'http://localhost:3111']
+
+function safePageUrl(raw: string): string {
+  try {
+    const u = new URL(raw)
+    if (SITE_ORIGINS.includes(u.origin) && u.pathname.startsWith('/lp/')) return `${u.origin}${u.pathname}`
+  } catch {
+    /* fall through */
+  }
+  return 'https://www.ilift.com/lp'
+}
 
 export async function POST(request: NextRequest) {
   let body: Record<string, unknown>
@@ -68,8 +82,11 @@ export async function POST(request: NextRequest) {
   for (const k of TRACKING_KEYS) {
     if (typeof rawTracking[k] === 'string') tracking[k] = (rawTracking[k] as string).slice(0, 300)
   }
+  // Only forward Meta identifiers that look like Meta identifiers — anything else would poison attribution.
+  if (tracking.fbp && !FBP_RE.test(tracking.fbp)) delete tracking.fbp
+  if (tracking.fbc && !FBC_RE.test(tracking.fbc)) delete tracking.fbc
 
-  const eid = eventId || crypto.randomUUID()
+  const eid = EVENT_ID_RE.test(eventId) ? eventId : crypto.randomUUID()
   try {
     const result = await processLead({
       name,
@@ -82,13 +99,14 @@ export async function POST(request: NextRequest) {
       tracking,
       context: {
         eventId: eid,
-        sourceUrl: pageUrl || 'https://www.ilift.com/lp',
+        sourceUrl: safePageUrl(pageUrl),
         ip,
         ua: request.headers.get('user-agent'),
       },
     })
     if (!result.ok) return NextResponse.json({ error: result.error }, { status: 400 })
-    return NextResponse.json({ ok: true, eid, deduped: result.deduped })
+    // A deduped submission sent no CAPI event, so hand back no event id: the thanks page then fires no browser Lead either.
+    return NextResponse.json({ ok: true, eid: result.deduped ? null : eid, deduped: result.deduped })
   } catch (err) {
     console.error('[api/lead] failed', err)
     return NextResponse.json({ error: 'server_error' }, { status: 500 })

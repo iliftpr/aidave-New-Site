@@ -61,6 +61,13 @@ describe('processLead', () => {
     expect(tg.sendTelegramPing).not.toHaveBeenCalled()
   })
 
+  it('does not replay Instant-Form leads through CAPI (Meta already counted them)', async () => {
+    const r = await processLead({ ...input, source: 'meta_form', metaLeadId: 'm9', context: { eventId: 'meta:m9', sourceUrl: 'https://www.facebook.com/' } })
+    expect(r).toEqual({ ok: true, id: 'lead-1', deduped: false })
+    expect(capi.sendCapiLead).not.toHaveBeenCalled()
+    expect(tg.sendTelegramPing).toHaveBeenCalled()
+  })
+
   it('dedupes by meta_lead_id', async () => {
     vi.mocked(db.findLeadByMetaId).mockResolvedValueOnce({ id: 'old', created_at: 'x', status: 'new', source: 'meta_form' })
     const r = await processLead({ ...input, source: 'meta_form', metaLeadId: 'm1' })

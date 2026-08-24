@@ -22,9 +22,9 @@ const good = {
   company: 'HVAC Co',
   pain: 'missed_calls',
   vertical: 'contractors',
-  eventId: 'evt-1',
+  eventId: 'evt-00000001',
   pageUrl: 'https://www.ilift.com/lp/contractors',
-  tracking: { utm_source: 'meta', fbp: 'fb.1', junk: 'dropped' },
+  tracking: { utm_source: 'meta', fbp: 'fb.1.1700000000000.123456', junk: 'dropped' },
 }
 
 beforeEach(() => {
@@ -36,13 +36,13 @@ describe('POST /api/lead', () => {
   it('accepts a valid lead and forwards a whitelisted tracking object', async () => {
     const res = await POST(req(good, '1.1.1.1'))
     expect(res.status).toBe(200)
-    expect(await res.json()).toMatchObject({ ok: true, eid: 'evt-1', deduped: false })
+    expect(await res.json()).toMatchObject({ ok: true, eid: 'evt-00000001', deduped: false })
     expect(processLead).toHaveBeenCalledWith(
       expect.objectContaining({
         source: 'meta_lp',
         vertical: 'contractors',
-        tracking: { utm_source: 'meta', fbp: 'fb.1' },
-        context: expect.objectContaining({ eventId: 'evt-1', ip: '1.1.1.1', ua: 'UA' }),
+        tracking: { utm_source: 'meta', fbp: 'fb.1.1700000000000.123456' },
+        context: expect.objectContaining({ eventId: 'evt-00000001', ip: '1.1.1.1', ua: 'UA' }),
       }),
     )
   })
@@ -82,9 +82,26 @@ describe('POST /api/lead', () => {
     expect((await POST(req(good, '6.6.6.6'))).status).toBe(500)
   })
 
-  it('generates an event id when the client sends none', async () => {
+  it('generates an event id when the client sends none or a malformed one', async () => {
     const res = await POST(req({ ...good, eventId: undefined }, '8.8.8.8'))
-    const json = await res.json()
-    expect(json.eid).toMatch(/^[0-9a-f-]{36}$/)
+    expect((await res.json()).eid).toMatch(/^[0-9a-f-]{36}$/)
+    const res2 = await POST(req({ ...good, eventId: '<script>' }, '8.8.8.8'))
+    expect((await res2.json()).eid).toMatch(/^[0-9a-f-]{36}$/)
+  })
+
+  it('returns no event id for a deduped submission', async () => {
+    vi.mocked(processLead).mockResolvedValueOnce({ ok: true, id: 'old', deduped: true })
+    const res = await POST(req(good, '10.10.10.10'))
+    expect(await res.json()).toEqual({ ok: true, eid: null, deduped: true })
+  })
+
+  it('drops malformed fbp/fbc and rewrites the page url to the canonical LP', async () => {
+    await POST(req({ ...good, pageUrl: 'https://evil.example/x?y=1', tracking: { fbp: 'nope', fbc: 'fb.1.1700000000000.abc', utm_source: 'meta' } }, '11.11.11.11'))
+    const call = vi.mocked(processLead).mock.calls[0][0]
+    expect(call.tracking).toEqual({ fbc: 'fb.1.1700000000000.abc', utm_source: 'meta' })
+    expect(call.context.sourceUrl).toBe('https://www.ilift.com/lp')
+    vi.clearAllMocks()
+    await POST(req({ ...good, pageUrl: 'https://www.ilift.com/lp/contractors?utm_source=meta&fbclid=zzz' }, '12.12.12.12'))
+    expect(vi.mocked(processLead).mock.calls[0][0].context.sourceUrl).toBe('https://www.ilift.com/lp/contractors')
   })
 })

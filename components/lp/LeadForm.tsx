@@ -74,7 +74,7 @@ export function LeadForm({ slug, submitLabel }: { slug: string; submitLabel: str
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       })
-      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; eid?: string; error?: string }
+      const json = (await res.json().catch(() => ({}))) as { ok?: boolean; eid?: string | null; error?: string }
       if (!res.ok || !json.ok) {
         setError(
           json.error === 'invalid_phone' || json.error === 'phone_required'
@@ -84,7 +84,8 @@ export function LeadForm({ slug, submitLabel }: { slug: string; submitLabel: str
         setBusy(false)
         return
       }
-      router.push(`/lp/${slug}/thanks?eid=${encodeURIComponent(json.eid ?? eventId)}`)
+      // No eid (deduped/honeypot) → thanks page without a pixel Lead, so browser and server events stay 1:1.
+      router.push(json.eid ? `/lp/${slug}/thanks?eid=${encodeURIComponent(json.eid)}` : `/lp/${slug}/thanks`)
     } catch {
       setError('Something went wrong — call or text 516-322-9380.')
       setBusy(false)

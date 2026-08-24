@@ -4,7 +4,16 @@ import { useState, useTransition } from 'react'
 import { setStatus, setNotes } from './actions'
 import type { LeadRow as Row } from '@/lib/lead-machine/db'
 
-const STATUSES = ['new', 'contacted', 'call_booked', 'won', 'lost'] as const
+// Superset of the statuses the older site paths (contact form, scorecard, cal.com) already write.
+const STATUSES = ['new', 'contacted', 'call_booked', 'proposal', 'won', 'lost'] as const
+const SOURCE_LABEL: Record<string, string> = {
+  meta_form: 'Form',
+  meta_lp: 'LP',
+  contact_form: 'Site contact',
+  scorecard: 'Scorecard',
+  cal_booking: 'Booked call',
+  dave_agent: 'Chat agent',
+}
 
 function age(iso: string): string {
   const m = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000))
@@ -17,7 +26,7 @@ export function LeadRow({ lead }: { lead: Row }) {
   const [pending, start] = useTransition()
   const [notes, setLocalNotes] = useState(lead.notes ?? '')
   const t = (lead.tracking ?? {}) as Record<string, string>
-  const src = lead.source === 'meta_form' ? 'Form' : 'LP'
+  const src = SOURCE_LABEL[lead.source] ?? lead.source
   const meta = [src, lead.vertical, t.ad_name].filter(Boolean).join(' · ')
 
   return (

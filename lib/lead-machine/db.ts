@@ -1,6 +1,7 @@
 import { env } from './env'
 
-export type LeadStatus = 'new' | 'contacted' | 'call_booked' | 'won' | 'lost'
+export type LeadStatus = 'new' | 'contacted' | 'call_booked' | 'proposal' | 'won' | 'lost'
+/** Sources this module writes. Rows from the older site paths carry other values (contact_form, scorecard, …). */
 export type LeadSourceKind = 'meta_lp' | 'meta_form'
 
 export interface LeadInsert {
@@ -33,6 +34,8 @@ export interface SyncRow {
   last_run_at?: string | null
   last_error?: string | null
   consecutive_errors: number
+  /** false when no row exists yet (first sight of this form). Not a DB column. */
+  exists?: boolean
 }
 
 const TIMEOUT_MS = 8000
@@ -55,9 +58,12 @@ function base(): string {
   return `${url}/rest/v1`
 }
 
+/** Throws on non-2xx. Only the status and PostgREST error code are kept — bodies can echo the failing row (PII). */
 async function ok(res: Response, what: string): Promise<Response> {
   if (!res.ok) {
-    throw new Error(`${what} failed: ${res.status} ${await res.text().catch(() => '')}`)
+    const body = await res.text().catch(() => '')
+    const code = body.match(/"code"\s*:\s*"([^"]+)"/)?.[1] ?? ''
+    throw new Error(`${what} failed: ${res.status}${code ? ` ${code}` : ''}`)
   }
   return res
 }
@@ -156,15 +162,17 @@ export async function getSync(formId: string): Promise<SyncRow> {
     'getSync',
   )
   const rows = (await res.json()) as SyncRow[]
-  return rows[0] ?? { form_id: formId, last_created_time: '1970-01-01T00:00:00Z', consecutive_errors: 0 }
+  if (rows[0]) return { ...rows[0], exists: true }
+  return { form_id: formId, last_created_time: '1970-01-01T00:00:00Z', consecutive_errors: 0, exists: false }
 }
 
 export async function setSync(row: SyncRow): Promise<void> {
+  const { exists: _exists, ...cols } = row
   await ok(
     await fetch(`${base()}/ilift_lead_sync`, {
       method: 'POST',
       headers: headers({ Prefer: 'resolution=merge-duplicates,return=minimal' }),
-      body: JSON.stringify({ ...row, last_run_at: new Date().toISOString() }),
+      body: JSON.stringify({ ...cols, last_run_at: new Date().toISOString() }),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     }),
     'setSync',

@@ -69,10 +69,16 @@ export async function processLead(input: LeadInput): Promise<ProcessResult> {
     tracking,
   }
 
+  // Instant-Form leads are already recorded by Meta as native lead events — replaying them through
+  // CAPI as a website Lead would double-count. Only our own landing pages send CAPI.
+  const capi =
+    input.source === 'meta_lp'
+      ? sendCapiLead(lead, input.context)
+      : Promise.resolve({ sent: false, reason: 'disabled' } as const)
   const results = await Promise.allSettled([
     sendLeadSms(lead),
     sendTelegramPing(lead),
-    sendCapiLead(lead, input.context),
+    capi,
     sendConfirmationEmail(lead),
   ])
   results.forEach((r, i) => {

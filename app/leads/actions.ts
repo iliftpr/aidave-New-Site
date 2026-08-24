@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { updateLead, type LeadStatus } from '@/lib/lead-machine/db'
 import { checkBasicAuth } from '@/lib/lead-machine/basic-auth'
 
-const STATUSES: LeadStatus[] = ['new', 'contacted', 'call_booked', 'won', 'lost']
+const STATUSES: LeadStatus[] = ['new', 'contacted', 'call_booked', 'proposal', 'won', 'lost']
 
 /**
  * Server Actions are public HTTP endpoints addressed by action id, not by page path, so the
