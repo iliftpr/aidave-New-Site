@@ -46,7 +46,10 @@ test('honeypot submissions still post but the server swallows them', async ({ pa
     route.fulfill({ status: 200, contentType: 'application/javascript', body: FBQ_STUB }),
   )
   await page.goto('/lp/restaurants')
-  await page.locator('input[name="website"]').fill('http://spam', { force: true })
+  // The honeypot is display:none, so Playwright's fill() cannot type into it — set it the way a bot would.
+  await page.locator('input[name="website"]').evaluate((el) => {
+    ;(el as HTMLInputElement).value = 'http://spam'
+  })
   await page.getByLabel('Your name').fill('Bot')
   await page.getByLabel('Mobile number').fill('516-555-0100')
   await page.getByLabel('Business name').fill('Bot Co')
