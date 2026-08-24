@@ -1,0 +1,80 @@
+{
+  "campaign": {
+    "id": "120250129011790337",
+    "name": "iLift • Missed-Call Audit • Leads",
+    "account_id": "1179508710370218",
+    "page_id": "527833293737471",
+    "pixel_id": "1192402142237152",
+    "ad_sets": {
+      "A_instant_form": { "id": null, "note": "blocked until the Page accepts the Lead Ads ToS — see OWNER_CHECKLIST §D" },
+      "B_landing_pages": { "id": "120250129035250337", "daily_budget_cents": 2000, "optimization": "OFFSITE_CONVERSIONS/LEAD" }
+    },
+    "cta_line": "Get your free Missed-Call Audit.",
+    "utm": "utm_source=meta&utm_medium=cpc&utm_campaign=missed-call-audit&utm_content={ad}"
+  },
+  "ads": [
+    {
+      "id": "C1", "vertical": "contractors", "image": "final/C1-contractor-ladder-4x5.jpg", "mechanism": "situation mirror",
+      "headline": "Who's answering while you're on the roof?",
+      "primary_text": "You're 30 feet up in Levittown. Phone buzzes twice. By the time you're down, that homeowner booked whoever answered. Your line should text them back before you fold the ladder. Get your free Missed-Call Audit.",
+      "description": "Free 15-minute look. Long Island only.",
+      "link": "https://www.ilift.com/lp/contractors"
+    },
+    {
+      "id": "C2", "vertical": "contractors", "image": "final/C2-contractor-split-4x5.jpg", "mechanism": "loss aversion",
+      "headline": "Your voicemail is hiring your competitor.",
+      "primary_text": "Every call that hits voicemail in Nassau gets a second call — to the next plumber on the list. I'll call your shop after hours and show you what they heard. Get your free Missed-Call Audit.",
+      "description": "Free 15-minute look. No contract.",
+      "link": "https://www.ilift.com/lp/contractors"
+    },
+    {
+      "id": "C3", "vertical": "contractors", "image": "final/C3-founder-yard-4x5.jpg", "mechanism": "curiosity gap / founder",
+      "headline": "Let me call your shop at 8pm.",
+      "primary_text": "That's the whole audit. I dial your number after you've gone home, record what a customer gets, and walk you through the fix in 15 minutes. Free, no pitch required. Get your free Missed-Call Audit.",
+      "description": "Dave · iLift · East Meadow, NY",
+      "link": "https://www.ilift.com/lp/contractors"
+    },
+    {
+      "id": "D1", "vertical": "dental-medspa", "image": "final/D1-dental-frontdesk-4x5.jpg", "mechanism": "situation mirror",
+      "headline": "Weekend voicemails don't rebook themselves.",
+      "primary_text": "Monday 8am, Garden City. Your front desk is returning Saturday's calls while today's patients wait. A text within 60 seconds on Saturday would have booked half of them already. Get your free Missed-Call Audit.",
+      "description": "Free 15-minute look for Long Island practices.",
+      "link": "https://www.ilift.com/lp/dental-medspa"
+    },
+    {
+      "id": "D2", "vertical": "dental-medspa", "image": "final/D2-medspa-split-4x5.jpg", "mechanism": "loss aversion / reframe",
+      "headline": "Your Google Ads fill someone else's chairs.",
+      "primary_text": "You pay for the click. The patient calls at 7:15, gets the office-hours recording, and books the practice that texted back. Let's find out how often that happens. Get your free Missed-Call Audit.",
+      "description": "Free 15-minute look. No contract.",
+      "link": "https://www.ilift.com/lp/dental-medspa"
+    },
+    {
+      "id": "D3", "vertical": "dental-medspa", "image": "final/D3-founder-dental-4x5.jpg", "mechanism": "curiosity gap / founder",
+      "headline": "What your patients hear at 6:15pm.",
+      "primary_text": "I'll call your practice after close, record the experience, and show you where a new patient gives up. 15 minutes, free, and you keep the recording either way. Get your free Missed-Call Audit.",
+      "description": "Dave · iLift · East Meadow, NY",
+      "link": "https://www.ilift.com/lp/dental-medspa"
+    },
+    {
+      "id": "R1", "vertical": "restaurants", "image": "final/R1-restaurant-rush-4x5.jpg", "mechanism": "loss aversion",
+      "headline": "The party of 12 called during the rush.",
+      "primary_text": "Friday, 7:40, Merrick Road. Phone rings, nobody can grab it, and that catering order goes to the place that picked up. A text back with your menu link would have held them. Get your free Missed-Call Audit.",
+      "description": "Free 15-minute look for Long Island restaurants.",
+      "link": "https://www.ilift.com/lp/restaurants"
+    },
+    {
+      "id": "R2", "vertical": "restaurants", "image": "final/R2-restaurant-split-4x5.jpg", "mechanism": "contrast",
+      "headline": "Hold music, or a text in 60 seconds?",
+      "primary_text": "Your host can't answer the phone and seat a four-top at once. Missed callers get a text with hours, menu, and a reservation link — automatically. Get your free Missed-Call Audit.",
+      "description": "Free 15-minute look. No contract.",
+      "link": "https://www.ilift.com/lp/restaurants"
+    },
+    {
+      "id": "R3", "vertical": "restaurants", "image": "final/R3-founder-diner-4x5.jpg", "mechanism": "direct address / founder",
+      "headline": "Own a restaurant in Nassau? Read this.",
+      "primary_text": "I'll call your place during Friday dinner and tell you what a customer gets. If it's fine, you've lost 15 minutes. If it's not, you'll know exactly what it's costing. Get your free Missed-Call Audit.",
+      "description": "Dave · iLift · East Meadow, NY",
+      "link": "https://www.ilift.com/lp/restaurants"
+    }
+  ]
+}
