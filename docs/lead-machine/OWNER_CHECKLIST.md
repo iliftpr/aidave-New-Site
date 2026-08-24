@@ -56,8 +56,16 @@ printf '%s' 'VALUE' | vercel env add NAME production
 
 ## D. Campaign
 
-12. Ads Manager → campaign **"iLift • Never Miss a Call • Leads"** (created PAUSED by the agent) →
-    open each ad preview → when happy, set the **campaign** to Active. Budget starts at $30/day.
+12. **Accept the Lead Ads Terms of Service for the Page (blocks the Instant-Form ad set):**
+    https://www.facebook.com/legal/leadgen/tos → choose "AI Smart Marketing, AI Consulting &
+    Business Systems" → Accept. Meta returned `leadgen_tos_accepted: false` for this Page on
+    2026-08-24, so the "A • Instant Form" ad set could not be created by the agent — tell the
+    agent once accepted and it will finish it, or create it yourself (Leads → Instant form,
+    East Meadow +20 mi, 30–60, $30/day, the 3 vertical ads).
+13. Ads Manager → campaign **"iLift • Missed-Call Audit • Leads"** (id `120250129011790337`,
+    created PAUSED by the agent; ad set "B • Landing pages" is the website/LP path) → open each
+    ad preview → when happy, set the **campaign** to Active. Start the Instant-Form ad set at
+    $30/day; leave the landing-page ad set paused for the first week unless you want the A/B.
 13. Do not judge before day 4. On day 5–7 pause any ad set above 2× the target CPL after 50+
     clicks. Target: ≤$25/lead on the Instant Form, ≤$60/lead on the landing page.
 14. Every lead: call within 5 minutes of the Telegram ping. Mark *contacted* on `/leads` — that
