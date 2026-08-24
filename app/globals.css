@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Tailwind scans every non-ignored text file for class candidates. Research notes and docs are
+   not UI and can contain tokens that look like CSS escapes (a Windows temp path whose folder
+   name is a backslash followed by hex digits once broke the build), so keep the scanner out. */
+@source not "../marketing";
+@source not "../docs";
+
 @theme {
   /* Deep Ocean Blue - More vibrant and professional */
   --color-primary-50: #eff6ff;

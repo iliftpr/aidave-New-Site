@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Claude Code project MCP config (contains API keys) - do not commit
 .mcp.json
+
+# Isolated feature worktrees
+/.worktrees/
