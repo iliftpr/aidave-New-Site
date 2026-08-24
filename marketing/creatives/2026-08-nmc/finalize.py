@@ -12,7 +12,7 @@ os.makedirs(OUT, exist_ok=True)
 PICKS = {
     'C1-contractor-ladder-v1.png': ('C1-contractor-ladder', None),
     'C2-contractor-split-v1.png': ('C2-contractor-split', None),
-    'D1-dental-frontdesk-v1.png': ('D1-dental-frontdesk', None),
+    'D1-dental-frontdesk-v2.png': ('D1-dental-frontdesk', None),  # v2: two patients waiting reads as overload
     'D2-medspa-split-v1.png': ('D2-medspa-split', None),
     'R1-restaurant-rush-v1.png': ('R1-restaurant-rush', None),
     'R2-restaurant-split-v1.png': ('R2-restaurant-split', None),
