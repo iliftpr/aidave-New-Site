@@ -28,7 +28,10 @@ printf '%s' 'VALUE' | vercel env add NAME production
    to `/api/cron/meta-leads` every minute.
 4. **Conversions API token** → `META_CAPI_TOKEN`
    Events Manager → Data sources → pixel **1192402142237152** ("ilift.com Home") → Settings →
-   Conversions API → *Generate access token*.
+   Conversions API → *Generate access token*. ⚠ Store it with
+   `bash scripts/set-vercel-meta-capi-token.sh --from-clipboard` (Git Bash; copy the token, run, redeploy) —
+   it proves the token with ONE test event (`test_event_code`, never counted) before writing. The first
+   hand-pasted value was rejected by Graph on the first real lead (2026-08-25, `code=190 Invalid application ID`).
 5. **Page token for Instant-Form leads** → `META_PAGE_TOKEN`
    Graph API Explorer → Meta App: **NovaAds** → *User or Page*: "Get User Access Token" →
    permissions `pages_show_list`, `pages_read_engagement`, `leads_retrieval`, `pages_manage_ads` →
@@ -67,6 +70,10 @@ landing-page submission would have returned 500 and the poller would have failed
 8. Submit one **test lead** on the LP with your own mobile → expect: Telegram ping with a tap-to-call
    link, the row on `/leads` (yellow = new), Events Manager → Test events shows a server `Lead`.
    Set the row to *lost* afterwards.
+   ✅/⚠ **2026-08-25 14:48Z:** LP lead `d66b77e8…` (`source=meta_lp`, `pain=missed_calls`, `fbp` captured) → row +
+   Telegram ping OK, set *lost*. **CAPI FAILED** — Vercel log `[lead-machine] capi failed 400 code=190 Invalid
+   application ID` → `META_CAPI_TOKEN` was a bad paste. Fix per step 4 (script + redeploy), then re-run this step
+   with a phone not used in the last 24 h and confirm no `capi failed` line in the Vercel log.
 9. ✅ **DONE 2026-08-25** — Test-Form lead `2446757312477251` (13:52:20Z) was polled within 16 s → `ilift_leads`
    row `1c4dbb71…` (`source=meta_form`, set to *lost*), Telegram ping received, Meta test lead deleted
    (`/leads` = `[]`). Found + fixed: Meta returns the multiple-choice answer as the option **slug**
