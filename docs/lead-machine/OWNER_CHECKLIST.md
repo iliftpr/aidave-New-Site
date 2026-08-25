@@ -67,7 +67,12 @@ landing-page submission would have returned 500 and the poller would have failed
 8. Submit one **test lead** on the LP with your own mobile → expect: Telegram ping with a tap-to-call
    link, the row on `/leads` (yellow = new), Events Manager → Test events shows a server `Lead`.
    Set the row to *lost* afterwards.
-9. **Ads Manager → All Tools → Instant Forms → "iLift - Missed-Call Audit LI owners (Aug 2026)" → Test Form** — type real
+9. ✅ **DONE 2026-08-25** — Test-Form lead `2446757312477251` (13:52:20Z) was polled within 16 s → `ilift_leads`
+   row `1c4dbb71…` (`source=meta_form`, set to *lost*), Telegram ping received, Meta test lead deleted
+   (`/leads` = `[]`). Found + fixed: Meta returns the multiple-choice answer as the option **slug**
+   (`not_enough_leads`), not the label — `mapMetaLead` now normalises both (needs a prod redeploy).
+   Original steps kept for re-runs:
+   **Ads Manager → All Tools → Instant Forms → "iLift - Missed-Call Audit LI owners (Aug 2026)" → Test Form** — type real
    values and use a **different phone number than step 8** (the intake dedupes by phone for 24 h, so the same mobile
    yields no new row and no ping — it looks like a failure but is not). It should appear on `/leads` within ~1 minute.
    The developer tool at developers.facebook.com/tools/lead-ads-testing → *Create Lead* sends dummy data instead
