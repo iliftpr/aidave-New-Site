@@ -54,8 +54,14 @@ if [[ "${1:-}" == "--self-test" ]]; then
   echo "self-test passed"; exit 0
 fi
 
-printf 'Paste the Page access token for Page 527833293737471 (input hidden), then Enter: '
-read -rs TOKEN; echo
+if [[ "${1:-}" == "--from-clipboard" ]]; then
+  # Windows: read the clipboard via PowerShell (stdout only; strip CR/LF). Never echoed.
+  TOKEN="$(powershell.exe -NoProfile -Command 'Get-Clipboard -Raw' | tr -d '\r\n')"
+  echo "token read from the Windows clipboard"
+else
+  printf 'Paste the Page access token for Page 527833293737471 (input hidden), then Enter: '
+  read -rs TOKEN; echo
+fi
 [[ -n "$TOKEN" ]] || { echo "empty input"; exit 1; }
 echo "shape: prefix=${TOKEN:0:3} len=${#TOKEN}"
 
