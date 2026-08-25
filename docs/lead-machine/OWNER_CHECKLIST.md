@@ -28,7 +28,11 @@ printf '%s' 'VALUE' | vercel env add NAME production
    to `/api/cron/meta-leads` every minute.
 4. **Conversions API token** → `META_CAPI_TOKEN`
    Events Manager → Data sources → pixel **1192402142237152** ("ilift.com Home") → Settings →
-   Conversions API → *Generate access token*. ⚠ Store it with
+   Conversions API → *Generate access token*. If that button is missing (it was on 2026-08-25), use
+   Business Settings → Users → System users → "Conversions API System User" → Generate token → app
+   "OpenBot Ads Business" (the user has Develop app on it) → Never → `ads_management` → Copy.
+   ✅ **DONE 2026-08-25 15:33Z** — stored via the script (probe `events_received=1`); redeploy pending.
+   ⚠ Store it with
    `bash scripts/set-vercel-meta-capi-token.sh --from-clipboard` (Git Bash; copy the token, run, redeploy) —
    it proves the token with ONE test event (`test_event_code`, never counted) before writing. The first
    hand-pasted value was rejected by Graph on the first real lead (2026-08-25, `code=190 Invalid application ID`).

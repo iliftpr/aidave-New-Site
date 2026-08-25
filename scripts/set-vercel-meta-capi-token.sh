@@ -12,8 +12,11 @@
 # (3) asks Graph's debug_token who it is, (4) sends ONE Lead event to the real pixel with a
 # `test_event_code` — Meta shows those only in Events Manager → Test events and never counts
 # them in reporting or optimisation — and requires `events_received: 1`, and only then
-# (5) writes the var. Where the token comes from: Events Manager → Data sources → the pixel →
-# Settings → Conversions API → "Generate access token" (a system-user token).
+# (5) writes the var. Where the token comes from (what actually worked on 2026-08-25 — Events Manager's
+# "Generate access token" was nowhere to be found): Business Settings → Users → System users →
+# "Conversions API System User" (61574850025857; needs a role on a business-owned app — it was given
+# Develop app on "OpenBot Ads Business", Meta's own "Conversions API Application" is not selectable) →
+# Generate token → app OpenBot Ads Business → expiration Never → permission ads_management → Copy.
 # Run from Git Bash only (PowerShell 5.1 stamps a BOM on pipes). Redeploy afterwards —
 # env changes only take effect on the next deployment.
 set -euo pipefail
@@ -23,7 +26,8 @@ VAR="META_CAPI_TOKEN"
 TARGET="${VERCEL_TARGET:-production}"
 PIXEL_ID="${META_PIXEL_ID:-1192402142237152}"
 GV="${META_GRAPH_VERSION:-v21.0}"
-TEST_CODE="${META_TEST_EVENT_CODE:-TEST_CAPI_TOKEN_PROBE}"
+# Meta only accepts the TEST<digits> shape here; TEST_CAPI_TOKEN_PROBE answered 400 code=100 "Invalid parameter".
+TEST_CODE="${META_TEST_EVENT_CODE:-TEST48151}"
 
 # Reads $TOKEN; prints one line "<verdict> <facts…>" — never the token.
 INSPECT='
@@ -43,8 +47,7 @@ const base = "https://graph.facebook.com/" + gv;
       event_id: "capi-token-probe-" + Date.now(),
       action_source: "website",
       event_source_url: "https://www.ilift.com/lp/contractors",
-      user_data: { client_user_agent: "set-vercel-meta-capi-token/probe" },
-      custom_data: { content_name: "probe", lead_source: "capi_token_probe" },
+      user_data: { client_user_agent: "set-vercel-meta-capi-token/probe", client_ip_address: "127.0.0.1" },
     }],
     test_event_code: code,
   };
