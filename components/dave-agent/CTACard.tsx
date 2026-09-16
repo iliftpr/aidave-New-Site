@@ -14,8 +14,6 @@ type LeadState = 'idle' | 'open' | 'sending' | 'sent' | 'error'
 export function CTACard({ href }: Props) {
   const [leadState, setLeadState] = useState<LeadState>('idle')
   const [email, setEmail] = useState('')
-  // Spam screen: the API rejects submissions faster than a human could type
-  const [openedAt, setOpenedAt] = useState(0)
 
   const submitLead = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,7 +30,10 @@ export function CTACard({ href }: Props) {
             'Lead captured from the AI assistant on ilift.com — the visitor asked Dave to reach out instead of booking directly.',
           service: 'general',
           source: 'dave-agent',
-          elapsedMs: Date.now() - openedAt,
+          // Spam screen fill time, measured from page load: this card only exists after
+          // a chat reply, so a person is always past the API's floor. Timing from the
+          // reveal click dropped visitors who accept the one-field email autofill fast.
+          elapsedMs: Math.round(performance.now()),
         }),
       })
       if (!res.ok) throw new Error('failed')
@@ -77,10 +78,7 @@ export function CTACard({ href }: Props) {
       {leadState === 'idle' && (
         <button
           type="button"
-          onClick={() => {
-            setOpenedAt(Date.now())
-            setLeadState('open')
-          }}
+          onClick={() => setLeadState('open')}
           className="mt-1.5 text-xs text-gray-500 hover:text-gray-700 underline underline-offset-2"
         >
           Not ready to book? Leave your email and Dave will reach out.

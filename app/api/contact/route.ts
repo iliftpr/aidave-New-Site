@@ -29,6 +29,11 @@ function stripHeader(s: unknown): string {
   return String(s ?? '').replace(/[\r\n]+/g, ' ').trim()
 }
 
+// Short excerpt of an untrusted field for logs
+function clip(s: unknown, max = 120): string {
+  return String(s ?? '').slice(0, max)
+}
+
 function formatTimeframe(t?: EngagementTimeframe): string {
   if (!t) return ''
   const found = TIMEFRAME_OPTIONS.find((o) => o.value === t)
@@ -87,7 +92,17 @@ export async function POST(request: NextRequest) {
       host: request.headers.get('host'),
     })
     if (spamReason) {
-      console.warn(`[contact] Spam filter (${spamReason}) — silent drop:`, email)
+      // The visitor was told "sent", so log enough to recover a real lead if the filter was wrong
+      console.warn(
+        `[contact] Spam filter (${spamReason}) — silent drop:`,
+        JSON.stringify({
+          email: clip(email),
+          name: clip(name),
+          phone: clip(phone),
+          message: clip(message),
+          elapsedMs: clip(elapsedMs),
+        })
+      )
       return NextResponse.json({ success: true, message: 'Message sent successfully' })
     }
 
