@@ -44,7 +44,9 @@ function esc(s: unknown): string {
 
 export function mapMetaLead(lead: MetaLead): Omit<LeadInput, 'context'> {
   const painRaw = lead.field_data.find((x) => /costing|pain|problem/i.test(x.name))?.values?.[0]
-  const pain = painRaw ? (PAIN_BY_LABEL[painRaw.trim().toLowerCase()] ?? null) : null
+  // Meta returns a multiple-choice answer as the option slug ("not_enough_leads"), not the label
+  // ("Not enough leads") — verified on the 2026-08-25 test lead. Normalise so both forms map.
+  const pain = painRaw ? (PAIN_BY_LABEL[painRaw.trim().toLowerCase().replace(/_/g, ' ')] ?? null) : null
   return {
     name: field(lead, 'full_name', 'first_name') ?? null,
     phone: field(lead, 'phone_number', 'phone') ?? null,

@@ -69,6 +69,14 @@ describe('mapMetaLead', () => {
     const m = mapMetaLead({ ...metaLead, field_data: [{ name: 'costing', values: ['Something else'] }] })
     expect(m.pain).toBeNull()
   })
+  it('maps the option slug Meta actually returns for a multiple-choice answer', () => {
+    // Real /leads payload from the 2026-08-25 Test-Form lead: values are slugs, not labels.
+    const slug = (v: string) => ({ ...metaLead, field_data: [{ name: "what's_costing_you_the_most_right_now?", values: [v] }] })
+    expect(mapMetaLead(slug('not_enough_leads')).pain).toBe('not_enough_leads')
+    expect(mapMetaLead(slug('missed_calls')).pain).toBe('missed_calls')
+    expect(mapMetaLead(slug('no_shows')).pain).toBe('no_shows')
+    expect(mapMetaLead(slug('reviews')).pain).toBe('reviews')
+  })
 })
 
 describe('syncMetaLeads', () => {
