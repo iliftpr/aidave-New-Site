@@ -40,6 +40,11 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // Spam screen: the API rejects submissions faster than a human could type
+  const [mountedAt, setMountedAt] = useState(0)
+  useEffect(() => {
+    setMountedAt(Date.now())
+  }, [])
 
   // Pre-select service from query string (?service=mastery)
   useEffect(() => {
@@ -101,6 +106,7 @@ export function ContactSection() {
       message: formData.message,
       service: formData.service,
       website: formData.website,
+      elapsedMs: Date.now() - mountedAt,
     }
     if (formData.service === 'fractional') {
       payload.company = formData.company
