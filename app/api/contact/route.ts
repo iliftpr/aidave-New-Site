@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { recordLead } from '@/lib/leads'
+import { detectSpam } from '@/lib/spam'
 import {
   SERVICE_LABELS,
   ENGAGEMENT_TYPE_LABELS,
@@ -53,6 +54,7 @@ export async function POST(request: NextRequest) {
       timeframe,
       website,
       source,
+      elapsedMs,
     } = body as {
       name?: string
       email?: string
@@ -64,12 +66,28 @@ export async function POST(request: NextRequest) {
       timeframe?: EngagementTimeframe
       website?: string
       source?: string
+      elapsedMs?: unknown
     }
 
     // Honeypot — bots fill the "website" field, humans don't.
     // Silently 200 OK and drop without emailing.
     if (website && website.trim().length > 0) {
       console.warn('[contact] Honeypot tripped — silent drop')
+      return NextResponse.json({ success: true, message: 'Message sent successfully' })
+    }
+
+    // Scripted bots skip the form entirely and POST straight here, so screen
+    // the request itself: same-origin, human fill time, no gibberish. Same
+    // silent 200 so the bot can't tell it was filtered.
+    const spamReason = detectSpam({
+      name,
+      message,
+      elapsedMs,
+      origin: request.headers.get('origin'),
+      host: request.headers.get('host'),
+    })
+    if (spamReason) {
+      console.warn(`[contact] Spam filter (${spamReason}) — silent drop:`, email)
       return NextResponse.json({ success: true, message: 'Message sent successfully' })
     }
 
