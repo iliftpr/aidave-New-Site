@@ -22,11 +22,11 @@ const FLAG_SCORE = 2
 // 2-letter chunks that are real words, name particles, initials or common
 // abbreviations when run together: LaToya, McDonald, LinkedIn, EdWu, SmithPc.
 const OK_2 = new Set(
-  'mc de di da du do la le lo al el ja jo ed ty bo wu ng li xu yu hu lu ho ko oh ma my go in on of to up at by is it or an as be us we me no so if ai ok re ez st dr mr ms jr sr co pc ny nj ct pa md dc tx va fl ca'.split(' '),
+  'mc de di da du do la le lo al el ja jo ed ty bo wu ng li xu yu hu lu ho ko oh ma my go in on of to up at by is it or an as be us we me no so if ai ok re ez st dr mr ms jr sr co pc lp ny nj ct pa md dc tx va fl ca'.split(' '),
 )
-// Vowel-less chunks of 3+ letters that are common abbreviations: SmithLlc, BestHvacNyc.
+// Vowel-less chunks of 3+ letters that are common abbreviations: SmithLlc, CohenLlp, BestHvacNyc.
 const OK_NO_VOWEL = new Set(
-  'llc pllc ltd nyc dds dmd crm sms mfg mgmt bldg blvd hwy pkwy ctr svc svcs cpa pdf html css xml sql php bbq http https sdk'.split(' '),
+  'llc pllc llp lllp plc ltd nyc dds dmd crm sms mfg mgmt bldg blvd hwy pkwy ctr svc svcs cpa pdf html css xml sql php bbq http https sdk'.split(' '),
 )
 
 // 0 = word-like, 0.5 = odd, 1 = not a word
